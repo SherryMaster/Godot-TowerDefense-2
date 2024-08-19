@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn2ktgenc2if0"]
+
+[ext_resource type="Script" path="res://Components/projectile_componenet.gd" id="1_cv30l"]
+[ext_resource type="Texture2D" uid="uid://d36j2v3hi7mb4" path="res://Assets/Bullet.png" id="2_1savs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k8rp"]
+size = Vector2(10, 8)
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_cv30l")
+damage = 90.0
+speed = 2500.0
+can_home_to_enemies = true
+homing_power = 0.049
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1savs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5k8rp")

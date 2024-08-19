@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://brvtcpf7vraqx"]
+
+[ext_resource type="Texture2D" uid="uid://ccf4gdfr4i4fj" path="res://Assets/HealthbarTextures/Background.png" id="1_hbce7"]
+[ext_resource type="Texture2D" uid="uid://ugvsx7chpyq8" path="res://Assets/HealthbarTextures/Frame.png" id="2_ualvq"]
+[ext_resource type="Script" path="res://Components/health_bar_component.gd" id="4_12god"]
+
+[node name="HealthBarComponent" type="TextureProgressBar"]
+offset_left = -44.0
+offset_top = -9.0
+offset_right = 45.0
+offset_bottom = 9.0
+step = 0.0
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 3
+stretch_margin_right = 6
+stretch_margin_bottom = 3
+texture_under = ExtResource("1_hbce7")
+texture_over = ExtResource("2_ualvq")
+texture_progress = ExtResource("1_hbce7")
+tint_under = Color(0.129558, 0.129558, 0.129558, 1)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(2.76752e-07, 0.445589, 0.158539, 1)
+script = ExtResource("4_12god")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -7.0
+offset_right = 63.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.685, 0.685)
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 2
