@@ -8,6 +8,8 @@ class_name Level
 
 @onready var start: Node2D = $Start
 @onready var end: Node2D = $End
+@onready var units: Node2D = $Units
+@onready var towers: Node2D = $Towers
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

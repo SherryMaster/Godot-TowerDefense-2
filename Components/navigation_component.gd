@@ -2,7 +2,7 @@ extends NavigationAgent2D
 class_name NavigationComponent
 
 @export var follow_mouse = false
-
+@export var stop_on_reach = false
 
 var parent: Tank
 @onready var velocity_component: VelocityComponent = $"../VelocityComponent"
@@ -14,8 +14,9 @@ func _ready() -> void:
 	parent = get_parent()
 	
 	current_velocity = Vector2.RIGHT.rotated(parent.rotation)
-	
 	set_path_postprocessing(NavigationPathQueryParameters2D.PATH_POSTPROCESSING_EDGECENTERED)
+	
+	target_reached.connect(_on_target_reached)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,6 +40,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_target_reached() -> void:
-	velocity_component.moving = false
+	if stop_on_reach:
+		velocity_component.moving = false
 	parent.reached_at_end = true if parent.current_target == parent.main_target else false
-	parent.target_position = Vector2.ZERO

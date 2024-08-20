@@ -42,6 +42,7 @@ func update():
 	
 	label.text = str(health_component.hp)
 	
+	max_value = health_component.max_hp
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "value", health_component.hp, 0.5)

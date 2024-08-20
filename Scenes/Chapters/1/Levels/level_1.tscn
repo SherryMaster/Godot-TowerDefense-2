@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://h1uysedkywsp"]
+[gd_scene load_steps=4 format=3 uid="uid://h1uysedkywsp"]
 
 [ext_resource type="Script" path="res://Scenes/Chapters/1/Levels/level.gd" id="1_wuupx"]
 [ext_resource type="Script" path="res://Scripts/GameCamera.gd" id="2_lb2it"]
 [ext_resource type="PackedScene" uid="uid://c3unc3gvkhl7u" path="res://Scenes/Maps/map_1.tscn" id="2_liwd4"]
-[ext_resource type="PackedScene" uid="uid://dk4reaxs2tlf8" path="res://Scenes/Entities/Tanks/tank1.tscn" id="3_sm1c4"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_wuupx")
@@ -19,15 +18,11 @@ limit_bottom = 2000
 script = ExtResource("2_lb2it")
 
 [node name="End" type="Node2D" parent="."]
-position = Vector2(2783, 160)
+position = Vector2(537, 160)
 
 [node name="Start" type="Node2D" parent="."]
 position = Vector2(-32, 160)
 
-[node name="Units" type="Node2D" parent="."]
-
 [node name="Towers" type="Node2D" parent="."]
 
-[node name="Tank" parent="." node_paths=PackedStringArray("main_target") instance=ExtResource("3_sm1c4")]
-position = Vector2(38, 159)
-main_target = NodePath("../End")
+[node name="Units" type="Node2D" parent="."]

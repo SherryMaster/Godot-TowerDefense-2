@@ -13,10 +13,6 @@ var colors = {
 @export_category("Unit Detail")
 @export_enum("Tank") var type: String = "Tank"
 @export_enum("Red", "Green", "Blue", "Purple", "Pink", "Orange") var color: String = "Blue"
-@export_range(1, 5) var level: int
-@export var hp: int = 100
-@export var speed: int = 50
-@export_range(0, 0.1) var turn_factor = 0.1
 
 @export_category("Pattern Detail")
 @export var amount: int = 5
