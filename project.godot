@@ -29,6 +29,20 @@ window/stretch/mode="viewport"
 
 theme/custom_font="res://Resources/Fonts/pixeloid-font/PixeloidMono-d94EV.ttf"
 
+[layer_names]
+
+2d_physics/layer_1="Ground Units"
+2d_navigation/layer_1="Ground"
+2d_physics/layer_2="Air Units"
+2d_navigation/layer_2="Air"
+2d_physics/layer_3="Towers"
+2d_navigation/layer_3="Ground TileMap"
+2d_physics/layer_4="Projectiles"
+2d_navigation/layer_4="Air TileMap"
+2d_physics/layer_5="HurtBoxes"
+2d_physics/layer_6="HitBoxes"
+2d_physics/layer_7="TileMap"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

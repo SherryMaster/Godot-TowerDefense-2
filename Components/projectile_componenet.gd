@@ -6,7 +6,7 @@ var enemy: Node2D
 @export_enum("Bullet", "Rocket") var projectile_type: String = "Bullet"
 
 @export var damage: float = 10
-@export var speed: float = 250
+@export var speed: float = 2500
 @export var can_home_to_enemies: bool = false
 
 @export_range(0, 0.1) var homing_power: float = 0.1

@@ -7,3 +7,5 @@
 script = ExtResource("1_yodpb")
 
 [node name="Level" parent="." instance=ExtResource("1_4qsos")]
+
+[node name="EnemySpawner" type="Timer" parent="."]

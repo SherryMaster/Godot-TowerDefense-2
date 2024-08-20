@@ -1,5 +1,22 @@
 extends Node
 
+var CLASSIC_TANK_STATS = {
+	"Blue": {
+		"Hp": 15,
+		"Speed": 50,
+		"Coins on Death": 5,
+	},
+	"Red": {
+		"Hp": 45,
+		"Speed": 50,
+		"Coins on Death": 15,
+	},
+	"Green": {
+		"Hp": 135,
+		"Speed": 50,
+		"Coins on Death": 45,
+	}
+}
 
 var CHAPTERS_DATA: ChapterResource = preload("res://Resources/GameData/chapters_data.tres")
 

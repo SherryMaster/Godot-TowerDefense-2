@@ -2,18 +2,16 @@ extends NavigationAgent2D
 class_name NavigationComponent
 
 @export var follow_mouse = false
-@export var smooth_towards_target = true
 
 
-var parent: UnitComponent
-var stats_component: StatsComponent
+var parent: Tank
+@onready var velocity_component: VelocityComponent = $"../VelocityComponent"
 
 var current_velocity: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	parent = get_parent()
-	stats_component = get_parent().get_node("StatsComponent") as StatsComponent
 	
 	current_velocity = Vector2.RIGHT.rotated(parent.rotation)
 	
@@ -26,24 +24,21 @@ func _physics_process(delta: float) -> void:
 	if follow_mouse:
 		parent.target_position = parent.get_global_mouse_position()
 	
-	if smooth_towards_target:
-		var direction: Vector2
-		target_position = parent.target_position
-		
-		direction = parent.global_position.direction_to(get_next_path_position())
-		var desired_velocity := direction * stats_component.speed
-		
-		var change = (desired_velocity - current_velocity) * stats_component.drag_factor
-		
-		current_velocity += change
+	var direction: Vector2
+	target_position = parent.target_position
 	
-	var parent_direction = Vector2.RIGHT.rotated(parent.rotation)
+	direction = parent.global_position.direction_to(get_next_path_position())
+	var desired_velocity := direction * velocity_component.speed
 	
-	parent.move_and_collide(current_velocity * stats_component.speed_power * delta)
+	var change = (desired_velocity - current_velocity) * velocity_component.turn_factor
+	
+	current_velocity += change
+	
+	parent.move_and_collide(current_velocity * velocity_component.speed_power * delta)
 	parent.look_at(parent.global_position + current_velocity)
 
 
 func _on_target_reached() -> void:
-	parent.moving = false
+	velocity_component.moving = false
 	parent.reached_at_end = true if parent.current_target == parent.main_target else false
 	parent.target_position = Vector2.ZERO

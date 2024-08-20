@@ -8,9 +8,6 @@ size = Vector2(10, 8)
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_cv30l")
-damage = 90.0
-speed = 2500.0
-can_home_to_enemies = true
 homing_power = 0.049
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

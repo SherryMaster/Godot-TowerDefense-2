@@ -1,3 +1,4 @@
+@icon("res://Assets/CustomNodeIcons/health_bar_component.png")
 extends TextureProgressBar
 class_name HealthBarComponent
 
@@ -5,8 +6,7 @@ class_name HealthBarComponent
 
 @onready var label: Label = $Label
 
-var health_component: HealthComponent
-var stats_component : StatsComponent
+@onready var health_component: HealthComponent = $"../HealthComponent"
 
 var x_offset
 var y_offset
@@ -17,10 +17,8 @@ func _ready() -> void:
 	y_offset = position.y
 	top_level = true
 	
-	health_component = get_parent().get_node("HealthComponent") as HealthComponent
-	stats_component = get_parent().get_node("StatsComponent") as StatsComponent
-	max_value = stats_component.max_hp
-	value = stats_component.hp
+	max_value = health_component.max_hp
+	value = health_component.hp
 	health_component.hp_changed.connect(update)
 	
 	if show_amount:
@@ -28,7 +26,7 @@ func _ready() -> void:
 	else:
 		label.visible = false
 	
-	label.text = str(stats_component.hp)
+	label.text = str(health_component.hp)
 
 
 func _process(delta: float) -> void:
@@ -42,9 +40,9 @@ func _process(delta: float) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update():
 	
-	label.text = str(stats_component.hp)
+	label.text = str(health_component.hp)
 	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property(self, "value", stats_component.hp, 0.5)
+	tween.tween_property(self, "value", health_component.hp, 0.5)
 	

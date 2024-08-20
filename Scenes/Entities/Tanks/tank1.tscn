@@ -1,14 +1,14 @@
 [gd_scene load_steps=18 format=3 uid="uid://dk4reaxs2tlf8"]
 
-[ext_resource type="Script" path="res://Components/unit_component.gd" id="1_3oe4h"]
-[ext_resource type="Script" path="res://Components/stats_component.gd" id="2_soei4"]
+[ext_resource type="Script" path="res://Scenes/Entities/Tank.gd" id="1_3hddl"]
 [ext_resource type="Texture2D" uid="uid://c7x32sfjvrwu3" path="res://Assets/Tank Wheel Set.png" id="3_rirxj"]
-[ext_resource type="Script" path="res://Scenes/Enemies/Tanks/wheels.gd" id="4_j7wem"]
+[ext_resource type="Script" path="res://Scenes/Entities/wheels.gd" id="4_j7wem"]
 [ext_resource type="Texture2D" uid="uid://c2ta8tpy7xnpo" path="res://Assets/tank-1.png" id="5_okul2"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="6_h6v68"]
 [ext_resource type="PackedScene" uid="uid://brvtcpf7vraqx" path="res://Components/health_bar_component.tscn" id="7_5pxq4"]
 [ext_resource type="Script" path="res://Components/hit_box_component.gd" id="8_nmofl"]
 [ext_resource type="Script" path="res://Components/navigation_component.gd" id="9_bt3de"]
+[ext_resource type="Script" path="res://Components/velocity_component.gd" id="10_f3u35"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v5ow4"]
 atlas = ExtResource("3_rirxj")
@@ -61,11 +61,7 @@ size = Vector2(26, 26)
 
 [node name="Tank" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_3oe4h")
-
-[node name="StatsComponent" type="Node" parent="."]
-script = ExtResource("2_soei4")
-speed = 250.0
+script = ExtResource("1_3hddl")
 
 [node name="Wheels" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0i6xs")
@@ -79,18 +75,22 @@ texture = ExtResource("5_okul2")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_h6v68")
+max_hp = 60.0
 
 [node name="HealthBarComponent" parent="." instance=ExtResource("7_5pxq4")]
 offset_left = -37.0
 offset_top = -26.0
 offset_right = 37.0
 offset_bottom = -14.0
+tint_progress = Color(8.23036e-06, 0.772518, 0.297999, 1)
 
-[node name="HitBoxComponent" type="Area2D" parent="."]
+[node name="HurtBoxComponent" type="Area2D" parent="."]
 visible = false
+collision_layer = 16
+collision_mask = 32
 script = ExtResource("8_nmofl")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBoxComponent"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBoxComponent"]
 shape = SubResource("RectangleShape2D_od2ca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -99,5 +99,8 @@ shape = SubResource("RectangleShape2D_d7smc")
 
 [node name="NavigationComponent" type="NavigationAgent2D" parent="."]
 script = ExtResource("9_bt3de")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("10_f3u35")
 
 [connection signal="target_reached" from="NavigationComponent" to="NavigationComponent" method="_on_target_reached"]

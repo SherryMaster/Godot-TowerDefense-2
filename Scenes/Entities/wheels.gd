@@ -1,6 +1,6 @@
 extends AnimatedSprite2D
 
-@onready var stats_component: StatsComponent = $"../StatsComponent"
+@onready var velocity_component: VelocityComponent = $"../VelocityComponent"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,4 +9,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	speed_scale = stats_component.speed * stats_component.speed_power
+	speed_scale = velocity_component.speed * velocity_component.speed_power
