@@ -15,6 +15,16 @@ var CLASSIC_TANK_STATS = {
 		"Hp": 135,
 		"Speed": 50,
 		"Coins on Death": 45,
+	},
+	"Yellow": {
+		"Hp": 405,
+		"Speed": 50,
+		"Coins on Death": 135,
+	},
+	"Pink":{
+		"Hp": 1215,
+		"Speed": 50,
+		"Coins on Death": 405,
 	}
 }
 

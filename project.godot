@@ -18,12 +18,17 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameData="*res://SingleTons/GameData.gd"
+Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg")
 
 [gui]
 
@@ -42,6 +47,7 @@ theme/custom_font="res://Resources/Fonts/pixeloid-font/PixeloidMono-d94EV.ttf"
 2d_physics/layer_5="HurtBoxes"
 2d_physics/layer_6="HitBoxes"
 2d_physics/layer_7="TileMap"
+2d_physics/layer_8="Detection"
 
 [rendering]
 

@@ -15,7 +15,7 @@ var hp: float
 func _ready() -> void:
 	hp = max_hp
 
-func damage(amount: int) -> void:
+func damage(amount: float) -> void:
 	hp -= amount
 	got_damage.emit(amount)
 	
@@ -24,7 +24,7 @@ func damage(amount: int) -> void:
 	
 	hp_changed.emit()
 
-func heal(amount: int) -> void:
+func heal(amount: float) -> void:
 	hp += amount
 	hp = min(max_hp, hp)
 	hp_increased.emit(amount)

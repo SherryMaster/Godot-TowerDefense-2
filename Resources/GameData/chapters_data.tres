@@ -1,81 +1,168 @@
-[gd_resource type="Resource" script_class="ChapterResource" load_steps=17 format=3 uid="uid://bpmqx0fwiaxrh"]
+[gd_resource type="Resource" script_class="ChapterResource" load_steps=24 format=3 uid="uid://bpmqx0fwiaxrh"]
 
 [ext_resource type="Script" path="res://Resources/Customs/LevelResource.gd" id="1_px83l"]
 [ext_resource type="Script" path="res://Resources/Customs/WaveResource.gd" id="2_2ihsr"]
 [ext_resource type="Script" path="res://Resources/Customs/WavePartResource.gd" id="3_cd48d"]
 [ext_resource type="Script" path="res://Resources/Customs/ChapterResource.gd" id="4_w67id"]
 
-[sub_resource type="Resource" id="Resource_l3a0l"]
+[sub_resource type="Resource" id="Resource_j07ed"]
 script = ExtResource("3_cd48d")
-type = "Tank"
+type = "Normal_Tank"
+color = "Green"
+amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_uv8lr"]
+script = ExtResource("3_cd48d")
+type = "Normal_Tank"
 color = "Blue"
 amount = 3
 delay_btw_spawns = 1.0
 wait_after_pattern_complete = 1.0
+loopings_state = "Start"
+times_to_repeat = 3
 
-[sub_resource type="Resource" id="Resource_d74vf"]
-script = ExtResource("2_2ihsr")
-wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_l3a0l")])
-
-[sub_resource type="Resource" id="Resource_k55ln"]
+[sub_resource type="Resource" id="Resource_yasi1"]
 script = ExtResource("3_cd48d")
-type = "Tank"
-color = "Blue"
+type = "Normal_Tank"
+color = "Yellow"
 amount = 5
-delay_btw_spawns = 1.0
+delay_btw_spawns = 0.5
 wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
 
-[sub_resource type="Resource" id="Resource_5hr1p"]
-script = ExtResource("2_2ihsr")
-wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_k55ln")])
-
-[sub_resource type="Resource" id="Resource_pdrn6"]
+[sub_resource type="Resource" id="Resource_4637n"]
 script = ExtResource("3_cd48d")
-type = "Tank"
-color = "Blue"
-amount = 5
-delay_btw_spawns = 1.0
-wait_after_pattern_complete = 2.0
-
-[sub_resource type="Resource" id="Resource_3yjhx"]
-script = ExtResource("3_cd48d")
-type = "Tank"
+type = "Normal_Tank"
 color = "Red"
 amount = 3
 delay_btw_spawns = 1.0
 wait_after_pattern_complete = 1.0
+loopings_state = "Stop"
+times_to_repeat = 0
 
-[sub_resource type="Resource" id="Resource_3cjyn"]
-script = ExtResource("2_2ihsr")
-wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_pdrn6"), SubResource("Resource_3yjhx")])
-
-[sub_resource type="Resource" id="Resource_1wn8h"]
+[sub_resource type="Resource" id="Resource_cv8me"]
 script = ExtResource("3_cd48d")
-type = "Tank"
+type = "Normal_Tank"
 color = "Blue"
 amount = 5
 delay_btw_spawns = 1.0
 wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
 
-[sub_resource type="Resource" id="Resource_43q31"]
+[sub_resource type="Resource" id="Resource_cgng8"]
 script = ExtResource("3_cd48d")
-type = "Tank"
+type = "Normal_Tank"
+color = "Blue"
+amount = 3
+delay_btw_spawns = 0.1
+wait_after_pattern_complete = 1.0
+loopings_state = "Start"
+times_to_repeat = 2
+
+[sub_resource type="Resource" id="Resource_i8cvx"]
+script = ExtResource("3_cd48d")
+type = "Normal_Tank"
+color = "Yellow"
+amount = 10
+delay_btw_spawns = 0.5
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_cr64g"]
+script = ExtResource("3_cd48d")
+type = "Normal_Tank"
+color = "Red"
+amount = 25
+delay_btw_spawns = 0.2
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_ux552"]
+script = ExtResource("2_2ihsr")
+hp_scale = 1.0
+wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_j07ed"), SubResource("Resource_uv8lr"), SubResource("Resource_yasi1"), SubResource("Resource_4637n"), SubResource("Resource_cv8me"), SubResource("Resource_cgng8"), SubResource("Resource_4637n"), SubResource("Resource_i8cvx"), SubResource("Resource_cr64g")])
+
+[sub_resource type="Resource" id="Resource_1r1re"]
+script = ExtResource("3_cd48d")
+type = "Normal_Tank"
 color = "Blue"
 amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_ulcx1"]
+script = ExtResource("2_2ihsr")
+hp_scale = 1.0
+wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_1r1re")])
+
+[sub_resource type="Resource" id="Resource_mgr6g"]
+script = ExtResource("3_cd48d")
+type = "Normal_Tank"
+color = "Blue"
+amount = 3
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_nnijv"]
+script = ExtResource("3_cd48d")
+type = "Normal_Tank"
+color = "Blue"
+amount = 3
+delay_btw_spawns = 0.6
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_0lym4"]
+script = ExtResource("2_2ihsr")
+hp_scale = 1.0
+wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_mgr6g"), SubResource("Resource_nnijv")])
+
+[sub_resource type="Resource" id="Resource_iosrx"]
+script = ExtResource("3_cd48d")
+type = "Normal_Tank"
+color = "Blue"
+amount = 10
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_hsv2s"]
+script = ExtResource("2_2ihsr")
+hp_scale = 1.0
+wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_iosrx")])
+
+[sub_resource type="Resource" id="Resource_wfte6"]
+script = ExtResource("3_cd48d")
+type = "Normal_Tank"
+color = "Blue"
+amount = 8
 delay_btw_spawns = 0.7
 wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
 
-[sub_resource type="Resource" id="Resource_ffcwy"]
+[sub_resource type="Resource" id="Resource_bwow7"]
 script = ExtResource("2_2ihsr")
-wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_1wn8h"), SubResource("Resource_43q31")])
-
-[sub_resource type="Resource" id="Resource_jt4ny"]
-script = ExtResource("2_2ihsr")
-wave_parts = Array[ExtResource("3_cd48d")]([])
+hp_scale = 1.0
+wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_wfte6")])
 
 [sub_resource type="Resource" id="Resource_jjqw5"]
 script = ExtResource("1_px83l")
-waves = Array[ExtResource("2_2ihsr")]([SubResource("Resource_d74vf"), SubResource("Resource_5hr1p"), SubResource("Resource_3cjyn"), SubResource("Resource_ffcwy"), SubResource("Resource_jt4ny")])
+waves = Array[ExtResource("2_2ihsr")]([SubResource("Resource_ux552"), SubResource("Resource_ulcx1"), SubResource("Resource_0lym4"), SubResource("Resource_hsv2s"), SubResource("Resource_bwow7")])
 
 [resource]
 script = ExtResource("4_w67id")

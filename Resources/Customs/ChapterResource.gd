@@ -1,3 +1,4 @@
+@icon("res://Assets/CustomNodeIcons/chapter.png")
 extends Resource
 class_name ChapterResource
 

@@ -1,3 +1,4 @@
+@icon("res://Assets/CustomNodeIcons/levels.png")
 extends Resource
 class_name LevelResource
 

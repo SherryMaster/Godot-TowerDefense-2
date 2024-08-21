@@ -1,25 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://c3unc3gvkhl7u"]
+[gd_scene load_steps=3 format=4 uid="uid://c3unc3gvkhl7u"]
 
 [ext_resource type="TileSet" uid="uid://dp0m461rrmhsq" path="res://Resources/Tilesets/MainTileSet.tres" id="1_2ca0w"]
-[ext_resource type="Texture2D" uid="uid://bxplcktds7xqb" path="res://Assets/selected frame.png" id="2_e6b1d"]
-[ext_resource type="Texture2D" uid="uid://bhfu72n5h7kgr" path="res://Assets/tower_tiles.png" id="3_f2nu0"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fp428"]
-texture = ExtResource("2_e6b1d")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_byu4r"]
-texture = ExtResource("3_f2nu0")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_bumsg"]
-tile_size = Vector2i(32, 32)
-sources/1 = SubResource("TileSetAtlasSource_fp428")
-sources/2 = SubResource("TileSetAtlasSource_byu4r")
+[ext_resource type="TileSet" uid="uid://cmt0jlili3kcd" path="res://Resources/Tilesets/TowerTiles.tres" id="2_are26"]
 
 [node name="Map" type="Node2D"]
 
@@ -32,7 +14,7 @@ tile_map_data = PackedByteArray("AAAFAAIAAQACAAMAAAAEAAIAAQACAAMAAAADAAIAAQACAAM
 tile_set = ExtResource("1_2ca0w")
 
 [node name="TowerTiles" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_bumsg")
+tile_set = ExtResource("2_are26")
 
 [node name="TileSelector" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_bumsg")
+tile_set = ExtResource("2_are26")
