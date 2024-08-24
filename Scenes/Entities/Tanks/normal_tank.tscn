@@ -1,16 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://dk4reaxs2tlf8"]
+[gd_scene load_steps=20 format=3 uid="uid://dk4reaxs2tlf8"]
 
-[ext_resource type="Script" path="res://Scenes/Entities/Tank.gd" id="1_6qpxn"]
+[ext_resource type="Script" path="res://Scripts/Tank.gd" id="1_6qpxn"]
 [ext_resource type="Texture2D" uid="uid://c7x32sfjvrwu3" path="res://Assets/Tank Wheel Set.png" id="2_cocxp"]
-[ext_resource type="Script" path="res://Scenes/Entities/wheels.gd" id="3_y0fwh"]
+[ext_resource type="Script" path="res://Scripts/wheels.gd" id="3_y0fwh"]
 [ext_resource type="Texture2D" uid="uid://c2ta8tpy7xnpo" path="res://Assets/tank-1.png" id="4_bk6g4"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="5_86v3g"]
 [ext_resource type="PackedScene" uid="uid://brvtcpf7vraqx" path="res://Components/health_bar_component.tscn" id="6_82h3i"]
 [ext_resource type="Script" path="res://Components/hurt_box_component.gd" id="7_hfhk1"]
+[ext_resource type="Script" path="res://Components/detector_component.tres.gd" id="8_3eqto"]
 [ext_resource type="Script" path="res://Components/navigation_component.gd" id="8_do71s"]
-[ext_resource type="Script" path="res://Components/detector_component.gd" id="8_pgwqm"]
 [ext_resource type="Script" path="res://Components/velocity_component.gd" id="9_1besi"]
-[ext_resource type="Script" path="res://Components/visible_on_screen_enabler.gd" id="11_a2pcq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v5ow4"]
 atlas = ExtResource("2_cocxp")
@@ -93,8 +92,6 @@ tint_progress = Color(8.23036e-06, 0.772518, 0.297999, 1)
 collision_layer = 16
 collision_mask = 32
 script = ExtResource("7_hfhk1")
-mouse_debugging = true
-mouse_damage = 50.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBoxComponent"]
 shape = SubResource("RectangleShape2D_od2ca")
@@ -104,7 +101,7 @@ debug_color = Color(0.912218, 0, 0.299023, 0.42)
 visible = false
 collision_layer = 128
 collision_mask = 127
-script = ExtResource("8_pgwqm")
+script = ExtResource("8_3eqto")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorComponent"]
 shape = SubResource("CircleShape2D_8dmjc")
@@ -120,11 +117,4 @@ script = ExtResource("8_do71s")
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("9_1besi")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(1, 0)
-scale = Vector2(1.1, 1)
-script = ExtResource("11_a2pcq")
-
 [connection signal="mouse_entered" from="HurtBoxComponent" to="HurtBoxComponent" method="_on_mouse_entered"]
-[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="VisibleOnScreenEnabler2D" method="_on_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="VisibleOnScreenEnabler2D" method="_on_screen_exited"]

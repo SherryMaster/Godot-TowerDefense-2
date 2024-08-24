@@ -1,0 +1,178 @@
+[gd_scene load_steps=9 format=3 uid="uid://degabwtrn4wfy"]
+
+[ext_resource type="LabelSettings" uid="uid://b55m4horok4h5" path="res://Resources/Fonts/MainFont.tres" id="1_f1gtc"]
+[ext_resource type="Texture2D" uid="uid://cml8jhjinuycc" path="res://Assets/love-always-wins.png" id="2_sy2xj"]
+
+[sub_resource type="GDScript" id="GDScript_t7536"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = str(GamePlayData.map_money)
+"
+
+[sub_resource type="GDScript" id="GDScript_lrtjc"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = str(GamePlayData.current_wave) + \" / \" + str(GamePlayData.max_waves + 1)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lh0jb"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfdsf"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_he2fw"]
+script/source = "extends ProgressBar
+
+var emitted: bool = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	max_value = GamePlayData.base_max_hp
+	value = GamePlayData.base_hp
+	if value == 0 and not emitted:
+		emitted = true
+		GamePlayData.base_destroyed = true
+		GamePlayData.game_ended.emit()
+"
+
+[sub_resource type="GDScript" id="GDScript_5ou8r"]
+script/source = "extends Label
+
+@onready var base_hp: ProgressBar = $\"..\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = str(base_hp.value) + \" / \" + str(base_hp.max_value)
+"
+
+[node name="GameSceneTopBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -656.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+
+[node name="HBC" type="HBoxContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="$" type="Label" parent="BG/HBC"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "$"
+label_settings = ExtResource("1_f1gtc")
+horizontal_alignment = 2
+vertical_alignment = 1
+structured_text_bidi_override_options = [null]
+
+[node name="Money" type="Label" parent="BG/HBC"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "999999999999"
+label_settings = ExtResource("1_f1gtc")
+horizontal_alignment = 2
+vertical_alignment = 1
+structured_text_bidi_override_options = [null]
+script = SubResource("GDScript_t7536")
+
+[node name="WaveContainer" type="HBoxContainer" parent="BG/HBC"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="WaveLabel" type="Label" parent="BG/HBC/WaveContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Wave:"
+label_settings = ExtResource("1_f1gtc")
+horizontal_alignment = 2
+vertical_alignment = 1
+structured_text_bidi_override_options = [null]
+
+[node name="Wave Count" type="Label" parent="BG/HBC/WaveContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "999 / 999"
+label_settings = ExtResource("1_f1gtc")
+horizontal_alignment = 2
+vertical_alignment = 1
+structured_text_bidi_override_options = [null]
+script = SubResource("GDScript_lrtjc")
+
+[node name="HP" type="HBoxContainer" parent="BG/HBC"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BG/HBC/HP"]
+layout_mode = 2
+texture = ExtResource("2_sy2xj")
+expand_mode = 2
+
+[node name="BaseHP" type="ProgressBar" parent="BG/HBC/HP"]
+custom_minimum_size = Vector2(370, 40)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_lh0jb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rfdsf")
+value = 50.0
+show_percentage = false
+script = SubResource("GDScript_he2fw")
+
+[node name="Label" type="Label" parent="BG/HBC/HP/BaseHP"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "999 / 999"
+label_settings = ExtResource("1_f1gtc")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_5ou8r")
+
+[node name="Control" type="Control" parent="BG/HBC"]
+layout_mode = 2

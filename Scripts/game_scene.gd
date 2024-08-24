@@ -3,16 +3,20 @@ class_name GameScene
 
 const CHAPTERS_DATA = preload("res://Resources/GameData/chapters_data.tres")
 
-var current_wave: int = 0
-var max_waves: int = 0
 var level_num: int = 1
 var chapter_number: int = 1
 
 var enemy_remaining: int = 0
+
+
 var spawning_enemies: bool = false
+var waves_finished: bool = false
+var game_finished: bool = false
 
 @onready var level: Level = $Level
 @onready var enemy_spawner: Timer = $EnemySpawner
+
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
 var tile_selection_layer: TileMapLayer
 var previous_selected_tile: Vector2i
@@ -25,20 +29,24 @@ var previous_selected_tile: Vector2i
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Engine.time_scale = 2
 	tile_selection_layer = level.tile_selector
-	max_waves = CHAPTERS_DATA.levels[level_num - 1].waves.size() - 1
+	GamePlayData.max_waves = CHAPTERS_DATA.levels[level_num].waves.size() - 1
+	GamePlayData.current_wave = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	select_tile(get_global_mouse_position())
-	if enemy_remaining == 0:
-		if current_wave <= max_waves:
-			spawn_wave()
-		else: 
-			return
-		current_wave += 1
+	if waves_finished and not game_finished:
+		game_finished = true
+		GamePlayData.game_ended.emit()
+	if not game_finished and not GamePlayData.base_destroyed:
+		if enemy_remaining == 0 and not spawning_enemies:
+			if GamePlayData.current_wave <= GamePlayData.max_waves:
+				spawn_wave()
+				GamePlayData.current_wave += 1
+			else: 
+				waves_finished = true
 		
 	
 
@@ -65,7 +73,7 @@ func spawn_wave():
 	var loop_detected: bool = false
 	var loop_started: bool = false
 	
-	var wave: Array[WavePartResource] = CHAPTERS_DATA.levels[level_num - 1].waves[current_wave].wave_parts
+	var wave: Array[WavePartResource] = CHAPTERS_DATA.levels[level_num].waves[GamePlayData.current_wave].wave_parts
 	var total_parts: int = wave.size()
 	var part_index: int = 0
 	while(true):
@@ -75,7 +83,6 @@ func spawn_wave():
 		if part.loopings_state == "Start" and not loop_detected:
 			loop_start_index = part_index
 			loop_left = part.times_to_repeat
-			print("Loop Detected!\tAt Wave: ", part_index,"\tTimes to repeat: ", loop_left)
 			loop_detected = true
 			
 		if part.loopings_state == "Stop" and loop_detected:
@@ -85,20 +92,19 @@ func spawn_wave():
 			if not loop_left:
 				loop_detected = false
 				loop_started = false
-			print("Loop Cycle Detected!\tAt Wave: ", part_index, "\tLoops Left: ", loop_left)
-			if not loop_started:
-				print("End of Loop!")
 		
 		for i in range(part.amount):
 			var tank = load("res://Scenes/Entities/Tanks/" + type.to_lower() + ".tscn").instantiate() as Tank
 			tank.color = part.colors[part.color]
-			tank.max_hp = GameData.CLASSIC_TANK_STATS[part.color]["Hp"] * CHAPTERS_DATA.levels[level_num - 1].waves[current_wave].hp_scale
-			tank.speed = GameData.CLASSIC_TANK_STATS[part.color]["Speed"]
-			tank.money_on_death = GameData.CLASSIC_TANK_STATS[part.color]["Coins on Death"]
+			tank.max_hp = GameData.TankStats[part.type]["Hp"] * GameData.Hp_Scales_by_Color[part.color] * CHAPTERS_DATA.levels[level_num].waves[GamePlayData.current_wave-1].hp_scale
+			tank.speed = GameData.TankStats[part.type]["Speed"]
+			tank.money_on_death = GameData.TankStats[part.type]["Coins on Death"] * GameData.CoinDrop_Scales_by_Color[part.color]
 			tank.main_target = level.end
 			tank.global_position = level.start.global_position
 			tank.destroyed.connect(update_num_of_enemies.bind(-1))
+			tank.reached_end.connect(on_enemy_at_end)
 			level.units.add_child(tank)
+			tank.set_name(type + "_" + part.color)
 			update_num_of_enemies(1)
 			enemy_spawner.start(part.delay_btw_spawns)
 			await enemy_spawner.timeout
@@ -112,10 +118,12 @@ func spawn_wave():
 			part_index = loop_start_index
 		
 		if part_index >= total_parts:
-			print("End of Waves")
 			break
 	
 	spawning_enemies = false
 
 func update_num_of_enemies(amount):
 	enemy_remaining = enemy_remaining + amount
+
+func on_enemy_at_end(hp_left: float):
+	GamePlayData.base_hp = max(0, GamePlayData.base_hp - hp_left)

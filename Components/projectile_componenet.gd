@@ -1,5 +1,5 @@
-extends Area2D
-class_name ProjectileComponenet
+extends Node2D
+class_name Projectile
 
 var enemy: Node2D
 
@@ -10,6 +10,8 @@ var enemy: Node2D
 @export var can_home_to_enemies: bool = false
 
 @export_range(0, 0.1) var homing_power: float = 0.1
+@export var mouse_debug: bool
+@onready var hit_box_component: HitBoxComponent = $HitBoxComponent
 
 var current_velocity: Vector2
 
@@ -18,14 +20,14 @@ var shot_by_enemy: bool = false
 
 func _ready() -> void:
 	top_level = true
-	
+	hit_box_component.damage_to_deal = damage
 	current_velocity = Vector2.RIGHT.rotated(rotation) * speed
 
 
 func _physics_process(delta: float) -> void:
 	if projectile_type == "Bullet" or projectile_type == "Rocket":
 		if can_home_to_enemies:
-			var direction: Vector2 = global_position.direction_to(get_global_mouse_position())
+			var direction: Vector2 = global_position.direction_to(get_global_mouse_position() if mouse_debug else enemy.global_position)
 			var desired_velocity := direction * speed
 			
 			var change = (desired_velocity - current_velocity) * homing_power

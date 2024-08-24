@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TowerDefense 2"
-run/main_scene="res://Scenes/game_scene.tscn"
+run/main_scene="res://Scenes/scene_handler.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameData="*res://SingleTons/GameData.gd"
 Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
+GamePlayData="*res://SingleTons/GamePlayData.gd"
 
 [display]
 

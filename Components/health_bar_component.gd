@@ -27,6 +27,8 @@ func _ready() -> void:
 		label.visible = false
 	
 	label.text = str(health_component.hp)
+	
+	owner.ready.connect(update)
 
 
 func _process(delta: float) -> void:
@@ -44,6 +46,7 @@ func update():
 	
 	max_value = health_component.max_hp
 	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(self, "value", health_component.hp, 0.5)
 	

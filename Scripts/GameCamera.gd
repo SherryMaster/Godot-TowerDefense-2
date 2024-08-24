@@ -4,6 +4,9 @@ class_name GameCamera
 var can_move = false
 var scale_factor = 0.98
 
+@export var right_limit_node: Node2D
+@export var bottom_limit_node: Node2D
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 2 and event.pressed:
@@ -25,7 +28,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	limit_right = right_limit_node.global_position.x
+	limit_bottom = bottom_limit_node.global_position.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

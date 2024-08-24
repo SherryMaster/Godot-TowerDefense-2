@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://djmh4m4wx2meg"]
+
+[ext_resource type="Theme" uid="uid://ptdk04aapw1f" path="res://Resources/Themes/level_button_completed.tres" id="1_vapqx"]
+[ext_resource type="Script" path="res://Scripts/level_button.gd" id="2_cjlj2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7q3tx"]
+font_size = 40
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 22
+shadow_color = Color(1, 1, 1, 0.34)
+
+[node name="LevelButton" type="Button"]
+custom_minimum_size = Vector2(128, 128)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -592.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vapqx")
+script = ExtResource("2_cjlj2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -24.5
+offset_right = 40.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+label_settings = SubResource("LabelSettings_7q3tx")
+horizontal_alignment = 1
+vertical_alignment = 1
