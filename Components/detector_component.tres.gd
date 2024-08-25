@@ -2,18 +2,16 @@
 extends Area2D
 class_name DetectorComponent
 
-# General Signals
-signal body_detected(body: Node2D)
-signal body_left(body: Node2D)
-signal area_detected(area: Area2D)
-signal area_left(area: Area2D)
-
-# Area Specific signals
+# Area signals
 signal hitbox_detected(hitbox: HitBoxComponent)
 signal hurtbox_detected(hurtbox: HurtBoxComponent)
 
-@export var can_detect_bodies: bool = false
-@export var can_detect_areas: bool = false
+# Body Signals
+signal tank_detected(tank: Tank)
+signal tank_left(tank: Tank)
+signal tower_detected(tower: Tower)
+signal tower_left(tower: Tower)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,24 +25,25 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_area_entered(area: Area2D) -> void:
-	if can_detect_areas:
-		area_detected.emit(area)
-		if area is HitBoxComponent:
-			hitbox_detected.emit(area)
-		if area is HurtBoxComponent:
-			hurtbox_detected.emit(area)
+	if area is HitBoxComponent:
+		hitbox_detected.emit(area)
+	if area is HurtBoxComponent:
+		hurtbox_detected.emit(area)
 
 
 func _on_area_exited(area: Area2D) -> void:
-	if can_detect_areas:
-		area_left.emit(area)
+	pass
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if can_detect_bodies:
-		body_detected.emit(body)
+	if body is Tank:
+		tank_detected.emit(body)
+	if body is Tower:
+		tower_detected.emit(body)
 
 
 func _on_body_exited(body: Node2D) -> void:
-	if can_detect_bodies:
-		body_left.emit(body)
+	if body is Tank:
+		tank_left.emit(body)
+	if body is Tower:
+		tower_left.emit(body)

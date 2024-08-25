@@ -1,5 +1,6 @@
 extends Area2D
 class_name HitBoxComponent
+signal got_hit
 
 var damage_to_deal: float
 
@@ -18,5 +19,5 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: HurtBoxComponent) -> void:
-	if owner is Projectile:
-		owner.destroy()
+	if area.owner.team_id != owner.team_id:
+		got_hit.emit()

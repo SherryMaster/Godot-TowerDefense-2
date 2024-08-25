@@ -10,9 +10,13 @@ signal reached_end(hp_left)
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 
+var team_id: int = 2
+
 var money_on_death: int
 var speed
 var max_hp
+
+var distance_travelled: float
 
 var current_target: Node2D
 var target_position: Vector2
@@ -30,8 +34,8 @@ func _ready() -> void:
 	velocity_component.speed = speed
 	
 	if main_target:
-		target_position = main_target.global_position
 		current_target = main_target
+		target_position = current_target.global_position
 	else:
 		target_position = global_position
 	
@@ -44,6 +48,9 @@ func _physics_process(delta: float) -> void:
 	
 	if not target_position:
 		target_position = global_position
+
+func get_hp():
+	return health_component.hp
 
 func destroy():
 	if not reached_at_end:

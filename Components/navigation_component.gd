@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	
 	parent.move_and_collide(current_velocity * velocity_component.speed_power * delta)
 	parent.look_at(parent.global_position + current_velocity)
+	parent.distance_travelled += current_velocity.length() * velocity_component.speed_power * delta
 
 
 func _on_target_reached() -> void:

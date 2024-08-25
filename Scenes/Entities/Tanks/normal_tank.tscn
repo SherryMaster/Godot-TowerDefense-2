@@ -86,7 +86,6 @@ offset_left = -37.0
 offset_top = -26.0
 offset_right = 37.0
 offset_bottom = -14.0
-tint_progress = Color(8.23036e-06, 0.772518, 0.297999, 1)
 
 [node name="HurtBoxComponent" type="Area2D" parent="."]
 collision_layer = 16
@@ -116,5 +115,3 @@ script = ExtResource("8_do71s")
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("9_1besi")
-
-[connection signal="mouse_entered" from="HurtBoxComponent" to="HurtBoxComponent" method="_on_mouse_entered"]

@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: HitBoxComponent) -> void:
-	health_component.damage(area.damage_to_deal)
+	if area.owner.team_id != owner.team_id:
+		health_component.damage(area.damage_to_deal)
 
 
 func _on_mouse_entered() -> void:

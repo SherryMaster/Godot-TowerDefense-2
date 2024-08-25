@@ -1,13 +1,113 @@
-[gd_scene format=3 uid="uid://daqwugxy6ko27"]
+[gd_scene load_steps=12 format=3 uid="uid://daqwugxy6ko27"]
+
+[ext_resource type="Theme" uid="uid://pw5gcy6kv06x" path="res://Resources/Themes/BuildBar/Panel/build_panel_blue.tres" id="1_dtw7n"]
+[ext_resource type="Texture2D" uid="uid://bsn10rlxfmw62" path="res://Assets/UI Icons/tool.png" id="1_ijqak"]
+[ext_resource type="Texture2D" uid="uid://bbqqf3otdjcy0" path="res://Assets/TowerTiles/tile_1.png" id="2_wworb"]
+[ext_resource type="Theme" uid="uid://prb535aouuum" path="res://Resources/Themes/BuildBar/Item Buttons/build_button_theme.tres" id="3_7wxri"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n068r"]
+bg_color = Color(2.02149e-06, 0.515775, 0.753487, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(3.85046e-07, 0.353878, 0.521882, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cn66"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yxrl"]
+bg_color = Color(5.77569e-06, 0.608478, 0.884798, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(3.85046e-06, 0.425967, 0.623592, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcr2w"]
+bg_color = Color(2.02149e-06, 0.515775, 0.753487, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(3.85046e-07, 0.353878, 0.521882, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imwg5"]
+bg_color = Color(4.81307e-07, 0.433604, 0.637094, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(4.81307e-07, 0.291149, 0.433378, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_g74ig"]
+Button/styles/disabled = SubResource("StyleBoxFlat_n068r")
+Button/styles/focus = SubResource("StyleBoxEmpty_6cn66")
+Button/styles/hover = SubResource("StyleBoxFlat_0yxrl")
+Button/styles/normal = SubResource("StyleBoxFlat_lcr2w")
+Button/styles/pressed = SubResource("StyleBoxFlat_imwg5")
+
+[sub_resource type="GDScript" id="GDScript_st488"]
+script/source = "extends Button
+
+@onready var bar = $\"..\"
+
+
+func _on_toggled(toggled_on):
+	var slider_tween = create_tween()
+	slider_tween.tween_property(bar, \"position\", Vector2(bar.position.x, bar.position.y - bar.size.y) if toggled_on else Vector2(bar.position.x + bar.size.x, bar.position.y), 0.3)
+	disabled = true
+	await slider_tween.finished
+	disabled = false
+"
 
 [node name="BuildBar" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 592.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Panel_Toggle" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -98.0
+offset_top = -48.0
+offset_right = -61.0
+offset_bottom = 7.0
+grow_horizontal = 0
+theme = SubResource("Theme_g74ig")
+toggle_mode = true
+icon = ExtResource("1_ijqak")
+expand_icon = true
+script = SubResource("GDScript_st488")
+
+[node name="Trigger_Blue" type="Button" parent="."]
+layout_mode = 1
+offset_left = 68.0
+offset_top = -26.0
+offset_right = 201.0
+offset_bottom = 7.0
+theme = ExtResource("1_dtw7n")
+icon = ExtResource("2_wworb")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(0, 128)
@@ -18,3 +118,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("1_dtw7n")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 12
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_7wxri")
+icon = ExtResource("2_wworb")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="toggled" from="Panel_Toggle" to="Panel_Toggle" method="_on_toggled"]
