@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbc203doutipb"]
+
+[ext_resource type="Theme" uid="uid://doyfc78d86x5d" path="res://Resources/Themes/BuildBar/Item Buttons/build_button_tower_theme.tres" id="1_mi02j"]
+[ext_resource type="Texture2D" uid="uid://bbqqf3otdjcy0" path="res://Assets/TowerTiles/tile_1.png" id="2_41bp4"]
+[ext_resource type="Script" path="res://Scripts/build_button.gd" id="3_8epqv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bl7uy"]
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 22
+shadow_color = Color(1, 1, 1, 0.34)
+
+[sub_resource type="LabelSettings" id="LabelSettings_381pu"]
+font_size = 20
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 22
+shadow_color = Color(1, 1, 1, 0.34)
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(100, 160)
+offset_right = 100.0
+offset_bottom = 160.0
+size_flags_vertical = 4
+theme = ExtResource("1_mi02j")
+icon = ExtResource("2_41bp4")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_8epqv")
+
+[node name="PriceLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -151.0
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "$ 99999"
+label_settings = SubResource("LabelSettings_bl7uy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmountLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -38.0
+offset_right = 3.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "X 9999"
+label_settings = SubResource("LabelSettings_381pu")
+horizontal_alignment = 1

@@ -9,9 +9,9 @@ var scale_factor = 0.98
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == 2 and event.pressed:
+		if event.button_index == 1 and event.pressed:
 			can_move = true
-		elif event.button_index == 2 and not event.pressed:
+		elif event.button_index == 1 and not event.pressed:
 			can_move = false
 		elif event.button_index == 4:
 			zoom /= scale_factor

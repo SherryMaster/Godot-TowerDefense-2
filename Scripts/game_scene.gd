@@ -3,6 +3,13 @@ class_name GameScene
 
 const CHAPTERS_DATA = preload("res://Resources/GameData/chapters_data.tres")
 
+
+@onready var level: Level = $Level
+@onready var enemy_spawner: Timer = $EnemySpawner
+
+@onready var build_bar: Control = $UI/BuildBar
+
+
 var level_num: int = 1
 var chapter_number: int = 1
 
@@ -12,11 +19,6 @@ var enemy_remaining: int = 0
 var spawning_enemies: bool = false
 var waves_finished: bool = false
 var game_finished: bool = false
-
-@onready var level: Level = $Level
-@onready var enemy_spawner: Timer = $EnemySpawner
-
-@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
 var tile_selection_layer: TileMapLayer
 var previous_selected_tile: Vector2i

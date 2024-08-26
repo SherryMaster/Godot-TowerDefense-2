@@ -1,9 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://daqwugxy6ko27"]
+[gd_scene load_steps=15 format=3 uid="uid://daqwugxy6ko27"]
 
 [ext_resource type="Theme" uid="uid://pw5gcy6kv06x" path="res://Resources/Themes/BuildBar/Panel/build_panel_blue.tres" id="1_dtw7n"]
 [ext_resource type="Texture2D" uid="uid://bsn10rlxfmw62" path="res://Assets/UI Icons/tool.png" id="1_ijqak"]
 [ext_resource type="Texture2D" uid="uid://bbqqf3otdjcy0" path="res://Assets/TowerTiles/tile_1.png" id="2_wworb"]
-[ext_resource type="Theme" uid="uid://prb535aouuum" path="res://Resources/Themes/BuildBar/Item Buttons/build_button_theme.tres" id="3_7wxri"]
+[ext_resource type="Theme" uid="uid://qwhy44kc0k84" path="res://Resources/Themes/BuildBar/Panel/build_panel_green.tres" id="4_rh7uf"]
+[ext_resource type="Texture2D" uid="uid://d0mxkwm5h43vy" path="res://Assets/Towers/Full Previews/Tower_1.png" id="5_uwans"]
+[ext_resource type="Script" path="res://Scripts/build_bar_item_loader.tres.gd" id="6_utv8n"]
+
+[sub_resource type="GDScript" id="GDScript_t6rw4"]
+script/source = "extends Control
+
+func _on_trigger_tile_panel_pressed() -> void:
+	$TilePanel.visible = true
+	$TowerPanel.visible = false
+
+func _on_trigger_tower_panel_pressed() -> void:
+	$TilePanel.visible = false
+	$TowerPanel.visible = true
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n068r"]
 bg_color = Color(2.02149e-06, 0.515775, 0.753487, 1)
@@ -78,10 +92,11 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 720.0
-offset_bottom = 128.0
+offset_bottom = 185.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = SubResource("GDScript_t6rw4")
 
 [node name="Panel_Toggle" type="Button" parent="."]
 layout_mode = 1
@@ -99,29 +114,39 @@ icon = ExtResource("1_ijqak")
 expand_icon = true
 script = SubResource("GDScript_st488")
 
-[node name="Trigger_Blue" type="Button" parent="."]
+[node name="Trigger_Tile_Panel" type="Button" parent="."]
 layout_mode = 1
 offset_left = 68.0
-offset_top = -26.0
+offset_top = -33.0
 offset_right = 201.0
-offset_bottom = 7.0
 theme = ExtResource("1_dtw7n")
 icon = ExtResource("2_wworb")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Trigger_Tower_Panel" type="Button" parent="."]
+layout_mode = 1
+offset_left = 201.0
+offset_top = -33.0
+offset_right = 334.0
+theme = ExtResource("4_rh7uf")
+icon = ExtResource("5_uwans")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TilePanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -185.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_dtw7n")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="TilePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,21 +158,50 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 48
 theme_override_constants/margin_bottom = 12
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TilePanel/MarginContainer"]
 layout_mode = 2
 vertical_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TilePanel/MarginContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
+script = ExtResource("6_utv8n")
 
-[node name="Button" type="Button" parent="Panel/MarginContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+[node name="TowerPanel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -185.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_rh7uf")
+
+[node name="MarginContainer" type="MarginContainer" parent="TowerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 12
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TowerPanel/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("3_7wxri")
-icon = ExtResource("2_wworb")
-icon_alignment = 1
-expand_icon = true
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TowerPanel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+script = ExtResource("6_utv8n")
+type_of_items = 1
 
 [connection signal="toggled" from="Panel_Toggle" to="Panel_Toggle" method="_on_toggled"]
+[connection signal="pressed" from="Trigger_Tile_Panel" to="." method="_on_trigger_tile_panel_pressed"]
+[connection signal="pressed" from="Trigger_Tower_Panel" to="." method="_on_trigger_tower_panel_pressed"]
