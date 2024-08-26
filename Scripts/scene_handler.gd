@@ -60,7 +60,7 @@ func on_game_ended():
 		
 	else:
 		stat_screen.status_text = "You Loose"
-	game_scene.canvas_layer.add_child(stat_screen)
+	game_scene.ui.add_child(stat_screen)
 	
 
 func clear_scene():

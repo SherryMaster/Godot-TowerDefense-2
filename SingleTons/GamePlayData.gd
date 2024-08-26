@@ -12,7 +12,7 @@ var base_hp: float = 50
 var map_money: int = 1000
 
 # experimental
-var damage_through_mouse: bool = true
+var damage_through_mouse: bool = false
 var mouse_damage: int = 20
 
 

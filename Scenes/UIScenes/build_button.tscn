@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbc203doutipb"]
+[gd_scene load_steps=8 format=3 uid="uid://dbc203doutipb"]
 
-[ext_resource type="Theme" uid="uid://doyfc78d86x5d" path="res://Resources/Themes/BuildBar/Item Buttons/build_button_tower_theme.tres" id="1_mi02j"]
+[ext_resource type="Theme" uid="uid://prb535aouuum" path="res://Resources/Themes/BuildBar/Item Buttons/build_button_tile_theme.tres" id="1_dbpk4"]
 [ext_resource type="Texture2D" uid="uid://bbqqf3otdjcy0" path="res://Assets/TowerTiles/tile_1.png" id="2_41bp4"]
 [ext_resource type="Script" path="res://Scripts/build_button.gd" id="3_8epqv"]
+[ext_resource type="Theme" uid="uid://ct7cqcn5rvd1f" path="res://Resources/Themes/cancel_button.tres" id="4_qh0kp"]
+[ext_resource type="Texture2D" uid="uid://p5rduqvsp77i" path="res://Assets/UI Icons/cross.png" id="5_65xh8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bl7uy"]
 outline_size = 17
@@ -22,7 +24,7 @@ custom_minimum_size = Vector2(100, 160)
 offset_right = 100.0
 offset_bottom = 160.0
 size_flags_vertical = 4
-theme = ExtResource("1_mi02j")
+theme = ExtResource("1_dbpk4")
 icon = ExtResource("2_41bp4")
 icon_alignment = 1
 expand_icon = true
@@ -58,3 +60,17 @@ grow_vertical = 0
 text = "X 9999"
 label_settings = SubResource("LabelSettings_381pu")
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CancelButton" type="Button" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.671)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qh0kp")
+icon = ExtResource("5_65xh8")
+expand_icon = true

@@ -1,5 +1,7 @@
 extends Node2D
 class_name GameScene
+signal build_mode_started
+signal build_mode_ended
 
 const CHAPTERS_DATA = preload("res://Resources/GameData/chapters_data.tres")
 
@@ -7,7 +9,8 @@ const CHAPTERS_DATA = preload("res://Resources/GameData/chapters_data.tres")
 @onready var level: Level = $Level
 @onready var enemy_spawner: Timer = $EnemySpawner
 
-@onready var build_bar: Control = $UI/BuildBar
+@onready var build_bar: BuildBar = $UI/BuildBar
+@onready var ui: CanvasLayer = $UI
 
 
 var level_num: int = 1
@@ -15,13 +18,27 @@ var chapter_number: int = 1
 
 var enemy_remaining: int = 0
 
-
 var spawning_enemies: bool = false
 var waves_finished: bool = false
 var game_finished: bool = false
 
 var tile_selection_layer: TileMapLayer
+var tower_tiles_layer: TileMapLayer
 var previous_selected_tile: Vector2i
+
+# Building States
+var build_mode: bool = false
+var previous_build_type: String
+var previous_button: BuildButton
+
+var tile_build_mode: bool = false
+var tile_build_loc_valid: bool = false
+
+var tower_build_mode: bool = false
+var tower_build_loc_valid: bool = false
+
+var current_tile_cords: Vector2i
+var current_tile_global_position: Vector2
 
 #func _input(event: InputEvent) -> void:
 	#if event is InputEventMouseButton:
@@ -32,13 +49,23 @@ var previous_selected_tile: Vector2i
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tile_selection_layer = level.tile_selector
+	tower_tiles_layer = level.tower_tiles
 	GamePlayData.max_waves = CHAPTERS_DATA.levels[level_num].waves.size() - 1
 	GamePlayData.current_wave = 0
+	
+	# connecting_tiles
+	for tile_button in build_bar.tile_buttons.get_children() as Array[BuildButton]:
+		tile_button.pressed.connect(initiate_build_mode.bind("tile", tile_button))
+		tile_button.cancel_button.pressed.connect(cancel_build_mode.bind("tile"))
+	for tower_button in build_bar.tower_buttons.get_children():
+		tower_button.pressed.connect(initiate_build_mode.bind("tower", tower_button))
+		tower_button.cancel_button.pressed.connect(cancel_build_mode.bind("tower"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	select_tile(get_global_mouse_position())
+	print("Cords: ", current_tile_cords, "\tPos: ", current_tile_global_position, "\t Build Valid: ", tile_build_loc_valid)
 	if waves_finished and not game_finished:
 		game_finished = true
 		GamePlayData.game_ended.emit()
@@ -53,18 +80,63 @@ func _process(delta: float) -> void:
 	
 
 func select_tile(m_pos: Vector2):
-	if previous_selected_tile:
+	if not (previous_selected_tile.x < 0 or previous_selected_tile.y < 0):
 		tile_selection_layer.erase_cell(previous_selected_tile)
+		previous_selected_tile = Vector2i(-1, -1)
 	
-	var tile_cords = tile_selection_layer.local_to_map(m_pos)
-	previous_selected_tile = tile_cords
-	
-	
-	var road_tile_cords = level.road.local_to_map(m_pos)
-	var tile_data = level.road.get_cell_tile_data(road_tile_cords)
-	
-	tile_selection_layer.set_cell(tile_cords, 1, Vector2i(0, 0)) if not tile_data else tile_selection_layer.set_cell(tile_cords, 1, Vector2i(1, 0))
+	if tile_build_mode:
+		var tile_cords = tile_selection_layer.local_to_map(m_pos)
+		previous_selected_tile = tile_cords
+		
+		
+		var road_tile_cords = level.road.local_to_map(m_pos)
+		var tile_data = level.road.get_cell_tile_data(road_tile_cords)
+		
+		if not tile_data:
+			tile_data = tower_tiles_layer.get_cell_tile_data(tile_cords)
+		
+		if tile_data:
+			tile_build_loc_valid = false
+		else:
+			tile_build_loc_valid = true
+		if not tile_data:
+			tile_selection_layer.set_cell(tile_cords, 1, Vector2i(0, 0)) 
+		else:
+			tile_selection_layer.set_cell(tile_cords, 1, Vector2i(1, 0))
+		
+		current_tile_cords = tile_cords
+		current_tile_global_position = tower_tiles_layer.map_to_local(tile_cords)
+		
 
+func initiate_build_mode(type, button: BuildButton):
+	if build_mode:
+		cancel_build_mode(previous_build_type)
+	
+	previous_build_type = type
+	build_mode = true
+	previous_button = button
+	previous_button.cancel_button.show()
+	
+	if type == "tile":
+		tile_build_mode = true
+	elif type == "tower":
+		tower_build_mode = true
+	
+	level.game_camera.on_build_mode_started()
+
+func initiate_tile_build_mode():
+	pass
+
+func cancel_build_mode(type):
+	previous_button.cancel_button.hide()
+	build_mode = false
+	
+	if type == "tile":
+		tile_build_mode = false
+	elif type == "tower":
+		tower_build_mode = false
+	
+	level.game_camera.on_build_mode_ended()
 
 func spawn_wave():
 	spawning_enemies = true
