@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://Resources/Customs/TowerTileResource.gd" id="1_12vjx"]
+[ext_resource type="Texture2D" path="res://Assets/TowerTiles/tile_1.png" id="2_f5ifw"]
+[ext_resource type="Script" path="res://Resources/Customs/TowerResource.gd" id="3_umow0"]
+[ext_resource type="Texture2D" path="res://Assets/Towers/Full Previews/Tower_1.png" id="4_rl0bs"]
+[ext_resource type="PackedScene" path="res://Scenes/Towers/scout_tower.tscn" id="5_dvrwc"]
+[ext_resource type="Script" path="res://Resources/Customs/Inventory.gd" id="6_0584s"]
+
+[sub_resource type="Resource" id="Resource_n0dea"]
+script = ExtResource("1_12vjx")
+tile_name = "Basic Tile"
+texture = ExtResource("2_f5ifw")
+in_inventory = 50
+placement_cost = 20
+atlas_cordinates = Vector2i(0, 0)
+
+[sub_resource type="Resource" id="Resource_gxwc1"]
+script = ExtResource("3_umow0")
+tower_name = "Scout Tower"
+tower_scene = ExtResource("5_dvrwc")
+texture = ExtResource("4_rl0bs")
+in_inventory = 50
+placement_cost = 100
+
+[resource]
+script = ExtResource("6_0584s")
+coins = 0
+Tiles = Array[ExtResource("1_12vjx")]([SubResource("Resource_n0dea")])
+Towers = Array[ExtResource("3_umow0")]([SubResource("Resource_gxwc1")])

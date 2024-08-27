@@ -21,7 +21,11 @@ tile_map_data = PackedByteArray("AAD//wIAAQABAAMAAAAAAAIAAQACAAMAAAABAAIAAQACAAM
 tile_set = ExtResource("2_ywqus")
 metadata/_edit_lock_ = true
 
-[node name="TowerTiles" type="TileMapLayer" parent="Map"]
+[node name="Tiles" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("3_tsdhq")
+metadata/_edit_lock_ = true
+
+[node name="Towers" type="TileMapLayer" parent="Map"]
 tile_set = ExtResource("3_tsdhq")
 metadata/_edit_lock_ = true
 

@@ -3,6 +3,9 @@ signal game_ended
 
 var base_destroyed: bool = false
 
+var chapter_num: int = 0
+var level_num: int = 0
+
 var max_waves: int = 10
 var current_wave: int = 0
 

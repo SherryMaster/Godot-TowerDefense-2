@@ -3,7 +3,8 @@ class_name Level
 
 @onready var ground: TileMapLayer = $Map/Ground
 @onready var road: TileMapLayer = $Map/Road
-@onready var tower_tiles: TileMapLayer = $Map/TowerTiles
+@onready var tiles_layer: TileMapLayer = $Map/Tiles
+@onready var towers_layer: TileMapLayer = $Map/Towers
 @onready var tile_selector: TileMapLayer = $Map/TileSelector
 
 @onready var start: Node2D = $Start

@@ -3,18 +3,16 @@ class_name GameScene
 signal build_mode_started
 signal build_mode_ended
 
-const CHAPTERS_DATA = preload("res://Resources/GameData/chapters_data.tres")
-
-
 @onready var level: Level = $Level
 @onready var enemy_spawner: Timer = $EnemySpawner
-
-@onready var build_bar: BuildBar = $UI/BuildBar
+@onready var preview_space: Node2D = $PreviewSpace
 @onready var ui: CanvasLayer = $UI
+@onready var build_bar: BuildBar = $UI/BuildBar
 
+const CHAPTERS_DATA = preload("res://Resources/GameData/chapters_data.tres")
+const GAME_INVENTORY = preload("res://Resources/GameData/game_inventory.tres")
 
-var level_num: int = 1
-var chapter_number: int = 1
+var Session_Inventory
 
 var enemy_remaining: int = 0
 
@@ -24,12 +22,13 @@ var game_finished: bool = false
 
 var tile_selection_layer: TileMapLayer
 var tower_tiles_layer: TileMapLayer
+var tower_occupation_layer: TileMapLayer
 var previous_selected_tile: Vector2i
 
 # Building States
 var build_mode: bool = false
 var previous_build_type: String
-var previous_button: BuildButton
+var current_button: BuildButton
 
 var tile_build_mode: bool = false
 var tile_build_loc_valid: bool = false
@@ -40,17 +39,30 @@ var tower_build_loc_valid: bool = false
 var current_tile_cords: Vector2i
 var current_tile_global_position: Vector2
 
-#func _input(event: InputEvent) -> void:
-	#if event is InputEventMouseButton:
-		#if event.button_index == 1 and not event.pressed:
-			#select_tile(get_global_mouse_position())
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_released("click") and build_mode:
+		if tile_build_mode:
+			var success: bool = verify_and_build_tile()
+			if success:
+				cancel_build_mode("tile")
+		
+		if tower_build_mode:
+			var success: bool = verify_and_build_tower()
+			if success:
+				cancel_build_mode("tower")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Session_Inventory = ResourceLoader.load("res://Resources/GameData/game_inventory.tres")
+	Session_Inventory.setup_local_to_scene()
+	#Session_Inventory.set_path("res://Resources/GameData/SessionData/chapter_" + str(GamePlayData.chapter_num) + "_level_" + str(GamePlayData.level_num) + ".tres")
+	#ResourceSaver.save(Session_Inventory)
+	
 	tile_selection_layer = level.tile_selector
-	tower_tiles_layer = level.tower_tiles
-	GamePlayData.max_waves = CHAPTERS_DATA.levels[level_num].waves.size() - 1
+	tower_tiles_layer = level.tiles_layer
+	tower_occupation_layer = level.towers_layer
+	GamePlayData.max_waves = CHAPTERS_DATA.levels[GamePlayData.level_num].waves.size() - 1
 	GamePlayData.current_wave = 0
 	
 	# connecting_tiles
@@ -64,8 +76,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	print(GAME_INVENTORY.Tiles[0].in_inventory, "\t", Session_Inventory.Tiles[0].in_inventory)
 	select_tile(get_global_mouse_position())
-	print("Cords: ", current_tile_cords, "\tPos: ", current_tile_global_position, "\t Build Valid: ", tile_build_loc_valid)
+	update_build_preview()
 	if waves_finished and not game_finished:
 		game_finished = true
 		GamePlayData.game_ended.emit()
@@ -76,8 +89,6 @@ func _process(delta: float) -> void:
 				GamePlayData.current_wave += 1
 			else: 
 				waves_finished = true
-		
-	
 
 func select_tile(m_pos: Vector2):
 	if not (previous_selected_tile.x < 0 or previous_selected_tile.y < 0):
@@ -87,7 +98,6 @@ func select_tile(m_pos: Vector2):
 	if tile_build_mode:
 		var tile_cords = tile_selection_layer.local_to_map(m_pos)
 		previous_selected_tile = tile_cords
-		
 		
 		var road_tile_cords = level.road.local_to_map(m_pos)
 		var tile_data = level.road.get_cell_tile_data(road_tile_cords)
@@ -106,7 +116,22 @@ func select_tile(m_pos: Vector2):
 		
 		current_tile_cords = tile_cords
 		current_tile_global_position = tower_tiles_layer.map_to_local(tile_cords)
+	
+	if tower_build_mode:
+		var tile_cords = tile_selection_layer.local_to_map(m_pos)
+		previous_selected_tile = tile_cords
 		
+		var tile_data = tower_tiles_layer.get_cell_tile_data(tile_cords)
+		
+		if tile_data:
+			tower_build_loc_valid = true
+			tile_selection_layer.set_cell(tile_cords, 1, Vector2i(0, 0)) 
+		else:
+			tower_build_loc_valid = false
+			tile_selection_layer.set_cell(tile_cords, 1, Vector2i(1, 0))
+		
+		current_tile_cords = tile_cords
+		current_tile_global_position = tower_tiles_layer.map_to_local(tile_cords)
 
 func initiate_build_mode(type, button: BuildButton):
 	if build_mode:
@@ -114,22 +139,58 @@ func initiate_build_mode(type, button: BuildButton):
 	
 	previous_build_type = type
 	build_mode = true
-	previous_button = button
-	previous_button.cancel_button.show()
+	current_button = button
+	current_button.cancel_button.show()
 	
 	if type == "tile":
 		tile_build_mode = true
+		initiate_tile_build_mode()
 	elif type == "tower":
 		tower_build_mode = true
+		initiate_tower_build_mode()
 	
 	level.game_camera.on_build_mode_started()
 
 func initiate_tile_build_mode():
-	pass
+	var texture = Sprite2D.new()
+	texture.texture = current_button.icon
+	texture.self_modulate = Color(1, 1, 1, 0.5)
+	preview_space.add_child(texture)
+
+func initiate_tower_build_mode():
+	var texture = Sprite2D.new()
+	texture.texture = current_button.icon
+	texture.self_modulate = Color(1, 1, 1, 0.5)
+	preview_space.add_child(texture)
+
+func verify_and_build_tile():
+	if tile_build_loc_valid:
+		tower_tiles_layer.set_cell(current_tile_cords, 2, current_button.tile_atlas_cords)
+		Session_Inventory.Tiles[current_button.button_index].in_inventory -= 1
+		GamePlayData.map_money -= Session_Inventory.Tiles[current_button.button_index].placement_cost
+		current_button.refresh_ui()
+		return true
+	return false
+
+func verify_and_build_tower():
+	if tower_build_loc_valid:
+		tower_occupation_layer.set_cell(current_tile_cords, 0, Vector2i(0, 0))
+		Session_Inventory.Towers[current_button.button_index].in_inventory -= 1
+		
+		var tower = Session_Inventory.Towers[current_button.button_index].tower_scene.instantiate() as Tower
+		tower.global_position = current_tile_global_position
+		level.towers.add_child(tower)
+		
+		GamePlayData.map_money -= Session_Inventory.Towers[current_button.button_index].placement_cost
+		current_button.refresh_ui()
+		return true
+	return false
 
 func cancel_build_mode(type):
-	previous_button.cancel_button.hide()
+	current_button.cancel_button.hide()
+	current_button = null
 	build_mode = false
+	preview_space.get_child(0).queue_free() if is_instance_valid(preview_space.get_child(0)) else null
 	
 	if type == "tile":
 		tile_build_mode = false
@@ -137,6 +198,12 @@ func cancel_build_mode(type):
 		tower_build_mode = false
 	
 	level.game_camera.on_build_mode_ended()
+
+func update_build_preview():
+	if tile_build_mode:
+		preview_space.get_child(0).global_position = current_tile_global_position
+	if tower_build_mode:
+		preview_space.get_child(0).global_position = current_tile_global_position
 
 func spawn_wave():
 	spawning_enemies = true
@@ -147,7 +214,7 @@ func spawn_wave():
 	var loop_detected: bool = false
 	var loop_started: bool = false
 	
-	var wave: Array[WavePartResource] = CHAPTERS_DATA.levels[level_num].waves[GamePlayData.current_wave].wave_parts
+	var wave: Array[WavePartResource] =CHAPTERS_DATA.levels[GamePlayData.level_num].waves[GamePlayData.current_wave].wave_parts
 	var total_parts: int = wave.size()
 	var part_index: int = 0
 	while(true):
@@ -170,7 +237,7 @@ func spawn_wave():
 		for i in range(part.amount):
 			var tank = load("res://Scenes/Entities/Tanks/" + type.to_lower() + ".tscn").instantiate() as Tank
 			tank.color = part.colors[part.color]
-			tank.max_hp = GameData.TankStats[part.type]["Hp"] * GameData.Hp_Scales_by_Color[part.color] * CHAPTERS_DATA.levels[level_num].waves[GamePlayData.current_wave-1].hp_scale
+			tank.max_hp = GameData.TankStats[part.type]["Hp"] * GameData.Hp_Scales_by_Color[part.color] * CHAPTERS_DATA.levels[GamePlayData.level_num].waves[GamePlayData.current_wave-1].hp_scale
 			tank.speed = GameData.TankStats[part.type]["Speed"]
 			tank.money_on_death = GameData.TankStats[part.type]["Coins on Death"] * GameData.CoinDrop_Scales_by_Color[part.color]
 			tank.main_target = level.end

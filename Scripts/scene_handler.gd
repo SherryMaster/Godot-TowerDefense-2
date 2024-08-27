@@ -24,13 +24,15 @@ func load_main_menu():
 func load_game_scene(level_num: int):
 	clear_scene()
 	game_scene= GAME_SCENE.instantiate()
-	game_scene.level_num = level_num
+	GamePlayData.level_num = level_num
 	game_scene.connect("game_over", load_main_menu)
 	
 	var level_scene: Level = CHAPTERS_DATA.levels[level_num].level_scene.instantiate()
 	game_scene.add_child(level_scene)
 	game_scene.move_child(level_scene, 0)
 	add_child(game_scene)
+	
+	Resource
 
 	GamePlayData.map_money = CHAPTERS_DATA.levels[level_num].starting_money
 	GamePlayData.base_max_hp = CHAPTERS_DATA.levels[level_num].starting_base_hp
@@ -48,12 +50,12 @@ func load_level_selection_scene(ch_num: int):
 
 func on_game_ended():
 	var stat_screen = WIN_STAT_SCREEN.instantiate()
-	stat_screen.back_button_press.connect(load_level_selection_scene.bind(game_scene.chapter_number))
-	stat_screen.restart_button_press.connect(load_game_scene.bind(game_scene.level_num))
+	stat_screen.back_button_press.connect(load_level_selection_scene.bind(GamePlayData.chapter_num))
+	stat_screen.restart_button_press.connect(load_game_scene.bind(GamePlayData.level_num))
 	if not GamePlayData.base_destroyed:
-		CHAPTERS_DATA.levels[game_scene.level_num].level_completed = true
-		if game_scene.level_num < CHAPTERS_DATA.levels.size() - 1:
-			CHAPTERS_DATA.levels[game_scene.level_num + 1].level_unlocked = true
+		CHAPTERS_DATA.levels[GamePlayData.level_num].level_completed = true
+		if GamePlayData.level_num < CHAPTERS_DATA.levels.size() - 1:
+			CHAPTERS_DATA.levels[GamePlayData.level_num + 1].level_unlocked = true
 		stat_screen.status_text = "You Win"
 		
 		ResourceSaver.save(CHAPTERS_DATA)
