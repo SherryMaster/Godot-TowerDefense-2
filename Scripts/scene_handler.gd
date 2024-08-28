@@ -23,8 +23,16 @@ func load_main_menu():
 
 func load_game_scene(level_num: int):
 	clear_scene()
-	game_scene= GAME_SCENE.instantiate()
+	
 	GamePlayData.level_num = level_num
+	GamePlayData.load_session_inventory()
+	GamePlayData.map_money = CHAPTERS_DATA.levels[level_num].starting_money
+	GamePlayData.base_max_hp = CHAPTERS_DATA.levels[level_num].starting_base_hp
+	GamePlayData.base_hp = GamePlayData.base_max_hp
+	GamePlayData.game_ended.connect(on_game_ended)
+	GamePlayData.base_destroyed = false
+	
+	game_scene= GAME_SCENE.instantiate()
 	game_scene.connect("game_over", load_main_menu)
 	
 	var level_scene: Level = CHAPTERS_DATA.levels[level_num].level_scene.instantiate()
@@ -34,11 +42,6 @@ func load_game_scene(level_num: int):
 	
 	Resource
 
-	GamePlayData.map_money = CHAPTERS_DATA.levels[level_num].starting_money
-	GamePlayData.base_max_hp = CHAPTERS_DATA.levels[level_num].starting_base_hp
-	GamePlayData.base_hp = GamePlayData.base_max_hp
-	GamePlayData.game_ended.connect(on_game_ended)
-	GamePlayData.base_destroyed = false
 
 
 func load_level_selection_scene(ch_num: int):

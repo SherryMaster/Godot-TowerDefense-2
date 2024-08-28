@@ -12,8 +12,6 @@ signal build_mode_ended
 const CHAPTERS_DATA = preload("res://Resources/GameData/chapters_data.tres")
 const GAME_INVENTORY = preload("res://Resources/GameData/game_inventory.tres")
 
-var Session_Inventory
-
 var enemy_remaining: int = 0
 
 var spawning_enemies: bool = false
@@ -54,10 +52,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Session_Inventory = ResourceLoader.load("res://Resources/GameData/game_inventory.tres")
-	Session_Inventory.setup_local_to_scene()
-	#Session_Inventory.set_path("res://Resources/GameData/SessionData/chapter_" + str(GamePlayData.chapter_num) + "_level_" + str(GamePlayData.level_num) + ".tres")
-	#ResourceSaver.save(Session_Inventory)
+	print(GamePlayData.Session_Inventory)
+	#GamePlayData.Session_Inventory.set_path("res://Resources/GameData/SessionData/chapter_" + str(GamePlayData.chapter_num) + "_level_" + str(GamePlayData.level_num) + ".tres")
+	#ResourceSaver.save(GamePlayData.Session_Inventory)
 	
 	tile_selection_layer = level.tile_selector
 	tower_tiles_layer = level.tiles_layer
@@ -76,7 +73,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(GAME_INVENTORY.Tiles[0].in_inventory, "\t", Session_Inventory.Tiles[0].in_inventory)
 	select_tile(get_global_mouse_position())
 	update_build_preview()
 	if waves_finished and not game_finished:
@@ -166,8 +162,8 @@ func initiate_tower_build_mode():
 func verify_and_build_tile():
 	if tile_build_loc_valid:
 		tower_tiles_layer.set_cell(current_tile_cords, 2, current_button.tile_atlas_cords)
-		Session_Inventory.Tiles[current_button.button_index].in_inventory -= 1
-		GamePlayData.map_money -= Session_Inventory.Tiles[current_button.button_index].placement_cost
+		GamePlayData.Session_Inventory.Tiles[current_button.button_index].in_inventory -= 1
+		GamePlayData.map_money -= GamePlayData.Session_Inventory.Tiles[current_button.button_index].placement_cost
 		current_button.refresh_ui()
 		return true
 	return false
@@ -175,13 +171,13 @@ func verify_and_build_tile():
 func verify_and_build_tower():
 	if tower_build_loc_valid:
 		tower_occupation_layer.set_cell(current_tile_cords, 0, Vector2i(0, 0))
-		Session_Inventory.Towers[current_button.button_index].in_inventory -= 1
+		GamePlayData.Session_Inventory.Towers[current_button.button_index].in_inventory -= 1
 		
-		var tower = Session_Inventory.Towers[current_button.button_index].tower_scene.instantiate() as Tower
+		var tower = GamePlayData.Session_Inventory.Towers[current_button.button_index].tower_scene.instantiate() as Tower
 		tower.global_position = current_tile_global_position
 		level.towers.add_child(tower)
 		
-		GamePlayData.map_money -= Session_Inventory.Towers[current_button.button_index].placement_cost
+		GamePlayData.map_money -= GamePlayData.Session_Inventory.Towers[current_button.button_index].placement_cost
 		current_button.refresh_ui()
 		return true
 	return false

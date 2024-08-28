@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="ChapterResource" load_steps=15 format=3]
+[gd_resource type="Resource" script_class="ChapterResource" load_steps=15 format=3 uid="uid://50xiqj67lce"]
 
 [ext_resource type="Script" path="res://Resources/Customs/LevelResource.gd" id="1_px83l"]
 [ext_resource type="Script" path="res://Resources/Customs/WaveResource.gd" id="2_2ihsr"]
-[ext_resource type="PackedScene" path="res://Scenes/Chapters/1/Levels/level_1.tscn" id="2_sbt0y"]
+[ext_resource type="PackedScene" uid="uid://h1uysedkywsp" path="res://Scenes/Chapters/1/Levels/level_1.tscn" id="2_sbt0y"]
 [ext_resource type="Script" path="res://Resources/Customs/WavePartResource.gd" id="3_cd48d"]
 [ext_resource type="Script" path="res://Resources/Customs/ChapterResource.gd" id="4_w67id"]
-[ext_resource type="PackedScene" path="res://Scenes/Chapters/1/Levels/level_2.tscn" id="5_1n1i4"]
+[ext_resource type="PackedScene" uid="uid://d00ssbnoe0fqw" path="res://Scenes/Chapters/1/Levels/level_2.tscn" id="5_1n1i4"]
 
 [sub_resource type="Resource" id="Resource_5il3u"]
 script = ExtResource("3_cd48d")
