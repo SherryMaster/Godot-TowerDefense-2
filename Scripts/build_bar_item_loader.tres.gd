@@ -14,10 +14,9 @@ func _ready() -> void:
 		for i in range(total_items):
 			if GamePlayData.Session_Inventory.Tiles[i].in_inventory:
 				var build_button = BUILD_BUTTON.instantiate() as BuildButton
-				var tiles = GamePlayData.Session_Inventory.Tiles
 				build_button.button_index = i
 				build_button.type = type_of_items
-				build_button.item_name = GamePlayData.Session_Inventory.Tiles[i].tile_name
+				build_button.item_name = GamePlayData.GAME_INVENTORY.Tiles[i].item_name
 				add_child(build_button)
 	
 	if type_of_items == BuildButton.Type.Tower:
@@ -27,7 +26,7 @@ func _ready() -> void:
 				var build_button = BUILD_BUTTON.instantiate() as BuildButton
 				build_button.button_index = i
 				build_button.type = type_of_items
-				build_button.item_name = GamePlayData.Session_Inventory.Towers[i].tower_name
+				build_button.item_name = GamePlayData.GAME_INVENTORY.Towers[i].item_name
 				add_child(build_button)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 class_name BuildButton
 
 enum Type {Tile, Tower}
@@ -6,6 +6,7 @@ enum Type {Tile, Tower}
 @onready var price_label: Label = $PriceLabel
 @onready var amount_label: Label = $AmountLabel
 @onready var cancel_button: Button = $CancelButton
+@onready var item_icon: TextureRect = $ItemIcon
 
 var type: Type = Type.Tile
 var button_index:int = 0
@@ -23,16 +24,20 @@ func _ready() -> void:
 
 func refresh_ui():
 	if type == Type.Tile:
-		theme = BUILD_BUTTON_TILE_THEME
-		set_button_icon(GamePlayData.Session_Inventory.Tiles[button_index].texture)
+		texture_normal = GamePlayData.GAME_INVENTORY.Tiles[button_index].item_rarity_frames[GamePlayData.GAME_INVENTORY.Tiles[button_index].rarity][0]
+		texture_hover = GamePlayData.GAME_INVENTORY.Tiles[button_index].item_rarity_frames[GamePlayData.GAME_INVENTORY.Tiles[button_index].rarity][1]
+		texture_pressed = GamePlayData.GAME_INVENTORY.Tiles[button_index].item_rarity_frames[GamePlayData.GAME_INVENTORY.Tiles[button_index].rarity][2]
+		item_icon.texture = GamePlayData.GAME_INVENTORY.Tiles[button_index].texture
 		price_label.text = "$ " + str(GamePlayData.Session_Inventory.Tiles[button_index].placement_cost)
 		amount_label.text = str(GamePlayData.Session_Inventory.Tiles[button_index].in_inventory)
-		tile_atlas_cords = GamePlayData.Session_Inventory.Tiles[button_index].atlas_cordinates
+		tile_atlas_cords = GamePlayData.GAME_INVENTORY.Tiles[button_index].atlas_cordinates
 		if GamePlayData.Session_Inventory.Tiles[button_index].in_inventory == 0:
 			queue_free()
 	else:
-		theme = BUILD_BUTTON_TOWER_THEME
-		set_button_icon(GamePlayData.Session_Inventory.Towers[button_index].texture)
+		texture_normal = GamePlayData.GAME_INVENTORY.Towers[button_index].item_rarity_frames[GamePlayData.GAME_INVENTORY.Towers[button_index].rarity][0]
+		texture_hover = GamePlayData.GAME_INVENTORY.Towers[button_index].item_rarity_frames[GamePlayData.GAME_INVENTORY.Towers[button_index].rarity][1]
+		texture_pressed = GamePlayData.GAME_INVENTORY.Towers[button_index].item_rarity_frames[GamePlayData.GAME_INVENTORY.Towers[button_index].rarity][2]
+		item_icon.texture = GamePlayData.GAME_INVENTORY.Towers[button_index].texture
 		price_label.text = "$ " + str(GamePlayData.Session_Inventory.Towers[button_index].placement_cost)
 		amount_label.text = str(GamePlayData.Session_Inventory.Towers[button_index].in_inventory)
 		if GamePlayData.Session_Inventory.Towers[button_index].in_inventory == 0:

@@ -41,13 +41,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("click") and build_mode:
 		if tile_build_mode:
 			var success: bool = verify_and_build_tile()
-			if success:
-				cancel_build_mode("tile")
+			#if success:
+				#cancel_build_mode("tile")
 		
 		if tower_build_mode:
 			var success: bool = verify_and_build_tower()
-			if success:
-				cancel_build_mode("tower")
+			#if success:
+				#cancel_build_mode("tower")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -120,7 +120,8 @@ func select_tile(m_pos: Vector2):
 		var tile_data = tower_tiles_layer.get_cell_tile_data(tile_cords)
 		
 		if tile_data:
-			tower_build_loc_valid = true
+			var occupied = tower_occupation_layer.get_cell_tile_data(tile_cords)
+			tower_build_loc_valid = true if not occupied else false
 			tile_selection_layer.set_cell(tile_cords, 1, Vector2i(0, 0)) 
 		else:
 			tower_build_loc_valid = false
@@ -149,36 +150,41 @@ func initiate_build_mode(type, button: BuildButton):
 
 func initiate_tile_build_mode():
 	var texture = Sprite2D.new()
-	texture.texture = current_button.icon
+	texture.texture = current_button.item_icon.texture
 	texture.self_modulate = Color(1, 1, 1, 0.5)
 	preview_space.add_child(texture)
 
 func initiate_tower_build_mode():
 	var texture = Sprite2D.new()
-	texture.texture = current_button.icon
+	texture.texture = current_button.item_icon.texture
 	texture.self_modulate = Color(1, 1, 1, 0.5)
 	preview_space.add_child(texture)
 
 func verify_and_build_tile():
-	if tile_build_loc_valid:
+	if tile_build_loc_valid and GamePlayData.map_money >= GamePlayData.Session_Inventory.Tiles[current_button.button_index].placement_cost:
 		tower_tiles_layer.set_cell(current_tile_cords, 2, current_button.tile_atlas_cords)
-		GamePlayData.Session_Inventory.Tiles[current_button.button_index].in_inventory -= 1
+		
 		GamePlayData.map_money -= GamePlayData.Session_Inventory.Tiles[current_button.button_index].placement_cost
+		GamePlayData.Session_Inventory.Tiles[current_button.button_index].in_inventory -= 1
 		current_button.refresh_ui()
+		if GamePlayData.Session_Inventory.Tiles[current_button.button_index].in_inventory == 0:
+			cancel_build_mode("tile")
 		return true
 	return false
 
 func verify_and_build_tower():
-	if tower_build_loc_valid:
+	if tower_build_loc_valid and GamePlayData.map_money >= GamePlayData.Session_Inventory.Towers[current_button.button_index].placement_cost:
 		tower_occupation_layer.set_cell(current_tile_cords, 0, Vector2i(0, 0))
-		GamePlayData.Session_Inventory.Towers[current_button.button_index].in_inventory -= 1
 		
-		var tower = GamePlayData.Session_Inventory.Towers[current_button.button_index].tower_scene.instantiate() as Tower
+		var tower = GamePlayData.GAME_INVENTORY.Towers[current_button.button_index].tower_scene.instantiate() as Tower
 		tower.global_position = current_tile_global_position
 		level.towers.add_child(tower)
 		
 		GamePlayData.map_money -= GamePlayData.Session_Inventory.Towers[current_button.button_index].placement_cost
+		GamePlayData.Session_Inventory.Towers[current_button.button_index].in_inventory -= 1
 		current_button.refresh_ui()
+		if GamePlayData.Session_Inventory.Towers[current_button.button_index].in_inventory == 0:
+			cancel_build_mode("tower")
 		return true
 	return false
 

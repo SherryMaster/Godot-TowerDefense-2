@@ -19,12 +19,12 @@ var team_id = 1
 
 @export var taget_prior: TargetPriority = TargetPriority.First
 @export var shooting_style: ShootingStyle = ShootingStyle.Single
+@export var turret: Node2D
 
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var detector_component: DetectorComponent = $DetectorComponent
 @onready var collision_shape_2d: CollisionShape2D = $DetectorComponent/CollisionShape2D
-@onready var turret: Sprite2D = $Turret
 @onready var shoot_cooldown: Timer = $ShootCooldown
 @onready var shoot_points: Node2D = $Turret/ShootPoints
 @onready var projectiles: Node2D = $Projectiles

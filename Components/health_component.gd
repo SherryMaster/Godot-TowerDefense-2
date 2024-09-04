@@ -11,6 +11,8 @@ signal hp_depleted
 @export var max_hp: float = 100
 var hp: float
 
+const DAMAGE_AMOUNT_FX = preload("res://Scenes/VFX/damage_amount_fx.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hp = max_hp
@@ -18,6 +20,10 @@ func _ready() -> void:
 func damage(amount: float) -> void:
 	hp -= amount
 	got_damage.emit(amount)
+	var dmg_fx = DAMAGE_AMOUNT_FX.instantiate()
+	dmg_fx.amount = amount
+	dmg_fx.global_position = owner.global_position
+	owner.get_parent().add_child(dmg_fx)
 	
 	if hp <= 0:
 		hp_depleted.emit()

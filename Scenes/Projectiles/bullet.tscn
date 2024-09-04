@@ -13,9 +13,6 @@ point_count = 2
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_cv30l")
-speed = 200.0
-can_home_to_enemies = true
-mouse_debug = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1savs")

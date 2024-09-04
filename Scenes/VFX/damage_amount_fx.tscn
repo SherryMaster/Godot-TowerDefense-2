@@ -1,0 +1,113 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7p61umvi3e26"]
+
+[sub_resource type="GDScript" id="GDScript_1d0sy"]
+script/source = "extends Node2D
+
+@onready var label: Label = $Label
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+var amount: float
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	label.text = str(amount)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_it3cg"]
+font_size = 15
+font_color = Color(1, 0.244343, 0.308072, 1)
+outline_size = 17
+outline_color = Color(0.269944, 0.0526901, 9.8668e-07, 1)
+shadow_size = 22
+shadow_color = Color(1, 1, 1, 0.34)
+
+[sub_resource type="Animation" id="Animation_tg5a7"]
+resource_name = "default"
+length = 2.5
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.241484, 1),
+"update": 0,
+"values": [Vector2(-121, -18), Vector2(-121, -50)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_lndt1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-121, -18)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ex8j6"]
+_data = {
+"RESET": SubResource("Animation_lndt1"),
+"default": SubResource("Animation_tg5a7")
+}
+
+[node name="DamageAmountFX" type="Node2D"]
+script = SubResource("GDScript_1d0sy")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -49.9996
+offset_right = 123.0
+offset_bottom = -12.9996
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(121, 18)
+text = "999"
+label_settings = SubResource("LabelSettings_it3cg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ex8j6")
+}
+autoplay = "default"
