@@ -10,15 +10,31 @@ var amount: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label.text = str(amount)
+	label.label_settings.font_size = Utils.ranged_lerp(16, 64, 0, 1000, amount)
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_it3cg"]
-font_size = 15
+font_size = 64
 font_color = Color(1, 0.244343, 0.308072, 1)
 outline_size = 17
 outline_color = Color(0.269944, 0.0526901, 9.8668e-07, 1)
 shadow_size = 22
 shadow_color = Color(1, 1, 1, 0.34)
+
+[sub_resource type="Animation" id="Animation_lndt1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-121, -18)]
+}
 
 [sub_resource type="Animation" id="Animation_tg5a7"]
 resource_name = "default"
@@ -63,21 +79,6 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
 }
 
-[sub_resource type="Animation" id="Animation_lndt1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-121, -18)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ex8j6"]
 _data = {
 "RESET": SubResource("Animation_lndt1"),
@@ -94,12 +95,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -121.0
-offset_top = -49.9996
+offset_top = -18.0
 offset_right = 123.0
-offset_bottom = -12.9996
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(121, 18)
 text = "999"
 label_settings = SubResource("LabelSettings_it3cg")

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Inventory" load_steps=12 format=3 uid="uid://cxd66dgb8lpqr"]
 
-[ext_resource type="Script" path="res://Resources/Customs/TowerTileResource.gd" id="1_y35oc"]
+[ext_resource type="Script" path="res://Resources/Customs/TileItem.gd" id="1_sx2hj"]
 [ext_resource type="Texture2D" uid="uid://bbqqf3otdjcy0" path="res://Assets/TowerTiles/tile_1.png" id="2_oda8w"]
-[ext_resource type="Script" path="res://Resources/Customs/TowerResource.gd" id="3_ondd4"]
+[ext_resource type="Script" path="res://Resources/Customs/TowerItem.gd" id="3_r5e4e"]
 [ext_resource type="Texture2D" uid="uid://d0mxkwm5h43vy" path="res://Assets/Towers/Full Previews/Tower_1.png" id="4_1rhkw"]
 [ext_resource type="PackedScene" uid="uid://gl1uowyu2jho" path="res://Scenes/Towers/scout_tower_common.tscn" id="5_to54p"]
 [ext_resource type="Texture2D" uid="uid://cpjfkngulp1wv" path="res://Assets/Towers/Full Previews/Tower_2.png" id="6_b7e4x"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dejv14ycshqvo" path="res://Scenes/Towers/scout_tower_uncommon.tscn" id="7_jccgo"]
 
 [sub_resource type="Resource" id="Resource_n0dea"]
-script = ExtResource("1_y35oc")
+script = ExtResource("1_sx2hj")
 placement_cost = 20
 atlas_cordinates = Vector2i(0, 0)
 item_name = "Classic Tile"
@@ -20,7 +20,7 @@ type = 1
 in_inventory = 5
 
 [sub_resource type="Resource" id="Resource_gxwc1"]
-script = ExtResource("3_ondd4")
+script = ExtResource("3_r5e4e")
 tower_scene = ExtResource("5_to54p")
 placement_cost = 200
 item_name = "Scout Tower"
@@ -30,7 +30,7 @@ type = 0
 in_inventory = 3
 
 [sub_resource type="Resource" id="Resource_71qsb"]
-script = ExtResource("3_ondd4")
+script = ExtResource("3_r5e4e")
 tower_scene = ExtResource("7_jccgo")
 placement_cost = 450
 item_name = "Scout Tower"
@@ -42,5 +42,5 @@ in_inventory = 1
 [resource]
 script = ExtResource("6_kt8n8")
 coins = 0
-Towers = Array[ExtResource("3_ondd4")]([SubResource("Resource_gxwc1"), SubResource("Resource_71qsb")])
-Tiles = Array[ExtResource("1_y35oc")]([SubResource("Resource_n0dea")])
+Towers = Array[ExtResource("3_r5e4e")]([SubResource("Resource_gxwc1"), SubResource("Resource_71qsb")])
+Tiles = Array[ExtResource("1_sx2hj")]([SubResource("Resource_n0dea")])

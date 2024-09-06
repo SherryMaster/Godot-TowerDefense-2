@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Inventory" load_steps=9 format=3 uid="uid://bvojhoru418ei"]
 
-[ext_resource type="Script" path="res://Resources/Customs/TowerTileResource.gd" id="1_15mv6"]
+[ext_resource type="Script" path="res://Resources/Customs/TileItem.gd" id="1_15mv6"]
 [ext_resource type="Texture2D" uid="uid://bbqqf3otdjcy0" path="res://Assets/TowerTiles/tile_1.png" id="2_e1q2g"]
-[ext_resource type="Script" path="res://Resources/Customs/TowerResource.gd" id="3_pbpku"]
+[ext_resource type="Script" path="res://Resources/Customs/TowerItem.gd" id="3_pbpku"]
 [ext_resource type="Texture2D" uid="uid://d0mxkwm5h43vy" path="res://Assets/Towers/Full Previews/Tower_1.png" id="4_trtve"]
 [ext_resource type="PackedScene" uid="uid://gl1uowyu2jho" path="res://Scenes/Towers/scout_tower_common.tscn" id="5_ud2cb"]
 [ext_resource type="Script" path="res://Resources/Customs/Inventory.gd" id="6_o0m8f"]

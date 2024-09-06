@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl8v4wbbpp2f0"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_gfv6d"]
+[ext_resource type="TileSet" uid="uid://dp0m461rrmhsq" path="res://Resources/Tilesets/MainTileSet.tres" id="2_r0p6e"]
+[ext_resource type="TileSet" uid="uid://cmt0jlili3kcd" path="res://Resources/Tilesets/TowerTiles.tres" id="3_pthmj"]
+[ext_resource type="Script" path="res://Scripts/GameCamera.gd" id="4_2qbob"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_gfv6d")
+
+[node name="Map" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Ground" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("2_r0p6e")
+metadata/_edit_lock_ = true
+
+[node name="Road" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("2_r0p6e")
+metadata/_edit_lock_ = true
+
+[node name="Tiles" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("3_pthmj")
+metadata/_edit_lock_ = true
+
+[node name="Towers" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("3_pthmj")
+metadata/_edit_lock_ = true
+
+[node name="TileSelector" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("3_pthmj")
+metadata/_edit_lock_ = true
+
+[node name="End" type="Node2D" parent="."]
+position = Vector2(1280, 384)
+
+[node name="Start" type="Node2D" parent="."]
+position = Vector2(0, 384)
+
+[node name="Towers" type="Node2D" parent="."]
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Enemy" type="Node2D" parent="Units"]
+
+[node name="Ally" type="Node2D" parent="Units"]
+
+[node name="GameCamera" type="Camera2D" parent="." node_paths=PackedStringArray("right_limit_node", "bottom_limit_node")]
+limit_left = 0
+limit_top = 0
+limit_right = 4352
+limit_bottom = 2000
+script = ExtResource("4_2qbob")
+right_limit_node = NodePath("../RightLimit")
+bottom_limit_node = NodePath("../BottomLimit")
+min_zoom_limit = 1.0
+
+[node name="RightLimit" type="Node2D" parent="."]
+position = Vector2(1280, 208)
+
+[node name="BottomLimit" type="Node2D" parent="."]
+position = Vector2(714, 720)

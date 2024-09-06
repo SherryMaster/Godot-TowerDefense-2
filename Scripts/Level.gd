@@ -10,6 +10,8 @@ class_name Level
 @onready var start: Node2D = $Start
 @onready var end: Node2D = $End
 @onready var units: Node2D = $Units
+@onready var enemy: Node2D = $Units/Enemy
+@onready var ally: Node2D = $Units/Ally
 @onready var towers: Node2D = $Towers
 
 @onready var game_camera: GameCamera = $GameCamera

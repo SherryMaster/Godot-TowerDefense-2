@@ -19,9 +19,8 @@ collision_mask = 8
 motion_mode = 1
 script = ExtResource("1_ykqod")
 tower_range = 8.0
-damage = 8.0
-bullet_speed = 200.0
-reload = 0.5
+damage = 20.0
+bullet_speed = 150.0
 health = 250.0
 turret = NodePath("Turret")
 

@@ -18,7 +18,7 @@ collision_layer = 4
 collision_mask = 8
 motion_mode = 1
 script = ExtResource("1_0eucs")
-bullet_speed = 200.0
+bullet_speed = 150.0
 turret = NodePath("Turret")
 
 [node name="Base" type="Sprite2D" parent="."]

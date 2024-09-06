@@ -73,6 +73,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	update_num_of_enemies()
 	select_tile(get_global_mouse_position())
 	update_build_preview()
 	if waves_finished and not game_finished:
@@ -244,11 +245,9 @@ func spawn_wave():
 			tank.money_on_death = GameData.TankStats[part.type]["Coins on Death"] * GameData.CoinDrop_Scales_by_Color[part.color]
 			tank.main_target = level.end
 			tank.global_position = level.start.global_position
-			tank.destroyed.connect(update_num_of_enemies.bind(-1))
 			tank.reached_end.connect(on_enemy_at_end)
-			level.units.add_child(tank)
+			level.enemy.add_child(tank)
 			tank.set_name(type + "_" + part.color)
-			update_num_of_enemies(1)
 			enemy_spawner.start(part.delay_btw_spawns)
 			await enemy_spawner.timeout
 		
@@ -265,8 +264,8 @@ func spawn_wave():
 	
 	spawning_enemies = false
 
-func update_num_of_enemies(amount):
-	enemy_remaining = enemy_remaining + amount
+func update_num_of_enemies():
+	enemy_remaining = level.enemy.get_child_count()
 
 func on_enemy_at_end(hp_left: float):
 	GamePlayData.base_hp = max(0, GamePlayData.base_hp - hp_left)

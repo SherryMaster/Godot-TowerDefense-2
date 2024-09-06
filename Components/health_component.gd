@@ -23,7 +23,7 @@ func damage(amount: float) -> void:
 	var dmg_fx = DAMAGE_AMOUNT_FX.instantiate()
 	dmg_fx.amount = amount
 	dmg_fx.global_position = owner.global_position
-	owner.get_parent().add_child(dmg_fx)
+	owner.get_parent().get_parent().get_parent().add_child(dmg_fx)
 	
 	if hp <= 0:
 		hp_depleted.emit()
