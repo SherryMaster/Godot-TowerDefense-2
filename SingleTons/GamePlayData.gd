@@ -22,7 +22,7 @@ var mouse_damage: int = 20
 
 
 func _ready() -> void:
-	Engine.time_scale = 0.3
+	Engine.time_scale = 1
 
 func load_session_inventory():
 	Session_Inventory["Tiles"] = []

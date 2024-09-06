@@ -24,7 +24,7 @@ var distance_travelled: float
 
 # states
 var shot_by_enemy: bool = false
-var can_damage: bool = false
+var can_damage: bool = true
 
 func _ready() -> void:
 	trail.top_level = true
