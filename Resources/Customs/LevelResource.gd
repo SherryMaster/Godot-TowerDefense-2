@@ -7,4 +7,4 @@ class_name LevelResource
 @export var level_completed: bool = false
 @export var level_unlocked: bool = false
 @export var level_scene: PackedScene
-@export var waves: Array[WaveResource]
+@export var waves: Array[EnemyWave]

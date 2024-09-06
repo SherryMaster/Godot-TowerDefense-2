@@ -1,0 +1,120 @@
+[gd_scene load_steps=19 format=3 uid="uid://bb1aqewe3c3w4"]
+
+[ext_resource type="Script" path="res://Scripts/Tank.gd" id="1_arhyc"]
+[ext_resource type="Texture2D" uid="uid://c7x32sfjvrwu3" path="res://Assets/Tank Wheel Set.png" id="2_1pn2w"]
+[ext_resource type="Script" path="res://Scripts/wheels.gd" id="3_swwgm"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="6_jquyj"]
+[ext_resource type="PackedScene" uid="uid://brvtcpf7vraqx" path="res://Components/health_bar_component.tscn" id="7_6715u"]
+[ext_resource type="Script" path="res://Components/hurt_box_component.gd" id="8_rippv"]
+[ext_resource type="Script" path="res://Components/detector_component.tres.gd" id="9_7q1wv"]
+[ext_resource type="Script" path="res://Components/navigation_component.gd" id="10_crkyh"]
+[ext_resource type="Script" path="res://Components/velocity_component.gd" id="11_torkw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5ow4"]
+atlas = ExtResource("2_1pn2w")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk1my"]
+atlas = ExtResource("2_1pn2w")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62oan"]
+atlas = ExtResource("2_1pn2w")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_234pl"]
+atlas = ExtResource("2_1pn2w")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uiae0"]
+atlas = ExtResource("2_1pn2w")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0i6xs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5ow4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk1my")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62oan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_234pl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uiae0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_od2ca"]
+size = Vector2(26, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8dmjc"]
+radius = 128.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7smc"]
+size = Vector2(26, 26)
+
+[node name="Tank" type="CharacterBody2D"]
+collision_mask = 64
+motion_mode = 1
+script = ExtResource("1_arhyc")
+
+[node name="Wheels" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0i6xs")
+autoplay = "default"
+frame_progress = 0.538693
+script = ExtResource("3_swwgm")
+
+[node name="Hull" type="Node2D" parent="."]
+
+[node name="Frame" type="Sprite2D" parent="Hull"]
+
+[node name="Body" type="Sprite2D" parent="Hull"]
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("6_jquyj")
+
+[node name="HealthBarComponent" parent="." instance=ExtResource("7_6715u")]
+offset_left = -37.0
+offset_top = -26.0
+offset_right = 37.0
+offset_bottom = -14.0
+
+[node name="HurtBoxComponent" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("8_rippv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBoxComponent"]
+shape = SubResource("RectangleShape2D_od2ca")
+debug_color = Color(0.912218, 0, 0.299023, 0.42)
+
+[node name="DetectorComponent" type="Area2D" parent="."]
+visible = false
+collision_layer = 128
+collision_mask = 127
+script = ExtResource("9_7q1wv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorComponent"]
+shape = SubResource("CircleShape2D_8dmjc")
+debug_color = Color(0, 0.626474, 0.510827, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_d7smc")
+
+[node name="NavigationComponent" type="NavigationAgent2D" parent="."]
+navigation_layers = 5
+script = ExtResource("10_crkyh")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("11_torkw")

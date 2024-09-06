@@ -1,6 +1,7 @@
 extends Resource
 class_name Item
-enum Rarity {COMMON, UNCOMMON, RARE}
+enum Rarity {COMMON, UNCOMMON, RARE, EPIC, LEGENDARY, MYTHIC, EXOTIC, UNIQUE, DIVINE, CELESTIAL, COSMIC, GALACTIC, UNIVERSAL, INFINITE, ETERNAL, IMMORTAL, TRANSCENDENT, OMNIPOTENT, GODLIKE, ARCANE, MYSTIC, ENCHANTED, SACRED, BLESSED, HALLOWED, RADIANT, LUMINOUS, ETHEREAL, PHANTOM, SPECTRAL, ASTRAL, STELLAR, NEBULOUS, QUANTUM, TEMPORAL, DIMENSIONAL, ELEMENTAL, PRIMORDIAL, ANCIENT, ZENITH}
+
 enum Type {TOWER, TILE, MATERIAL}
 
 const COMMON_FRAME = preload("res://Assets/RarityFrames/Common Frame.png")
@@ -21,8 +22,7 @@ var item_rarity_frames = {
 	Rarity.RARE: [RARE_FRAME, RARE_FRAME_HOVER, RARE_FRAME_PRESSED],
 }
 
-@export var item_name: String
 @export var texture: Texture2D
-@export var rarity: Rarity
+@export var rarity: Rarity = Rarity.COMMON
 @export var type: Type
 @export var in_inventory: int

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d36j2v3hi7mb4"
-path="res://.godot/imported/Bullet.png-01cfc6486bd6711d123faf51c40f38d2.ctex"
+uid="uid://c03d01f5g5dys"
+path="res://.godot/imported/frame.png-62a41178335e8839efe2832886e872b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bullet.png"
-dest_files=["res://.godot/imported/Bullet.png-01cfc6486bd6711d123faf51c40f38d2.ctex"]
+source_file="res://Assets/Units/Normal Tank/frame.png"
+dest_files=["res://.godot/imported/frame.png-62a41178335e8839efe2832886e872b7.ctex"]
 
 [params]
 

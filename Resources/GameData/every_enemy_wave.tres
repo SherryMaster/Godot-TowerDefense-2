@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=9 format=3 uid="uid://cdsdt1tnc518m"]
+
+[ext_resource type="Script" path="res://Resources/Customs/WaveResource.gd" id="1_jhvvn"]
+[ext_resource type="Script" path="res://Resources/Customs/WavePartResource.gd" id="2_m5yiw"]
+
+[sub_resource type="Resource" id="Resource_5il3u"]
+script = ExtResource("2_m5yiw")
+type = "Normal_Tank"
+color = 0
+amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_tjycq"]
+script = ExtResource("2_m5yiw")
+type = "Normal_Tank"
+color = 1
+amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_474yo"]
+script = ExtResource("2_m5yiw")
+type = "Normal_Tank"
+color = 2
+amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_cmh8x"]
+script = ExtResource("2_m5yiw")
+type = "Normal_Tank"
+color = 3
+amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_q8pjc"]
+script = ExtResource("2_m5yiw")
+type = "Normal_Tank"
+color = 4
+amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_q03cv"]
+script = ExtResource("2_m5yiw")
+type = "Normal_Tank"
+color = 5
+amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[resource]
+script = ExtResource("1_jhvvn")
+hp_scale = 1.0
+wave_parts = Array[ExtResource("2_m5yiw")]([SubResource("Resource_5il3u"), SubResource("Resource_tjycq"), SubResource("Resource_474yo"), SubResource("Resource_cmh8x"), SubResource("Resource_q8pjc"), SubResource("Resource_q03cv")])

@@ -1,26 +1,36 @@
-[gd_resource type="Resource" script_class="ChapterResource" load_steps=15 format=3]
+[gd_resource type="Resource" script_class="ChapterResource" load_steps=16 format=3 uid="uid://50xiqj67lce"]
 
 [ext_resource type="Script" path="res://Resources/Customs/LevelResource.gd" id="1_px83l"]
 [ext_resource type="Script" path="res://Resources/Customs/WaveResource.gd" id="2_2ihsr"]
-[ext_resource type="PackedScene" path="res://Scenes/Chapters/1/Levels/level_1.tscn" id="2_sbt0y"]
+[ext_resource type="PackedScene" uid="uid://h1uysedkywsp" path="res://Scenes/Chapters/1/Levels/level_1.tscn" id="2_sbt0y"]
 [ext_resource type="Script" path="res://Resources/Customs/WavePartResource.gd" id="3_cd48d"]
 [ext_resource type="Script" path="res://Resources/Customs/ChapterResource.gd" id="4_w67id"]
-[ext_resource type="PackedScene" path="res://Scenes/Chapters/1/Levels/level_2.tscn" id="5_1n1i4"]
+[ext_resource type="PackedScene" uid="uid://d00ssbnoe0fqw" path="res://Scenes/Chapters/1/Levels/level_2.tscn" id="5_1n1i4"]
 
-[sub_resource type="Resource" id="Resource_5il3u"]
+[sub_resource type="Resource" id="Resource_wmgeb"]
 script = ExtResource("3_cd48d")
-type = "Normal_Tank"
-color = "Blue"
-amount = 10
-delay_btw_spawns = 0.2
+type = 0
+color = 0
+amount = 3
+delay_btw_spawns = 1.0
 wait_after_pattern_complete = 1.0
 loopings_state = "No Loop"
 times_to_repeat = 0
 
-[sub_resource type="Resource" id="Resource_k4s4t"]
+[sub_resource type="Resource" id="Resource_1anvv"]
+script = ExtResource("3_cd48d")
+type = 0
+color = 0
+amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_fv5xr"]
 script = ExtResource("2_2ihsr")
 hp_scale = 1.0
-wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_5il3u")])
+wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_wmgeb"), SubResource("Resource_1anvv")])
 
 [sub_resource type="Resource" id="Resource_mfk2d"]
 script = ExtResource("1_px83l")
@@ -29,12 +39,12 @@ starting_base_hp = 100.0
 level_completed = true
 level_unlocked = true
 level_scene = ExtResource("2_sbt0y")
-waves = Array[ExtResource("2_2ihsr")]([SubResource("Resource_k4s4t")])
+waves = Array[ExtResource("2_2ihsr")]([SubResource("Resource_fv5xr")])
 
 [sub_resource type="Resource" id="Resource_p32s6"]
 script = ExtResource("3_cd48d")
-type = "Normal_Tank"
-color = "Red"
+type = 0
+color = 0
 amount = 5
 delay_btw_spawns = 1.0
 wait_after_pattern_complete = 1.0
@@ -48,8 +58,8 @@ wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_p32s6")])
 
 [sub_resource type="Resource" id="Resource_0nkxs"]
 script = ExtResource("3_cd48d")
-type = "Normal_Tank"
-color = "Green"
+type = 0
+color = 0
 amount = 5
 delay_btw_spawns = 1.0
 wait_after_pattern_complete = 1.0

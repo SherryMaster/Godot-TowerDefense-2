@@ -1,11 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://cn2ktgenc2if0"]
 
 [ext_resource type="Script" path="res://Scripts/Projectile.gd" id="1_cv30l"]
-[ext_resource type="Texture2D" uid="uid://d36j2v3hi7mb4" path="res://Assets/Bullet.png" id="2_1savs"]
+[ext_resource type="Texture2D" uid="uid://d0kg53pnqbipm" path="res://Assets/Projectiles/bullet_1.png" id="2_x2px0"]
 [ext_resource type="Script" path="res://Components/hit_box_component.gd" id="3_j4ppo"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yj5qh"]
-radius = 5.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a84tm"]
+radius = 3.0
+height = 10.0
 
 [sub_resource type="Curve" id="Curve_hiiam"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -15,13 +16,14 @@ point_count = 2
 script = ExtResource("1_cv30l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_1savs")
+texture = ExtResource("2_x2px0")
 
 [node name="HitBoxComponent" type="Area2D" parent="."]
 script = ExtResource("3_j4ppo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("CircleShape2D_yj5qh")
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_a84tm")
 
 [node name="Trail" type="Line2D" parent="."]
 width = 2.0

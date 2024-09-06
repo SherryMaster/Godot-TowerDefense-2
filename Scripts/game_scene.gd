@@ -74,8 +74,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	update_num_of_enemies()
-	select_tile(get_global_mouse_position())
-	update_build_preview()
+	if build_mode:
+		print(tower_build_loc_valid) if tower_build_mode else null
+		select_tile(get_global_mouse_position())
+		update_build_preview()
 	if waves_finished and not game_finished:
 		game_finished = true
 		GamePlayData.game_ended.emit()
@@ -217,13 +219,13 @@ func spawn_wave():
 	var loop_detected: bool = false
 	var loop_started: bool = false
 	
-	var wave: Array[WavePartResource] =CHAPTERS_DATA.levels[GamePlayData.level_num].waves[GamePlayData.current_wave].wave_parts
+	var wave: Array[WavePart] =CHAPTERS_DATA.levels[GamePlayData.level_num].waves[GamePlayData.current_wave].wave_parts
 	var total_parts: int = wave.size()
 	var part_index: int = 0
 	while(true):
 		
 		var part = wave[part_index]
-		var type: String = part.type
+		var type: String = WavePart.Type.keys()[part.type]
 		if part.loopings_state == "Start" and not loop_detected:
 			loop_start_index = part_index
 			loop_left = part.times_to_repeat
@@ -238,7 +240,7 @@ func spawn_wave():
 				loop_started = false
 		
 		for i in range(part.amount):
-			var tank = load("res://Scenes/Entities/Tanks/" + type.to_lower() + ".tscn").instantiate() as Tank
+			var tank = load("res://Scenes/Entities/Tanks/" + type.to_snake_case() + ".tscn").instantiate() as Tank
 			tank.color = part.colors[part.color]
 			tank.max_hp = GameData.TankStats[part.type]["Hp"] * GameData.Hp_Scales_by_Color[part.color] * CHAPTERS_DATA.levels[GamePlayData.level_num].waves[GamePlayData.current_wave-1].hp_scale
 			tank.speed = GameData.TankStats[part.type]["Speed"]
@@ -247,7 +249,7 @@ func spawn_wave():
 			tank.global_position = level.start.global_position
 			tank.reached_end.connect(on_enemy_at_end)
 			level.enemy.add_child(tank)
-			tank.set_name(type + "_" + part.color)
+			tank.set_name(type + "_" + WavePart.Colors.keys()[part.color])
 			enemy_spawner.start(part.delay_btw_spawns)
 			await enemy_spawner.timeout
 		

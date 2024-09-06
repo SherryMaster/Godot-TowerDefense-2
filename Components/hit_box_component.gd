@@ -19,10 +19,8 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area) -> void:
-	print(get_overlapping_areas().size())
 	var selected_area: HurtBoxComponent = get_overlapping_areas()[0]
 	if selected_area.owner.team_id != owner.team_id:
-		print(selected_area)
 		if owner.can_damage:
 			selected_area.take_dmg(damage_to_deal)
 		if owner is Projectile:
