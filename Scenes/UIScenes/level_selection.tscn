@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dacp5isa51frs"]
 
 [ext_resource type="Script" path="res://Scripts/level_selection.gd" id="1_ux4pg"]
-[ext_resource type="Theme" uid="uid://c0tep2fsdwqiq" path="res://Resources/Themes/UIBackground.tres" id="2_4c4ds"]
+[ext_resource type="Texture2D" uid="uid://b8khhcihee7kc" path="res://Assets/UI Icons/arrowLeft.png" id="2_r17o1"]
 
 [node name="LevelSelection" type="Control"]
 layout_mode = 3
@@ -19,9 +19,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_4c4ds")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="BG"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,11 +28,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 64
+theme_override_constants/margin_top = 128
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="Level_Container" type="HFlowContainer" parent="MarginContainer"]
+[node name="Level_Container" type="HFlowContainer" parent="BG/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 76
 theme_override_constants/v_separation = 76
+
+[node name="BackButton" type="Button" parent="BG"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 96.0
+icon = ExtResource("2_r17o1")
+icon_alignment = 1
+expand_icon = true

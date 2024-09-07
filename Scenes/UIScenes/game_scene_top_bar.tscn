@@ -1,7 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://degabwtrn4wfy"]
+[gd_scene load_steps=10 format=3 uid="uid://degabwtrn4wfy"]
 
 [ext_resource type="LabelSettings" uid="uid://b55m4horok4h5" path="res://Resources/Fonts/MainFont.tres" id="1_f1gtc"]
 [ext_resource type="Texture2D" uid="uid://cml8jhjinuycc" path="res://Assets/love-always-wins.png" id="2_sy2xj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_id4ap"]
+bg_color = Color(0, 0.264, 0.397, 0.5)
+border_width_left = 25
+border_width_top = 25
+border_width_right = 25
+border_width_bottom = 25
+border_color = Color(0, 0.422, 0.618, 0.5)
+border_blend = true
+corner_detail = 6
 
 [sub_resource type="GDScript" id="GDScript_t7536"]
 script/source = "extends Label
@@ -88,6 +98,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 46.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_id4ap")
 
 [node name="HBC" type="HBoxContainer" parent="BG"]
 layout_mode = 1

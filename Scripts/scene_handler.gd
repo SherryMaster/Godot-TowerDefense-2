@@ -5,6 +5,8 @@ const MAIN_MENU = preload("res://Scenes/UIScenes/main_menu.tscn")
 const GAME_SCENE = preload("res://Scenes/MainScenes/game_scene.tscn")
 const LEVEL_SELECTION = preload("res://Scenes/UIScenes/level_selection.tscn")
 const WIN_STAT_SCREEN = preload("res://Scenes/UIScenes/win_stat_screen.tscn")
+const INVENTORY_DISPLAY = preload("res://Scenes/UIScenes/inventory_display.tscn")
+
 
 const CHAPTERS_DATA = preload("res://Resources/GameData/chapters_data.tres")
 
@@ -18,8 +20,10 @@ func _ready() -> void:
 func load_main_menu():
 	clear_scene()
 	var main_menu: Control = MAIN_MENU.instantiate()
+	main_menu.get_node("MC/VBC/HBC/VBC/PlayButton").pressed.connect(load_level_selection_scene.bind(1))
+	main_menu.get_node("MC/VBC/HBC/VBC/Inventory").pressed.connect(load_inventory_scene)
 	add_child(main_menu)
-	get_node("MainMenu/MC/VBC/HBC/VBC/PlayButton").pressed.connect(load_level_selection_scene.bind(1))
+	await main_menu.ready
 
 func load_game_scene(level_num: int):
 	clear_scene()
@@ -42,14 +46,19 @@ func load_game_scene(level_num: int):
 	
 	Resource
 
-
-
 func load_level_selection_scene(ch_num: int):
 	clear_scene()
 	var level_selection_scene = LEVEL_SELECTION.instantiate()
 	level_selection_scene.chapter_num = ch_num
 	level_selection_scene.level_selected.connect(load_game_scene)
+	level_selection_scene.get_node("BG/BackButton").pressed.connect(load_main_menu)
 	add_child(level_selection_scene)
+
+func load_inventory_scene():
+	clear_scene()
+	var inventory = INVENTORY_DISPLAY.instantiate()
+	inventory.get_node("BackButton").pressed.connect(load_main_menu)
+	add_child(inventory)
 
 func on_game_ended():
 	var stat_screen = WIN_STAT_SCREEN.instantiate()

@@ -1,8 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6q201gcodedt"]
-
-[ext_resource type="Theme" uid="uid://c0tep2fsdwqiq" path="res://Resources/Themes/UIBackground.tres" id="1_6rim5"]
-[ext_resource type="Theme" uid="uid://rnuqqkhftg1o" path="res://Resources/Themes/Button.tres" id="1_kgggp"]
-[ext_resource type="LabelSettings" uid="uid://b55m4horok4h5" path="res://Resources/Fonts/MainFont.tres" id="2_wtp3x"]
+[gd_scene format=3 uid="uid://b6q201gcodedt"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -19,7 +15,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_6rim5")
 
 [node name="MC" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -49,22 +44,18 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_constants/separation = 20
 
 [node name="PlayButton" type="Button" parent="MC/VBC/HBC/VBC"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("1_kgggp")
+theme_override_font_sizes/font_size = 32
+text = "Play"
 
-[node name="Label" type="Label" parent="MC/VBC/HBC/VBC/PlayButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Play
-"
-label_settings = ExtResource("2_wtp3x")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Inventory" type="Button" parent="MC/VBC/HBC/VBC"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "Inventory"

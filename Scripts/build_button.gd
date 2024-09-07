@@ -10,7 +10,7 @@ enum Type {Tile, Tower}
 
 var type: Type = Type.Tile
 var button_index:int = 0
-var item_name: String = ""
+var item_name: TowerItem.Type
 
 const BUILD_BUTTON_TILE_THEME = preload("res://Resources/Themes/BuildBar/Item Buttons/build_button_tile_theme.tres")
 const BUILD_BUTTON_TOWER_THEME = preload("res://Resources/Themes/BuildBar/Item Buttons/build_button_tower_theme.tres")

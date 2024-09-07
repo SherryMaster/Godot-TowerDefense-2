@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw20mes8egjdw"]
+
+[ext_resource type="Texture2D" uid="uid://iwxvnglho7sr" path="res://Assets/RarityFrames/Common Frame.png" id="1_14ak1"]
+[ext_resource type="Texture2D" uid="uid://dj45ra2ro7qw3" path="res://Assets/Materials/common part.png" id="2_2r0d1"]
+
+[sub_resource type="GDScript" id="GDScript_h881h"]
+script/source = "extends TextureRect
+
+@onready var sprite: TextureRect = %Sprite
+"
+
+[node name="ItemFrame" type="TextureRect"]
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_14ak1")
+expand_mode = 1
+script = SubResource("GDScript_h881h")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Sprite" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_2r0d1")
+expand_mode = 1

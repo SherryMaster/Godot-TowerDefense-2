@@ -11,7 +11,7 @@ const LEVEL_BUTTON_COMPLETED = preload("res://Resources/Themes/level_button_comp
 const LEVEL_BUTTON_UNLOCKED = preload("res://Resources/Themes/level_button_unlocked.tres")
 
 
-@onready var level_container: HFlowContainer = $MarginContainer/Level_Container
+@onready var level_container: HFlowContainer = $BG/MarginContainer/Level_Container
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

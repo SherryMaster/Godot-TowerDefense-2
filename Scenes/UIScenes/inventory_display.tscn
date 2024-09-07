@@ -1,0 +1,149 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc16lvecyf21q"]
+
+[ext_resource type="Theme" uid="uid://2m5n3w4ghnbn" path="res://Resources/Themes/MainTheme.tres" id="2_00erb"]
+[ext_resource type="Texture2D" uid="uid://b8khhcihee7kc" path="res://Assets/UI Icons/arrowLeft.png" id="2_6fdka"]
+
+[sub_resource type="GDScript" id="GDScript_7eovq"]
+script/source = "extends TabContainer
+
+
+@onready var towers: GridContainer = $Towers/ScrollContainer/Towers
+@onready var tiles: GridContainer = $Tiles/ScrollContainer/Tiles
+@onready var materials: GridContainer = $Materials/ScrollContainer/Materials
+
+const INVENTORY_SLOT_ICON = preload(\"res://Scenes/UIScenes/inventory_slot_icon.tscn\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	await load_towers()
+	await load_tiles()
+	await load_materials()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func load_towers():
+	for tower in GamePlayData.GAME_INVENTORY.Towers:
+		var inv_slot = INVENTORY_SLOT_ICON.instantiate()
+		inv_slot.frame = tower.item_rarity_frames[tower.rarity][0]
+		inv_slot.item_sprite = tower.texture
+		inv_slot.amount = tower.in_inventory
+		towers.add_child(inv_slot)
+
+func load_tiles():
+	for tile in GamePlayData.GAME_INVENTORY.Tiles:
+		var inv_slot = INVENTORY_SLOT_ICON.instantiate()
+		inv_slot.frame = tile.item_rarity_frames[tile.rarity][0]
+		inv_slot.item_sprite = tile.texture
+		inv_slot.amount = tile.in_inventory
+		tiles.add_child(inv_slot)
+
+func load_materials():
+	for mat in GamePlayData.GAME_INVENTORY.Materials:
+		var inv_slot = INVENTORY_SLOT_ICON.instantiate()
+		inv_slot.frame = mat.item_rarity_frames[mat.rarity][0]
+		inv_slot.item_sprite = mat.texture
+		inv_slot.amount = mat.in_inventory
+		materials.add_child(inv_slot)
+"
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryViewer" type="TabContainer" parent="."]
+layout_mode = 2
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 768.0
+offset_bottom = 656.0
+theme = ExtResource("2_00erb")
+tab_alignment = 1
+current_tab = 0
+script = SubResource("GDScript_7eovq")
+
+[node name="Towers" type="TabBar" parent="InventoryViewer"]
+layout_mode = 2
+tab_close_display_policy = 1
+drag_to_rearrange_enabled = true
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryViewer/Towers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Towers" type="GridContainer" parent="InventoryViewer/Towers/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 25
+columns = 10
+
+[node name="Tiles" type="TabBar" parent="InventoryViewer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryViewer/Tiles"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tiles" type="GridContainer" parent="InventoryViewer/Tiles/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 25
+columns = 10
+
+[node name="Materials" type="TabBar" parent="InventoryViewer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryViewer/Materials"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Materials" type="GridContainer" parent="InventoryViewer/Materials/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 25
+columns = 10
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 96.0
+icon = ExtResource("2_6fdka")
+icon_alignment = 1
+expand_icon = true
