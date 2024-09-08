@@ -13,6 +13,6 @@ script = ExtResource("1_nm3eh")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="GameSceneTopBar" parent="UI" instance=ExtResource("3_cdkje")]
-
 [node name="BuildBar" parent="UI" instance=ExtResource("3_1wljk")]
+
+[node name="GameSceneTopBar" parent="UI" instance=ExtResource("3_cdkje")]

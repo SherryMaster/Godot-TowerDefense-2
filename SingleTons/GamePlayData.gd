@@ -1,7 +1,10 @@
 extends Node
 signal game_ended
+signal wave_started
+signal wave_ended
 
 var base_destroyed: bool = false
+var game_paused: bool = false
 
 var chapter_num: int = 0
 var level_num: int = 0
@@ -22,7 +25,7 @@ var mouse_damage: int = 20
 
 
 func _ready() -> void:
-	Engine.time_scale = 1
+	set_game_speed(1)
 
 func load_session_inventory():
 	Session_Inventory["Tiles"] = []
@@ -39,3 +42,6 @@ func load_session_inventory():
 			"in_inventory": tower.in_inventory,
 			"placement_cost": tower.placement_cost,
 		})
+
+func set_game_speed(scale: float):
+	Engine.time_scale = scale
