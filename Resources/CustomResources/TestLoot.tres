@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="LootList" load_steps=6 format=3 uid="uid://c8s8gcb487f8x"]
+
+[ext_resource type="Script" path="res://Resources/Customs/LootItem.gd" id="1_i6o5b"]
+[ext_resource type="Script" path="res://Resources/Customs/LootList.gd" id="2_fo74x"]
+
+[sub_resource type="Resource" id="Resource_fpds0"]
+script = ExtResource("1_i6o5b")
+type = 0
+rarity = 1
+one_in_chance = 5
+quantity = Vector2i(1, 1)
+granteed = false
+tower = 0
+tile = 0
+material = 0
+
+[sub_resource type="Resource" id="Resource_hj6xg"]
+script = ExtResource("1_i6o5b")
+type = 0
+rarity = 0
+one_in_chance = 2
+quantity = Vector2i(1, 1)
+granteed = false
+tower = 0
+tile = 0
+material = 0
+
+[sub_resource type="Resource" id="Resource_rho35"]
+script = ExtResource("1_i6o5b")
+type = 2
+rarity = 0
+one_in_chance = 1
+quantity = Vector2i(1, 5)
+granteed = false
+tower = 0
+tile = 0
+material = 0
+
+[resource]
+script = ExtResource("2_fo74x")
+max_obtain_loot = 5
+one_time_obtainable = false
+obtainable = true
+loot_list = Array[ExtResource("1_i6o5b")]([SubResource("Resource_fpds0"), SubResource("Resource_hj6xg"), SubResource("Resource_rho35")])
+sorted = true

@@ -93,3 +93,8 @@ var CoinDrop_Scales_by_Color = {
 	WavePart.Colors.DIAMOND: 1350851717672992089,
 	WavePart.Colors.PEARL: 4052555153018976267
 }
+
+const TEST_LOOT = preload("res://Resources/CustomResources/TestLoot.tres")
+
+func _ready() -> void:
+	TEST_LOOT.obtain_loot()

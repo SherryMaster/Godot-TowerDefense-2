@@ -29,9 +29,9 @@ func refresh_ui():
 		texture_pressed = GamePlayData.GAME_INVENTORY.Tiles[button_index].item_rarity_frames[GamePlayData.GAME_INVENTORY.Tiles[button_index].rarity][2]
 		item_icon.texture = GamePlayData.GAME_INVENTORY.Tiles[button_index].texture
 		price_label.text = "$ " + str(GamePlayData.Session_Inventory.Tiles[button_index].placement_cost)
-		amount_label.text = str(GamePlayData.Session_Inventory.Tiles[button_index].in_inventory)
+		amount_label.text = str(GamePlayData.Session_Inventory.Tiles[button_index].quantity)
 		tile_atlas_cords = GamePlayData.GAME_INVENTORY.Tiles[button_index].atlas_cordinates
-		if GamePlayData.Session_Inventory.Tiles[button_index].in_inventory == 0:
+		if GamePlayData.Session_Inventory.Tiles[button_index].quantity == 0:
 			queue_free()
 	else:
 		texture_normal = GamePlayData.GAME_INVENTORY.Towers[button_index].item_rarity_frames[GamePlayData.GAME_INVENTORY.Towers[button_index].rarity][0]
@@ -39,6 +39,6 @@ func refresh_ui():
 		texture_pressed = GamePlayData.GAME_INVENTORY.Towers[button_index].item_rarity_frames[GamePlayData.GAME_INVENTORY.Towers[button_index].rarity][2]
 		item_icon.texture = GamePlayData.GAME_INVENTORY.Towers[button_index].texture
 		price_label.text = "$ " + str(GamePlayData.Session_Inventory.Towers[button_index].placement_cost)
-		amount_label.text = str(GamePlayData.Session_Inventory.Towers[button_index].in_inventory)
-		if GamePlayData.Session_Inventory.Towers[button_index].in_inventory == 0:
+		amount_label.text = str(GamePlayData.Session_Inventory.Towers[button_index].quantity)
+		if GamePlayData.Session_Inventory.Towers[button_index].quantity == 0:
 			queue_free()

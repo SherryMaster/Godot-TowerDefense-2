@@ -33,13 +33,13 @@ func load_session_inventory():
 	
 	for tile in GAME_INVENTORY.Tiles:
 		Session_Inventory["Tiles"].append({
-			"in_inventory": tile.in_inventory,
+			"quantity": tile.quantity,
 			"placement_cost": tile.placement_cost,
 		})
 	
 	for tower in GAME_INVENTORY.Towers:
 		Session_Inventory.Towers.append({
-			"in_inventory": tower.in_inventory,
+			"quantity": tower.quantity,
 			"placement_cost": tower.placement_cost,
 		})
 

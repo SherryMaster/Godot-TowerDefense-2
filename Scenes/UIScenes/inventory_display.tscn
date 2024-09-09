@@ -27,27 +27,30 @@ func _process(delta: float) -> void:
 
 func load_towers():
 	for tower in GamePlayData.GAME_INVENTORY.Towers:
-		var inv_slot = INVENTORY_SLOT_ICON.instantiate()
-		inv_slot.frame = tower.item_rarity_frames[tower.rarity][0]
-		inv_slot.item_sprite = tower.texture
-		inv_slot.amount = tower.in_inventory
-		towers.add_child(inv_slot)
+		if tower.quantity > 0:
+			var inv_slot = INVENTORY_SLOT_ICON.instantiate()
+			inv_slot.frame = tower.item_rarity_frames[tower.rarity][0]
+			inv_slot.item_sprite = tower.texture
+			inv_slot.amount = tower.quantity
+			towers.add_child(inv_slot)
 
 func load_tiles():
 	for tile in GamePlayData.GAME_INVENTORY.Tiles:
-		var inv_slot = INVENTORY_SLOT_ICON.instantiate()
-		inv_slot.frame = tile.item_rarity_frames[tile.rarity][0]
-		inv_slot.item_sprite = tile.texture
-		inv_slot.amount = tile.in_inventory
-		tiles.add_child(inv_slot)
+		if tile.quantity > 0:
+			var inv_slot = INVENTORY_SLOT_ICON.instantiate()
+			inv_slot.frame = tile.item_rarity_frames[tile.rarity][0]
+			inv_slot.item_sprite = tile.texture
+			inv_slot.amount = tile.quantity
+			tiles.add_child(inv_slot)
 
 func load_materials():
 	for mat in GamePlayData.GAME_INVENTORY.Materials:
-		var inv_slot = INVENTORY_SLOT_ICON.instantiate()
-		inv_slot.frame = mat.item_rarity_frames[mat.rarity][0]
-		inv_slot.item_sprite = mat.texture
-		inv_slot.amount = mat.in_inventory
-		materials.add_child(inv_slot)
+		if mat.quantity > 0:
+			var inv_slot = INVENTORY_SLOT_ICON.instantiate()
+			inv_slot.frame = mat.item_rarity_frames[mat.rarity][0]
+			inv_slot.item_sprite = mat.texture
+			inv_slot.amount = mat.quantity
+			materials.add_child(inv_slot)
 "
 
 [node name="Inventory" type="Control"]
@@ -140,6 +143,7 @@ columns = 10
 
 [node name="BackButton" type="Button" parent="."]
 custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
 offset_left = 32.0
 offset_top = 32.0
 offset_right = 96.0

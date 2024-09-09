@@ -124,7 +124,6 @@ func select_tile(m_pos: Vector2):
 		if tile_data:
 			var occupied = tower_occupation_layer.get_cell_tile_data(tile_cords)
 			if occupied == null:
-				print("null")
 				tower_build_loc_valid = true
 			else:
 				tower_build_loc_valid = false
@@ -175,9 +174,9 @@ func verify_and_build_tile():
 		tower_tiles_layer.set_cell(current_tile_cords, 2, current_button.tile_atlas_cords)
 		
 		GamePlayData.map_money -= GamePlayData.Session_Inventory.Tiles[current_button.button_index].placement_cost
-		GamePlayData.Session_Inventory.Tiles[current_button.button_index].in_inventory -= 1
+		GamePlayData.Session_Inventory.Tiles[current_button.button_index].quantity -= 1
 		current_button.refresh_ui()
-		if GamePlayData.Session_Inventory.Tiles[current_button.button_index].in_inventory == 0:
+		if GamePlayData.Session_Inventory.Tiles[current_button.button_index].quantity == 0:
 			cancel_build_mode()
 		return true
 	return false
@@ -191,9 +190,9 @@ func verify_and_build_tower():
 		level.towers.add_child(tower)
 		
 		GamePlayData.map_money -= GamePlayData.Session_Inventory.Towers[current_button.button_index].placement_cost
-		GamePlayData.Session_Inventory.Towers[current_button.button_index].in_inventory -= 1
+		GamePlayData.Session_Inventory.Towers[current_button.button_index].quantity -= 1
 		current_button.refresh_ui()
-		if GamePlayData.Session_Inventory.Towers[current_button.button_index].in_inventory == 0:
+		if GamePlayData.Session_Inventory.Towers[current_button.button_index].quantity == 0:
 			cancel_build_mode()
 		return true
 	return false

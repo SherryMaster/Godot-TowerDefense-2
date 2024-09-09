@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6tmmwh77gkqq"]
+
+[ext_resource type="Texture2D" uid="uid://djiihgpl7057b" path="res://Assets/white_circle.png" id="1_n3duy"]
+
+[sub_resource type="Curve" id="Curve_1nesc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yukcm"]
+curve = SubResource("Curve_1nesc")
+
+[sub_resource type="Gradient" id="Gradient_uvni5"]
+offsets = PackedFloat32Array(0, 0.536797, 0.848485)
+colors = PackedColorArray(0.853534, 0.695436, 0.011516, 1, 0.66897, 0.35149, 0, 1, 0.146546, 0.058163, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m182r"]
+gradient = SubResource("Gradient_uvni5")
+
+[sub_resource type="Curve" id="Curve_0d5ad"]
+_data = [Vector2(0, 0.123596), 0.0, 0.0, 0, 0, Vector2(1, 0.488764), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_w1hsn"]
+curve = SubResource("Curve_0d5ad")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y2ghr"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+direction = Vector3(-1, 0, 0)
+spread = 7.183
+initial_velocity_min = 100.07
+initial_velocity_max = 113.05
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_w1hsn")
+scale_over_velocity_max = 8.0
+color_ramp = SubResource("GradientTexture1D_m182r")
+alpha_curve = SubResource("CurveTexture_yukcm")
+hue_variation_min = -0.17
+hue_variation_max = 0.07
+turbulence_enabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_y2ghr")
+texture = ExtResource("1_n3duy")
+lifetime = 3.0
+interpolate = false

@@ -3,7 +3,6 @@ extends CharacterBody2D
 class_name Tower
 
 enum TargetPriority {First, Last, Farthest, Closest, Strongest, Weakest}
-enum ShootingStyle {Single}
 
 var team_id = 1
 
@@ -18,7 +17,6 @@ var team_id = 1
 @export var health:float = 100
 
 @export var taget_prior: TargetPriority = TargetPriority.First
-@export var shooting_style: ShootingStyle = ShootingStyle.Single
 @export var turret: Node2D
 
 
@@ -111,11 +109,10 @@ func select_tank():
 
 func shoot():
 	if not on_shoot_cooldown and Enemy_to_hit:
-		if shooting_style == ShootingStyle.Single:
-			var shoot_point = shoot_points.get_child(0) as Marker2D
-			var new_projectile = projectile_scene.instantiate() as Projectile
-			new_projectile.setup_projectile(shoot_point, damage, bullet_speed, bullet_travel_distance, can_home_enemies)
-			projectiles.add_child(new_projectile)
+		var shoot_point = shoot_points.get_child(0) as Marker2D
+		var new_projectile = projectile_scene.instantiate() as Projectile
+		new_projectile.setup_projectile(shoot_point, damage, bullet_speed, bullet_travel_distance, can_home_enemies)
+		projectiles.add_child(new_projectile)
 		
 		on_shoot_cooldown = true
 		shoot_cooldown.start(reload)

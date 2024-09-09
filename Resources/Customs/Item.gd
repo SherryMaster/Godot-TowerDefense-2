@@ -23,4 +23,4 @@ var item_rarity_frames = {
 
 @export var texture: Texture2D
 @export var rarity: Rarity = Rarity.COMMON
-@export var in_inventory: int
+@export var quantity: int

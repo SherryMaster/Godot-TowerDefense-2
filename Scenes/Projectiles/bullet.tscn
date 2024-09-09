@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://cn2ktgenc2if0"]
 
-[ext_resource type="Script" path="res://Scripts/Projectile.gd" id="1_cv30l"]
-[ext_resource type="Texture2D" uid="uid://d0kg53pnqbipm" path="res://Assets/Projectiles/bullet_1.png" id="2_x2px0"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/bullet.gd" id="1_tne0t"]
+[ext_resource type="Texture2D" uid="uid://d0kg53pnqbipm" path="res://Assets/Projectiles/projectile_1.png" id="2_x2px0"]
 [ext_resource type="Script" path="res://Components/hit_box_component.gd" id="3_j4ppo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a84tm"]
-radius = 3.0
-height = 10.0
+radius = 4.0
+height = 20.0
 
 [sub_resource type="Curve" id="Curve_hiiam"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Bullet" type="Node2D"]
-script = ExtResource("1_cv30l")
+script = ExtResource("1_tne0t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_x2px0")

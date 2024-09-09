@@ -16,7 +16,7 @@ script = ExtResource("1_ph7tl")
 item_name = 0
 texture = ExtResource("2_jkrkg")
 rarity = 0
-in_inventory = 5
+quantity = 0
 
 [sub_resource type="Resource" id="Resource_n0dea"]
 script = ExtResource("1_sx2hj")
@@ -25,7 +25,7 @@ placement_cost = 20
 atlas_cordinates = Vector2i(0, 0)
 texture = ExtResource("2_oda8w")
 rarity = 0
-in_inventory = 5
+quantity = 5
 
 [sub_resource type="Resource" id="Resource_gxwc1"]
 script = ExtResource("3_r5e4e")
@@ -34,7 +34,7 @@ tower_scene = ExtResource("5_to54p")
 placement_cost = 200
 texture = ExtResource("4_1rhkw")
 rarity = 0
-in_inventory = 3
+quantity = 3
 
 [sub_resource type="Resource" id="Resource_71qsb"]
 script = ExtResource("3_r5e4e")
@@ -43,7 +43,7 @@ tower_scene = ExtResource("7_jccgo")
 placement_cost = 450
 texture = ExtResource("6_b7e4x")
 rarity = 1
-in_inventory = 1
+quantity = 0
 
 [resource]
 script = ExtResource("6_kt8n8")

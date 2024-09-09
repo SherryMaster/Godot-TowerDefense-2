@@ -12,7 +12,7 @@ func _ready() -> void:
 	if type_of_items == BuildButton.Type.Tile:
 		total_items = GamePlayData.Session_Inventory.Tiles.size()
 		for i in range(total_items):
-			if GamePlayData.Session_Inventory.Tiles[i].in_inventory:
+			if GamePlayData.Session_Inventory.Tiles[i].quantity:
 				var build_button = BUILD_BUTTON.instantiate() as BuildButton
 				build_button.button_index = i
 				build_button.type = type_of_items
@@ -22,7 +22,7 @@ func _ready() -> void:
 	if type_of_items == BuildButton.Type.Tower:
 		total_items = GamePlayData.Session_Inventory.Towers.size()
 		for i in range(total_items):
-			if GamePlayData.Session_Inventory.Towers[i].in_inventory:
+			if GamePlayData.Session_Inventory.Towers[i].quantity:
 				var build_button = BUILD_BUTTON.instantiate() as BuildButton
 				build_button.button_index = i
 				build_button.type = type_of_items
