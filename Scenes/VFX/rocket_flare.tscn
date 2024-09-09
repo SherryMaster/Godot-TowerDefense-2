@@ -39,9 +39,10 @@ alpha_curve = SubResource("CurveTexture_yukcm")
 hue_variation_min = -0.17
 hue_variation_max = 0.07
 turbulence_enabled = true
+turbulence_influence_max = 0.133
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
-amount = 64
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_y2ghr")
 texture = ExtResource("1_n3duy")
 lifetime = 3.0
