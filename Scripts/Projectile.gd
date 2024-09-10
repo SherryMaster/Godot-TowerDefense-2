@@ -3,6 +3,7 @@ class_name Projectile
 enum Type {Bullet, Rocket}
 
 var enemy: Node2D
+var last_enemy_pos: Vector2
 
 @export var projectile_type: Type = Type.Bullet
 
@@ -16,10 +17,12 @@ var enemy: Node2D
 
 @onready var hit_box_component: HitBoxComponent = $HitBoxComponent
 
+var destroyed: bool = false
 
 var team_id: int = 1
 var current_velocity: Vector2
 var distance_travelled: float
+
 
 # states
 var shot_by_enemy: bool = false

@@ -17,7 +17,7 @@ colors = PackedColorArray(0.853534, 0.695436, 0.011516, 1, 0.66897, 0.35149, 0, 
 gradient = SubResource("Gradient_uvni5")
 
 [sub_resource type="Curve" id="Curve_0d5ad"]
-_data = [Vector2(0, 0.123596), 0.0, 0.0, 0, 0, Vector2(1, 0.488764), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.0818621), 0.0, 0.0, 0, 0, Vector2(1, 0.436597), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_w1hsn"]
@@ -45,5 +45,4 @@ turbulence_influence_max = 0.133
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_y2ghr")
 texture = ExtResource("1_n3duy")
-lifetime = 3.0
 interpolate = false

@@ -18,13 +18,14 @@ var base_hp: float = 50
 var map_money: int = 1000
 
 var Session_Inventory = {}
-const GAME_INVENTORY = preload("res://Resources/GameData/game_inventory.tres")
+var GAME_INVENTORY
 # experimental
 var damage_through_mouse: bool = false
 var mouse_damage: int = 20
 
 
 func _ready() -> void:
+	GAME_INVENTORY = ResourceLoader.load("res://Resources/GameData/game_inventory.tres")
 	set_game_speed(1)
 
 func load_session_inventory():

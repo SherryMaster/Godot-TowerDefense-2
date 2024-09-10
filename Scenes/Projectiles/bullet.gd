@@ -13,23 +13,24 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if distance_travelled > max_distance:
-		destroy()
+	if not destroyed:
+		if distance_travelled > max_distance:
+			destroy()
+			
+		if can_home_to_enemies:
+			var direction: Vector2 = global_position.direction_to(get_global_mouse_position() if mouse_debug else enemy.global_position)
+			var desired_velocity := direction * speed
+			
+			var change = (desired_velocity - current_velocity) * homing_power
+			
+			current_velocity += change
 		
-	if can_home_to_enemies:
-		var direction: Vector2 = global_position.direction_to(get_global_mouse_position() if mouse_debug else enemy.global_position)
-		var desired_velocity := direction * speed
+		else:
+			current_velocity += Vector2.RIGHT.rotated(rotation) * speed
 		
-		var change = (desired_velocity - current_velocity) * homing_power
-		
-		current_velocity += change
-	
-	else:
-		current_velocity += Vector2.RIGHT.rotated(rotation) * speed
-	
-	position += current_velocity * delta
-	distance_travelled += current_velocity.length() * delta
-	look_at(global_position + current_velocity)
+		position += current_velocity * delta
+		distance_travelled += current_velocity.length() * delta
+		look_at(global_position + current_velocity)
 
 func setup_projectile(marker: Marker2D, dmg: float, spd: float, max_dist: float, can_home_enemies: bool):
 	global_position = marker.global_position
@@ -40,4 +41,6 @@ func setup_projectile(marker: Marker2D, dmg: float, spd: float, max_dist: float,
 	can_home_to_enemies = can_home_enemies
 
 func destroy():
+	destroyed = true
+	$HitBoxComponent.queue_free()
 	queue_free()

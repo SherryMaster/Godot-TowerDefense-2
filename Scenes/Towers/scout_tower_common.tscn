@@ -3,4 +3,4 @@
 [ext_resource type="PackedScene" uid="uid://bq05uegjjmu0" path="res://Scenes/Towers/tower_template.tscn" id="1_b3fyu"]
 
 [node name="Tower" instance=ExtResource("1_b3fyu")]
-bullet_speed = 300.0
+projectile_speed = 150.0

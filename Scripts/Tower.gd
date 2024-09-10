@@ -10,8 +10,8 @@ var team_id = 1
 @export var projectile_scene: PackedScene = preload("res://Scenes/Projectiles/bullet.tscn")
 @export var tower_range: float = 6
 @export var damage: float = 5
-@export var bullet_speed: float = 300
-@export var bullet_travel_distance: float = 2000
+@export var projectile_speed: float = 300
+@export var projectile_travel_distance: float = 2000
 @export var reload: float = 1
 @export var can_home_enemies: bool = false
 @export var health:float = 100
@@ -111,7 +111,8 @@ func shoot():
 	if not on_shoot_cooldown and Enemy_to_hit:
 		var shoot_point = shoot_points.get_child(0) as Marker2D
 		var new_projectile = projectile_scene.instantiate() as Projectile
-		new_projectile.setup_projectile(shoot_point, damage, bullet_speed, bullet_travel_distance, can_home_enemies)
+		new_projectile.setup_projectile(shoot_point, damage, projectile_speed, projectile_travel_distance, can_home_enemies)
+		new_projectile.enemy = Enemy_to_hit
 		projectiles.add_child(new_projectile)
 		
 		on_shoot_cooldown = true

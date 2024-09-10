@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=15 format=3 uid="uid://cxd66dgb8lpqr"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=18 format=3 uid="uid://cxd66dgb8lpqr"]
 
 [ext_resource type="Script" path="res://Resources/Customs/MaterialItem.gd" id="1_ph7tl"]
 [ext_resource type="Script" path="res://Resources/Customs/TileItem.gd" id="1_sx2hj"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cpjfkngulp1wv" path="res://Assets/Towers/Full Previews/Tower_2.png" id="6_b7e4x"]
 [ext_resource type="Script" path="res://Resources/Customs/Inventory.gd" id="6_kt8n8"]
 [ext_resource type="PackedScene" uid="uid://dejv14ycshqvo" path="res://Scenes/Towers/scout_tower_uncommon.tscn" id="7_jccgo"]
+[ext_resource type="Texture2D" uid="uid://botydkw0xlml8" path="res://Assets/Towers/Full Previews/Tower_3.png" id="8_2fcuf"]
+[ext_resource type="PackedScene" uid="uid://cv3t04xtt8tac" path="res://Scenes/Towers/rocket_tower_common.tscn" id="9_3okw5"]
 
 [sub_resource type="Resource" id="Resource_i17dl"]
 script = ExtResource("1_ph7tl")
@@ -36,6 +38,15 @@ texture = ExtResource("4_1rhkw")
 rarity = 0
 quantity = 3
 
+[sub_resource type="Resource" id="Resource_ffece"]
+script = ExtResource("3_r5e4e")
+item_name = 1
+tower_scene = ExtResource("9_3okw5")
+placement_cost = 350
+texture = ExtResource("8_2fcuf")
+rarity = 0
+quantity = 2
+
 [sub_resource type="Resource" id="Resource_71qsb"]
 script = ExtResource("3_r5e4e")
 item_name = 0
@@ -43,13 +54,13 @@ tower_scene = ExtResource("7_jccgo")
 placement_cost = 450
 texture = ExtResource("6_b7e4x")
 rarity = 1
-quantity = 0
+quantity = 1
 
 [resource]
 script = ExtResource("6_kt8n8")
 silver = 0
-gold = 0
+gold = 5
 gems = 0
-Towers = Array[ExtResource("3_r5e4e")]([SubResource("Resource_gxwc1"), SubResource("Resource_71qsb")])
+Towers = Array[ExtResource("3_r5e4e")]([SubResource("Resource_gxwc1"), SubResource("Resource_ffece"), SubResource("Resource_71qsb")])
 Tiles = Array[ExtResource("1_sx2hj")]([SubResource("Resource_n0dea")])
 Materials = Array[ExtResource("1_ph7tl")]([SubResource("Resource_i17dl")])

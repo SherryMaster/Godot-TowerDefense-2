@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootList" load_steps=6 format=3 uid="uid://c8s8gcb487f8x"]
+[gd_resource type="Resource" script_class="LootList" load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://Resources/Customs/LootItem.gd" id="1_i6o5b"]
 [ext_resource type="Script" path="res://Resources/Customs/LootList.gd" id="2_fo74x"]
