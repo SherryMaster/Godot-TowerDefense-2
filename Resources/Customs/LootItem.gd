@@ -8,13 +8,13 @@ class_name LootItem
 @export var granteed: bool
 
 @export_group("tower")
-@export var tower: TowerItem.Towers
+@export var tower: TowerItem.Towers = 0
 
 @export_group("tile")
-@export var tile: TileItem.Tiles
+@export var tile: TileItem.Tiles = 0
 
 @export_group("material")
-@export var material: MaterialItem.Materials
+@export var material: MaterialItem.Materials = 0
 
 func claim_loot():
 	if type == Item.Type.TOWER:

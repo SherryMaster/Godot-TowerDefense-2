@@ -18,7 +18,13 @@ func _physics_process(delta: float) -> void:
 			destroy()
 			
 		if can_home_to_enemies:
-			var direction: Vector2 = global_position.direction_to(get_global_mouse_position() if mouse_debug else enemy.global_position)
+			var direction: Vector2 
+			if mouse_debug:
+				direction = global_position.direction_to(get_global_mouse_position())
+			else:
+				if is_instance_valid(enemy):
+					direction = global_position.direction_to(enemy.global_position)
+
 			var desired_velocity := direction * speed
 			
 			var change = (desired_velocity - current_velocity) * homing_power
@@ -26,7 +32,7 @@ func _physics_process(delta: float) -> void:
 			current_velocity += change
 		
 		else:
-			current_velocity += Vector2.RIGHT.rotated(rotation) * speed
+			current_velocity = Vector2.RIGHT.rotated(rotation) * speed
 		
 		position += current_velocity * delta
 		distance_travelled += current_velocity.length() * delta

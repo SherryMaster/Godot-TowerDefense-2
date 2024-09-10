@@ -4,8 +4,8 @@ class_name LootList
 @export var max_obtain_loot: int = 1
 @export var one_time_obtainable: bool = false
 @export var obtainable: bool = true
-@export var loot_list: Array[LootItem]
 @export var sorted = false
+@export var loot_list: Array[LootItem]
 
 var obtained_amount = 0
 

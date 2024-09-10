@@ -5,6 +5,7 @@
 
 [node name="Tower" instance=ExtResource("1_0mjns")]
 damage = 20.0
+projectile_speed = 500.0
 
 [node name="Turret" parent="." index="1"]
 texture = ExtResource("3_6ynid")
