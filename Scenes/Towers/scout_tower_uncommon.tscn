@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dejv14ycshqvo"]
+[gd_scene load_steps=4 format=3 uid="uid://dejv14ycshqvo"]
 
 [ext_resource type="PackedScene" uid="uid://bq05uegjjmu0" path="res://Scenes/Towers/tower_template.tscn" id="1_0mjns"]
+[ext_resource type="Script" path="res://Scenes/Towers/TowersScripts/scout_tower.gd" id="2_koae8"]
 [ext_resource type="Texture2D" uid="uid://bqjaa10yk1t8p" path="res://Assets/Towers/Turrets/turret_2.png" id="3_6ynid"]
 
 [node name="Tower" instance=ExtResource("1_0mjns")]
+script = ExtResource("2_koae8")
 damage = 20.0
-projectile_speed = 500.0
+health = 250.0
 
 [node name="Turret" parent="." index="1"]
 texture = ExtResource("3_6ynid")

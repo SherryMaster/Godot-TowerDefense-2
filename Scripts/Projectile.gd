@@ -27,3 +27,11 @@ var distance_travelled: float
 # states
 var shot_by_enemy: bool = false
 var can_damage: bool = true
+
+func setup_projectile(pos: Vector2, rot, dmg: float, spd: float, max_dist: float, can_home_enemies: bool):
+	global_position = pos
+	global_rotation = rot
+	damage = dmg
+	speed = spd
+	max_distance = max_dist
+	can_home_to_enemies = can_home_enemies

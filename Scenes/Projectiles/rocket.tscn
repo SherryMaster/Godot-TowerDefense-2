@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://boxkfrt1unfv7"]
 
-[ext_resource type="Script" path="res://Scenes/Projectiles/rocket.gd" id="1_r6dgx"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/ProjectileScripts/rocket.gd" id="1_r6dgx"]
 [ext_resource type="Texture2D" uid="uid://ckvo6dcjx3fbs" path="res://Assets/Projectiles/projectile_2.png" id="2_apjyo"]
 [ext_resource type="Script" path="res://Components/hit_box_component.gd" id="3_kfqjj"]
 [ext_resource type="PackedScene" uid="uid://c6tmmwh77gkqq" path="res://Scenes/VFX/rocket_flare.tscn" id="4_s7jrn"]

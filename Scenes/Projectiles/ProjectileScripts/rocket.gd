@@ -30,6 +30,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				if is_instance_valid(enemy):
 					direction = global_position.direction_to(enemy.global_position)
+				else:
+					select_new_enemy()
 
 			var desired_velocity := direction * speed
 			
@@ -44,13 +46,21 @@ func _physics_process(delta: float) -> void:
 		distance_travelled += current_velocity.length() * delta
 		look_at(global_position + current_velocity)
 
-func setup_projectile(marker: Marker2D, dmg: float, spd: float, max_dist: float, can_home_enemies: bool):
-	global_position = marker.global_position
-	global_rotation = marker.global_rotation
-	damage = dmg
-	speed = spd
-	max_distance = max_dist
-	can_home_to_enemies = can_home_enemies
+
+func select_new_enemy():
+	var units_node = get_parent().get_parent().get_parent().get_parent().get_node("Units/Enemy").get_children()
+	
+	if units_node.size() == 0:
+		return
+	
+	var tank_distances: Array[float] = []
+	for tank in units_node as Array[Tank]:
+		tank_distances.append(global_position.distance_to(tank.global_position))
+	
+	var minimum_distance = tank_distances.min()
+	var index = tank_distances.find(minimum_distance)
+	
+	enemy = units_node[index]
 
 func destroy():
 	$Sprite2D.visible = false

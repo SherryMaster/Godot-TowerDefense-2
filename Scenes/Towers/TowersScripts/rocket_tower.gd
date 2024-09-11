@@ -1,7 +1,7 @@
 extends Tower
-class_name ScoutTower
+class_name RocketTower
 
-var tower_name: String = "scout_tower"
+var tower_name: String = "rocket_tower"
 
 func _ready() -> void:
 	health_component.hp = health

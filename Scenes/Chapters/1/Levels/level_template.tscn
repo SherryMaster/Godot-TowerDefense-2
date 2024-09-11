@@ -39,7 +39,7 @@ position = Vector2(0, 384)
 
 [node name="Towers" type="Node2D" parent="."]
 
-[node name="Units" type="Node2D" parent="."]
+[node name="Units" type="Node2D" parent="." groups=["Units"]]
 
 [node name="Enemy" type="Node2D" parent="Units"]
 

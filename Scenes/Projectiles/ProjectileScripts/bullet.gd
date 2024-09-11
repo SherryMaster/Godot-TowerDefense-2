@@ -38,14 +38,6 @@ func _physics_process(delta: float) -> void:
 		distance_travelled += current_velocity.length() * delta
 		look_at(global_position + current_velocity)
 
-func setup_projectile(marker: Marker2D, dmg: float, spd: float, max_dist: float, can_home_enemies: bool):
-	global_position = marker.global_position
-	global_rotation = marker.global_rotation
-	damage = dmg
-	speed = spd
-	max_distance = max_dist
-	can_home_to_enemies = can_home_enemies
-
 func destroy():
 	destroyed = true
 	$HitBoxComponent.queue_free()

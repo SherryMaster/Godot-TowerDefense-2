@@ -43,6 +43,10 @@ folder_colors={
 "res://SingleTons/": "gray"
 }
 
+[global_group]
+
+Units=""
+
 [gui]
 
 theme/custom="res://Resources/Themes/MainTheme.tres"

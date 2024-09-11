@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://gl1uowyu2jho"]
+[gd_scene load_steps=3 format=3 uid="uid://gl1uowyu2jho"]
 
 [ext_resource type="PackedScene" uid="uid://bq05uegjjmu0" path="res://Scenes/Towers/tower_template.tscn" id="1_b3fyu"]
+[ext_resource type="Script" path="res://Scenes/Towers/TowersScripts/scout_tower.gd" id="2_50beb"]
 
 [node name="Tower" instance=ExtResource("1_b3fyu")]
-projectile_speed = 500.0
+script = ExtResource("2_50beb")

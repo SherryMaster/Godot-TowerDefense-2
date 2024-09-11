@@ -23,7 +23,6 @@ var GAME_INVENTORY
 var damage_through_mouse: bool = false
 var mouse_damage: int = 20
 
-
 func _ready() -> void:
 	GAME_INVENTORY = ResourceLoader.load("res://Resources/GameData/game_inventory.tres")
 	set_game_speed(1)
