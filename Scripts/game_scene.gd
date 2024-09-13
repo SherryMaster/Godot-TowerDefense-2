@@ -17,6 +17,7 @@ var enemy_remaining: int = 0
 
 var spawning_enemies: bool = false
 var waves_finished: bool = false
+var wave_running:bool = false
 var game_finished: bool = false
 
 var tile_selection_layer: TileMapLayer
@@ -53,9 +54,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(GamePlayData.Session_Inventory)
-	#GamePlayData.Session_Inventory.set_path("res://Resources/GameData/SessionData/chapter_" + str(GamePlayData.chapter_num) + "_level_" + str(GamePlayData.level_num) + ".tres")
-	#ResourceSaver.save(GamePlayData.Session_Inventory)
 	
 	tile_selection_layer = level.tile_selector
 	tower_tiles_layer = level.tiles_layer
@@ -70,7 +68,9 @@ func _ready() -> void:
 	for tower_button in build_bar.tower_buttons.get_children():
 		tower_button.pressed.connect(initiate_build_mode.bind("tower", tower_button))
 		tower_button.cancel_button.pressed.connect(cancel_build_mode)
-
+	
+	# Setting play and pause button
+	game_scene_top_bar.get_node("BG/HBC/Buttons/Play").pressed.connect(_on_play_button_press)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -83,12 +83,12 @@ func _process(delta: float) -> void:
 		can_build = false
 		GamePlayData.game_ended.emit()
 	if not game_finished and not GamePlayData.base_destroyed:
-		if enemy_remaining == 0 and not spawning_enemies:
+		if enemy_remaining == 0 and not spawning_enemies and wave_running:
 			if GamePlayData.current_wave <= GamePlayData.max_waves:
-				spawn_wave()
-				GamePlayData.current_wave += 1
+				wave_running = false
 			else: 
 				waves_finished = true
+			GamePlayData.wave_ended.emit()
 
 func select_tile(m_pos: Vector2):
 	tile_selection_layer.clear()
@@ -278,3 +278,10 @@ func update_num_of_enemies():
 
 func on_enemy_at_end(hp_left: float):
 	GamePlayData.base_hp = max(0, GamePlayData.base_hp - hp_left)
+
+func _on_play_button_press():
+	GamePlayData.wave_started.emit()
+	wave_running = true
+	spawn_wave()
+	GamePlayData.current_wave += 1
+	

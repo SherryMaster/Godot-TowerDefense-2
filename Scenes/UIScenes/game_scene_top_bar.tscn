@@ -98,6 +98,9 @@ corner_detail = 6
 script/source = "extends Button
 
 # Called when the node enters the scene tree for the first time.
+
+var game_speed_value = 2
+
 func _ready() -> void:
 	GamePlayData.wave_started.connect(_on_wave_started)
 	GamePlayData.wave_ended.connect(_on_wave_ended)
@@ -112,7 +115,11 @@ func _on_wave_ended():
 
 
 func _on_toggled(toggled_on: bool) -> void:
-	GamePlayData.set_game_speed(2 if toggled_on else 1)
+	GamePlayData.set_game_speed(game_speed_value if toggled_on else 1)
+
+
+func _on_visibility_changed() -> void:
+	GamePlayData.set_game_speed(game_speed_value if visible and button_pressed else 1)
 "
 
 [sub_resource type="GDScript" id="GDScript_paxq1"]
@@ -324,4 +331,5 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rmc0i")
 
 [connection signal="toggled" from="BG/HBC/Buttons/Speed" to="BG/HBC/Buttons/Speed" method="_on_toggled"]
+[connection signal="visibility_changed" from="BG/HBC/Buttons/Speed" to="BG/HBC/Buttons/Speed" method="_on_visibility_changed"]
 [connection signal="toggled" from="BG/HBC/Buttons/Pause" to="BG/HBC/Buttons/Pause" method="_on_toggled"]
