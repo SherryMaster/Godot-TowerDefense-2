@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c31vyd17wdbjv"]
+[gd_scene load_steps=5 format=3 uid="uid://c31vyd17wdbjv"]
 
-[ext_resource type="Script" path="res://Scripts/inventory_slot_icon.gd" id="1_68ums"]
-[ext_resource type="Texture2D" uid="uid://c4y0q2ri2xp8c" path="res://Assets/RarityFrames/Rare Frame.png" id="2_bj0bp"]
-[ext_resource type="Texture2D" uid="uid://cpjfkngulp1wv" path="res://Assets/Towers/Full Previews/Tower_2.png" id="3_bwck7"]
+[ext_resource type="Script" path="res://Scripts/level_reward_slot_icon.gd" id="1_jj7mk"]
 [ext_resource type="Texture2D" uid="uid://iwxvnglho7sr" path="res://Assets/RarityFrames/Common Frame.png" id="4_oa74o"]
 [ext_resource type="Texture2D" uid="uid://dj45ra2ro7qw3" path="res://Assets/Materials/common part.png" id="5_slq8q"]
 
@@ -18,10 +16,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 64.0
 offset_bottom = 76.0
-script = ExtResource("1_68ums")
-frame = ExtResource("2_bj0bp")
-item_sprite = ExtResource("3_bwck7")
-amount = 5
+script = ExtResource("1_jj7mk")
 
 [node name="ItemFrame" type="TextureRect" parent="."]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ChapterResource" load_steps=33 format=3 uid="uid://d1riuxahk35yd"]
+[gd_resource type="Resource" script_class="ChapterResource" load_steps=38 format=3 uid="uid://d1riuxahk35yd"]
 
 [ext_resource type="Script" path="res://Resources/Customs/LevelResource.gd" id="1_px83l"]
 [ext_resource type="Script" path="res://Resources/Customs/WaveResource.gd" id="2_2ihsr"]
@@ -159,11 +159,71 @@ script = ExtResource("1_px83l")
 starting_money = 1000
 starting_base_hp = 100.0
 level_image = ExtResource("2_6fvcb")
-level_completed = false
+level_completed = true
 level_unlocked = true
 level_scene = ExtResource("2_sbt0y")
 waves = Array[ExtResource("2_2ihsr")]([SubResource("Resource_fv5xr"), SubResource("Resource_4y001"), SubResource("Resource_l5v80"), SubResource("Resource_3aj17"), SubResource("Resource_wed5t")])
 clear_reward = SubResource("Resource_4vr8f")
+
+[sub_resource type="Resource" id="Resource_15jds"]
+script = ExtResource("2_p7fd8")
+type = 0
+rarity = 0
+one_in_chance = 1
+quantity = Vector2i(3, 3)
+granteed = false
+random = false
+tower = 0
+tile = 0
+material = 0
+
+[sub_resource type="Resource" id="Resource_l16mq"]
+script = ExtResource("2_p7fd8")
+type = 0
+rarity = 0
+one_in_chance = 1
+quantity = Vector2i(1, 1)
+granteed = false
+random = false
+tower = 1
+tile = 0
+material = 0
+
+[sub_resource type="Resource" id="Resource_03ku1"]
+script = ExtResource("2_p7fd8")
+type = 1
+rarity = 0
+one_in_chance = 1
+quantity = Vector2i(7, 7)
+granteed = false
+random = false
+tower = 0
+tile = 0
+material = 0
+
+[sub_resource type="Resource" id="Resource_q3q3r"]
+script = ExtResource("2_p7fd8")
+type = 2
+rarity = 0
+one_in_chance = 1
+quantity = Vector2i(100, 100)
+granteed = false
+random = false
+tower = 0
+tile = 0
+material = 0
+
+[sub_resource type="Resource" id="Resource_fq3b6"]
+script = ExtResource("3_b17lx")
+max_obtain_loot = 1
+one_time_obtainable = false
+obtain_all_items = true
+obtainable = true
+sorted = false
+loot_list = Array[ExtResource("2_p7fd8")]([SubResource("Resource_15jds"), SubResource("Resource_l16mq"), SubResource("Resource_03ku1"), SubResource("Resource_q3q3r")])
+Coins = 1250
+Gold = 25
+Gems = 0
 
 [sub_resource type="Resource" id="Resource_p32s6"]
 script = ExtResource("3_cd48d")
@@ -201,9 +261,10 @@ starting_money = 1000
 starting_base_hp = 100.0
 level_image = ExtResource("6_exwnh")
 level_completed = false
-level_unlocked = false
+level_unlocked = true
 level_scene = ExtResource("5_1n1i4")
 waves = Array[ExtResource("2_2ihsr")]([SubResource("Resource_27ccm"), SubResource("Resource_d01tt")])
+clear_reward = SubResource("Resource_fq3b6")
 
 [resource]
 script = ExtResource("4_w67id")

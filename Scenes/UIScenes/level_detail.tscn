@@ -276,7 +276,8 @@ offset_right = 480.0
 offset_bottom = 384.0
 columns = 6
 
-[node name="Button" type="Button" parent="Main/VBoxContainer"]
+[node name="Play" type="Button" parent="Main/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
