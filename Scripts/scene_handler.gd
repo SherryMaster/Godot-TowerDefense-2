@@ -49,10 +49,10 @@ func load_game_scene(level_num: int):
 func load_level_selection_scene(ch_num: int):
 	clear_scene()
 	var level_selection_scene = LEVEL_SELECTION.instantiate()
+	add_child(level_selection_scene)
 	level_selection_scene.chapter_num = ch_num
 	level_selection_scene.level_selected.connect(load_game_scene)
-	level_selection_scene.get_node("BG/BackButton").pressed.connect(load_main_menu)
-	add_child(level_selection_scene)
+	level_selection_scene.back_button.pressed.connect(load_main_menu)
 
 func load_inventory_scene():
 	clear_scene()

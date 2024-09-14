@@ -97,4 +97,5 @@ var CoinDrop_Scales_by_Color = {
 const TEST_LOOT = preload("res://Resources/CustomResources/TestLoot.tres")
 
 func _ready() -> void:
+	print(get_tree().get_root().get_children()[-1])
 	TEST_LOOT.obtain_loot()

@@ -1,11 +1,63 @@
-[gd_resource type="Resource" script_class="ChapterResource" load_steps=17 format=3]
+[gd_resource type="Resource" script_class="ChapterResource" load_steps=33 format=3 uid="uid://d1riuxahk35yd"]
 
 [ext_resource type="Script" path="res://Resources/Customs/LevelResource.gd" id="1_px83l"]
 [ext_resource type="Script" path="res://Resources/Customs/WaveResource.gd" id="2_2ihsr"]
-[ext_resource type="PackedScene" path="res://Scenes/Chapters/1/Levels/level_1.tscn" id="2_sbt0y"]
+[ext_resource type="Texture2D" uid="uid://bq48n4gmwkxjq" path="res://Assets/Level Previews/chapter1_level1.png" id="2_6fvcb"]
+[ext_resource type="Script" path="res://Resources/Customs/LootItem.gd" id="2_p7fd8"]
+[ext_resource type="PackedScene" uid="uid://h1uysedkywsp" path="res://Scenes/Chapters/1/Levels/level_1.tscn" id="2_sbt0y"]
+[ext_resource type="Script" path="res://Resources/Customs/LootList.gd" id="3_b17lx"]
 [ext_resource type="Script" path="res://Resources/Customs/WavePartResource.gd" id="3_cd48d"]
 [ext_resource type="Script" path="res://Resources/Customs/ChapterResource.gd" id="4_w67id"]
-[ext_resource type="PackedScene" path="res://Scenes/Chapters/1/Levels/level_2.tscn" id="5_1n1i4"]
+[ext_resource type="PackedScene" uid="uid://d00ssbnoe0fqw" path="res://Scenes/Chapters/1/Levels/level_2.tscn" id="5_1n1i4"]
+[ext_resource type="Texture2D" uid="uid://c0r18uav17kdq" path="res://Assets/Level Previews/chapter1_level2.png" id="6_exwnh"]
+
+[sub_resource type="Resource" id="Resource_v74qx"]
+script = ExtResource("2_p7fd8")
+type = 0
+rarity = 0
+one_in_chance = 1
+quantity = Vector2i(2, 2)
+granteed = false
+random = false
+tower = 0
+tile = 0
+material = 0
+
+[sub_resource type="Resource" id="Resource_37sak"]
+script = ExtResource("2_p7fd8")
+type = 1
+rarity = 0
+one_in_chance = 1
+quantity = Vector2i(5, 5)
+granteed = false
+random = false
+tower = 0
+tile = 0
+material = 0
+
+[sub_resource type="Resource" id="Resource_c0d61"]
+script = ExtResource("2_p7fd8")
+type = 2
+rarity = 0
+one_in_chance = 1
+quantity = Vector2i(25, 25)
+granteed = false
+random = false
+tower = 0
+tile = 0
+material = 0
+
+[sub_resource type="Resource" id="Resource_4vr8f"]
+script = ExtResource("3_b17lx")
+max_obtain_loot = 1
+one_time_obtainable = false
+obtain_all_items = true
+obtainable = true
+sorted = false
+loot_list = Array[ExtResource("2_p7fd8")]([SubResource("Resource_v74qx"), SubResource("Resource_37sak"), SubResource("Resource_c0d61")])
+Coins = 750
+Gold = 25
+Gems = 0
 
 [sub_resource type="Resource" id="Resource_wmgeb"]
 script = ExtResource("3_cd48d")
@@ -37,14 +89,81 @@ script = ExtResource("2_2ihsr")
 hp_scale = 1.0
 wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_8r7kg")])
 
+[sub_resource type="Resource" id="Resource_uic0k"]
+script = ExtResource("3_cd48d")
+type = 0
+color = 0
+amount = 2
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_h12ib"]
+script = ExtResource("3_cd48d")
+type = 0
+color = 0
+amount = 3
+delay_btw_spawns = 0.6
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_l5v80"]
+script = ExtResource("2_2ihsr")
+hp_scale = 1.0
+wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_uic0k"), SubResource("Resource_h12ib")])
+
+[sub_resource type="Resource" id="Resource_janpl"]
+script = ExtResource("3_cd48d")
+type = 0
+color = 0
+amount = 7
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_3aj17"]
+script = ExtResource("2_2ihsr")
+hp_scale = 1.0
+wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_janpl")])
+
+[sub_resource type="Resource" id="Resource_s6p3h"]
+script = ExtResource("3_cd48d")
+type = 0
+color = 0
+amount = 5
+delay_btw_spawns = 1.0
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_x0ch7"]
+script = ExtResource("3_cd48d")
+type = 0
+color = 0
+amount = 6
+delay_btw_spawns = 0.6
+wait_after_pattern_complete = 1.0
+loopings_state = "No Loop"
+times_to_repeat = 0
+
+[sub_resource type="Resource" id="Resource_wed5t"]
+script = ExtResource("2_2ihsr")
+hp_scale = 1.0
+wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_s6p3h"), SubResource("Resource_x0ch7")])
+
 [sub_resource type="Resource" id="Resource_mfk2d"]
 script = ExtResource("1_px83l")
 starting_money = 1000
 starting_base_hp = 100.0
-level_completed = true
+level_image = ExtResource("2_6fvcb")
+level_completed = false
 level_unlocked = true
 level_scene = ExtResource("2_sbt0y")
-waves = Array[ExtResource("2_2ihsr")]([SubResource("Resource_fv5xr"), SubResource("Resource_4y001")])
+waves = Array[ExtResource("2_2ihsr")]([SubResource("Resource_fv5xr"), SubResource("Resource_4y001"), SubResource("Resource_l5v80"), SubResource("Resource_3aj17"), SubResource("Resource_wed5t")])
+clear_reward = SubResource("Resource_4vr8f")
 
 [sub_resource type="Resource" id="Resource_p32s6"]
 script = ExtResource("3_cd48d")
@@ -80,8 +199,9 @@ wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_0nkxs")])
 script = ExtResource("1_px83l")
 starting_money = 1000
 starting_base_hp = 100.0
+level_image = ExtResource("6_exwnh")
 level_completed = false
-level_unlocked = true
+level_unlocked = false
 level_scene = ExtResource("5_1n1i4")
 waves = Array[ExtResource("2_2ihsr")]([SubResource("Resource_27ccm"), SubResource("Resource_d01tt")])
 

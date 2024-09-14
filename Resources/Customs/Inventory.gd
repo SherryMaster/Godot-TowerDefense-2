@@ -1,7 +1,7 @@
 extends Resource
 class_name Inventory
 
-@export var silver: int = 0
+@export var coins: int = 0
 @export var gold: int = 0
 @export var gems: int = 0
 

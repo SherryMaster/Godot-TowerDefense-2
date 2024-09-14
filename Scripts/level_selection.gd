@@ -12,6 +12,9 @@ const LEVEL_BUTTON_UNLOCKED = preload("res://Resources/Themes/level_button_unloc
 
 
 @onready var level_container: HFlowContainer = $BG/MarginContainer/Level_Container
+@onready var level_detail: LevelDetailScreen = $LevelDetail
+@onready var back_button: Button = $BackButton
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,4 +32,9 @@ func _ready() -> void:
 		level_container.add_child(button)
 
 func on_button_press(index: int):
-	level_selected.emit(index)
+	if not level_detail.visible:
+		level_detail.visible = true
+	
+	level_detail.level_image.texture = CHAPTERS_DATA.levels[index].level_image
+	level_detail.level_name.text = "Level " + str(index + 1)
+	level_detail.animation_player.play("enter")

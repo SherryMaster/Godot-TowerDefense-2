@@ -69,7 +69,7 @@ quantity = 2
 
 [resource]
 script = ExtResource("6_kt8n8")
-silver = 0
+coins = 0
 gold = 5
 gems = 0
 Towers = Array[ExtResource("3_r5e4e")]([SubResource("Resource_gxwc1"), SubResource("Resource_ffece"), SubResource("Resource_71qsb"), SubResource("Resource_qx4cs")])

@@ -3,7 +3,7 @@ class_name ShotgunTower
 
 var tower_name: String = "shotgun_tower"
 @export var number_of_shots: int = 3
-@export var shot_spread: float = 30
+@export var shot_spread: float = 45
 
 func _ready() -> void:
 	health_component.hp = health

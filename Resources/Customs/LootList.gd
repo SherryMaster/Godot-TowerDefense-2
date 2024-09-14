@@ -3,9 +3,15 @@ class_name LootList
 
 @export var max_obtain_loot: int = 1
 @export var one_time_obtainable: bool = false
+@export var obtain_all_items: bool = false
 @export var obtainable: bool = true
 @export var sorted = false
 @export var loot_list: Array[LootItem]
+
+@export_group("Currencies")
+@export var Coins: int
+@export var Gold: int
+@export var Gems: int
 
 var obtained_amount = 0
 
@@ -14,16 +20,19 @@ func obtain_loot():
 		loot_list.sort_custom(sort_loot)
 		sorted = true
 	
-	while(true):
+	if obtain_all_items:
 		for loot in loot_list:
-			if randi_range(1, loot.one_in_chance) == 1:
-				#loot.claim_loot()
-				print(TowerItem.Towers.keys()[loot.tower] if loot.type == Item.Type.TOWER else TileItem.Tiles.keys()[loot.tile] if loot.type == Item.Type.TILE else MaterialItem.Materials.keys()[loot.material], " - ", Item.Rarity.keys()[loot.rarity], " - ", loot.get_loot_amount(loot.quantity))
-				obtained_amount += 1
+			loot.claim_loot()
+	else:
+		while(true):
+			for loot in loot_list:
+				if randi_range(1, loot.one_in_chance) == 1:
+					loot.claim_loot()
+					obtained_amount += 1
+					break
+			
+			if obtained_amount >= max_obtain_loot:
 				break
-		
-		if obtained_amount >= max_obtain_loot:
-			break
 	
 	if one_time_obtainable:
 		obtainable = false

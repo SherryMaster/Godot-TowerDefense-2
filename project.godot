@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameData="*res://SingleTons/GameData.gd"
 GamePlayData="*res://SingleTons/GamePlayData.gd"
+GameData="*res://SingleTons/GameData.gd"
 Utils="*res://SingleTons/Utils.gd"
 
 [display]

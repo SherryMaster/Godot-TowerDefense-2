@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="LootItem" load_steps=2 format=3 uid="uid://b272w0dt872s7"]
+
+[ext_resource type="Script" path="res://Resources/Customs/LootItem.gd" id="1_jluc6"]
+
+[resource]
+script = ExtResource("1_jluc6")
+type = 0
+rarity = 0
+one_in_chance = 1
+quantity = Vector2i(2, 2)
+granteed = false
+random = false
+tower = 0
+tile = 0
+material = 0

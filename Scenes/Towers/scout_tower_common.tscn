@@ -1,7 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://gl1uowyu2jho"]
+[gd_scene load_steps=10 format=3 uid="uid://gl1uowyu2jho"]
 
-[ext_resource type="PackedScene" uid="uid://bq05uegjjmu0" path="res://Scenes/Towers/tower_template.tscn" id="1_b3fyu"]
 [ext_resource type="Script" path="res://Scenes/Towers/TowersScripts/scout_tower.gd" id="2_50beb"]
+[ext_resource type="Texture2D" uid="uid://nopyic8t3obp" path="res://Assets/Towers/Base/base_1.png" id="2_qftnh"]
+[ext_resource type="Texture2D" uid="uid://b8vcntrqaxgve" path="res://Assets/Towers/Turrets/turret_1.png" id="3_c31ft"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="4_b0oag"]
+[ext_resource type="PackedScene" uid="uid://brvtcpf7vraqx" path="res://Components/health_bar_component.tscn" id="5_owas5"]
+[ext_resource type="Script" path="res://Components/hurt_box_component.gd" id="6_vntal"]
+[ext_resource type="Script" path="res://Components/detector_component.tres.gd" id="7_p3u5f"]
 
-[node name="Tower" instance=ExtResource("1_b3fyu")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wv8b"]
+radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uyirj"]
+
+[node name="Tower" type="CharacterBody2D" node_paths=PackedStringArray("turret")]
+collision_layer = 4
+collision_mask = 8
+motion_mode = 1
 script = ExtResource("2_50beb")
+turret = NodePath("Turret")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("2_qftnh")
+
+[node name="Turret" type="Sprite2D" parent="."]
+texture = ExtResource("3_c31ft")
+
+[node name="ShootPoints" type="Node2D" parent="Turret"]
+
+[node name="P1" type="Marker2D" parent="Turret/ShootPoints"]
+position = Vector2(10, 0)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_b0oag")
+
+[node name="HealthBarComponent" parent="." instance=ExtResource("5_owas5")]
+offset_left = -21.0
+offset_top = -20.0
+offset_right = 21.0
+offset_bottom = -9.0
+
+[node name="HurtBoxComponent" type="Area2D" parent="."]
+script = ExtResource("6_vntal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+shape = SubResource("CircleShape2D_3wv8b")
+debug_color = Color(0.910374, 0.261205, 0.369899, 0.42)
+
+[node name="DetectorComponent" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 127
+script = ExtResource("7_p3u5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorComponent"]
+shape = SubResource("CircleShape2D_uyirj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3wv8b")
+debug_color = Color(0, 0.646656, 0.231645, 0.42)
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="ShootCooldown" type="Timer" parent="."]
+one_shot = true

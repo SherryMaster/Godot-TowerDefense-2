@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://c31vyd17wdbjv"]
+
+[ext_resource type="Script" path="res://Scripts/inventory_slot_icon.gd" id="1_68ums"]
+[ext_resource type="Texture2D" uid="uid://c4y0q2ri2xp8c" path="res://Assets/RarityFrames/Rare Frame.png" id="2_bj0bp"]
+[ext_resource type="Texture2D" uid="uid://cpjfkngulp1wv" path="res://Assets/Towers/Full Previews/Tower_2.png" id="3_bwck7"]
+[ext_resource type="Texture2D" uid="uid://iwxvnglho7sr" path="res://Assets/RarityFrames/Common Frame.png" id="4_oa74o"]
+[ext_resource type="Texture2D" uid="uid://dj45ra2ro7qw3" path="res://Assets/Materials/common part.png" id="5_slq8q"]
+
+[sub_resource type="GDScript" id="GDScript_h881h"]
+script/source = "extends TextureRect
+
+@onready var sprite: TextureRect = %Sprite
+"
+
+[node name="LevelRewardIconSlot" type="Control"]
+custom_minimum_size = Vector2(64, 76)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 76.0
+script = ExtResource("1_68ums")
+frame = ExtResource("2_bj0bp")
+item_sprite = ExtResource("3_bwck7")
+amount = 5
+
+[node name="ItemFrame" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_oa74o")
+expand_mode = 1
+script = SubResource("GDScript_h881h")
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Sprite" type="TextureRect" parent="ItemFrame/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_slq8q")
+expand_mode = 1
+
+[node name="Amount" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "9999"
+horizontal_alignment = 1
