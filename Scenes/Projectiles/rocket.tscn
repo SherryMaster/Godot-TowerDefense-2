@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://f534qfdy1q4l" path="res://Scenes/VFX/explosion.tscn" id="5_gwf2b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a84tm"]
-radius = 4.0
+radius = 3.0
+height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ai0d"]
 radius = 36.0
@@ -29,16 +30,16 @@ rotation = 1.57079
 shape = SubResource("CapsuleShape2D_a84tm")
 
 [node name="Flare" parent="." instance=ExtResource("4_s7jrn")]
-position = Vector2(-14, 0)
+position = Vector2(-11, 0)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
 [node name="Explosion" parent="." instance=ExtResource("5_gwf2b")]
-position = Vector2(13, 0)
+position = Vector2(9, 0)
 
 [node name="DamageRadius" type="Area2D" parent="."]
-position = Vector2(13, 0)
+position = Vector2(9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageRadius"]
 shape = SubResource("CircleShape2D_8ai0d")

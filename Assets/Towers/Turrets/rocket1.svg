@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="512px" height="512px" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+viewBox="0 0 179800 179800"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+    <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="89020" y1="89900" x2="142010" y2="89900">
+     <stop offset="0" stop-opacity="1" stop-color="#B3B3B3"/>
+     <stop offset="0.721569" stop-opacity="1" stop-color="#3B3B3B"/>
+     <stop offset="1" stop-opacity="1" stop-color="#7A7A7A"/>
+    </linearGradient>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect fill="none" width="179800" height="179800"/>
+  <g id="_1521888172112">
+   <rect fill="url(#id0)" x="89020" y="70510" width="52980" height="38780"/>
+   <path fill="#CCCCCC" d="M37740 109290c34770,0 69540,0 104320,0 -9400,-12360 -10620,-25210 0,-38780 -34780,0 -69550,0 -104320,0 0,12930 0,25850 0,38780z"/>
+   <rect fill="gray" x="42510" y="73620" width="74660" height="7260"/>
+   <rect fill="gray" x="42510" y="98850" width="74660" height="7260"/>
+   <rect fill="#000066" x="46660" y="85030" width="27220" height="8620"/>
+  </g>
+ </g>
+</svg>

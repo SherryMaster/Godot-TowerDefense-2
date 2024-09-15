@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/Towers/TowersScripts/rocket_tower.gd" id="2_mlkeb"]
 [ext_resource type="PackedScene" uid="uid://boxkfrt1unfv7" path="res://Scenes/Projectiles/rocket.tscn" id="2_va3ru"]
-[ext_resource type="Texture2D" uid="uid://damhci16itcpa" path="res://Assets/Towers/Base/base_2.png" id="2_viitw"]
-[ext_resource type="Texture2D" uid="uid://cbjwsp25atlpr" path="res://Assets/Towers/Turrets/turret_3.png" id="3_yv43k"]
+[ext_resource type="Texture2D" uid="uid://dksp28423vg51" path="res://Assets/Towers/Base/rocket_1.svg" id="3_jynu2"]
+[ext_resource type="Texture2D" uid="uid://0kuedp1fdm7g" path="res://Assets/Towers/Turrets/rocket1.svg" id="4_s67sg"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="5_l83m0"]
 [ext_resource type="PackedScene" uid="uid://brvtcpf7vraqx" path="res://Components/health_bar_component.tscn" id="6_gfyc0"]
 [ext_resource type="Script" path="res://Components/hurt_box_component.gd" id="7_8mqlk"]
@@ -29,20 +29,25 @@ projectile_travel_distance = 500.0
 can_home_enemies = true
 
 [node name="Base" type="Sprite2D" parent="."]
-texture = ExtResource("2_viitw")
+scale = Vector2(0.063, 0.063)
+texture = ExtResource("3_jynu2")
 
-[node name="Turret" type="Sprite2D" parent="."]
-texture = ExtResource("3_yv43k")
+[node name="Turret" type="Node2D" parent="."]
+
+[node name="TSprite" type="Sprite2D" parent="Turret"]
+scale = Vector2(0.063, 0.063)
+texture = ExtResource("4_s67sg")
 
 [node name="ShootPoints" type="Node2D" parent="Turret"]
 
 [node name="P1" type="Marker2D" parent="Turret/ShootPoints"]
-position = Vector2(10, 0)
+position = Vector2(11, 0)
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_l83m0")
 
 [node name="HealthBarComponent" parent="." instance=ExtResource("6_gfyc0")]
+visible = false
 offset_left = -21.0
 offset_top = -20.0
 offset_right = 21.0

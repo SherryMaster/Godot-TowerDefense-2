@@ -28,9 +28,9 @@ lifetime_randomness = 0.4
 particle_flag_disable_z = true
 inherit_velocity_ratio = 1.0
 direction = Vector3(-1, 0, 0)
-spread = 7.183
-initial_velocity_min = 100.07
-initial_velocity_max = 113.05
+spread = 6.361
+initial_velocity_min = 125.71
+initial_velocity_max = 151.51
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_w1hsn")
 scale_over_velocity_max = 8.0
@@ -42,7 +42,9 @@ turbulence_enabled = true
 turbulence_influence_max = 0.133
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
-amount = 50
+amount = 10
 process_material = SubResource("ParticleProcessMaterial_y2ghr")
 texture = ExtResource("1_n3duy")
+lifetime = 0.5
+fixed_fps = 60
 interpolate = false
