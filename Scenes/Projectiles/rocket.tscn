@@ -1,14 +1,13 @@
 [gd_scene load_steps=8 format=3 uid="uid://boxkfrt1unfv7"]
 
 [ext_resource type="Script" path="res://Scenes/Projectiles/ProjectileScripts/rocket.gd" id="1_r6dgx"]
-[ext_resource type="Texture2D" uid="uid://ckvo6dcjx3fbs" path="res://Assets/Projectiles/projectile_2.png" id="2_apjyo"]
+[ext_resource type="Texture2D" uid="uid://dri5ki07dx2ax" path="res://Assets/Projectiles/rocket.svg" id="2_qgpwd"]
 [ext_resource type="Script" path="res://Components/hit_box_component.gd" id="3_kfqjj"]
 [ext_resource type="PackedScene" uid="uid://c6tmmwh77gkqq" path="res://Scenes/VFX/rocket_flare.tscn" id="4_s7jrn"]
 [ext_resource type="PackedScene" uid="uid://f534qfdy1q4l" path="res://Scenes/VFX/explosion.tscn" id="5_gwf2b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a84tm"]
 radius = 4.0
-height = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ai0d"]
 radius = 36.0
@@ -19,7 +18,8 @@ speed = 100.0
 max_distance = 5000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_apjyo")
+scale = Vector2(0.0740741, 0.0740741)
+texture = ExtResource("2_qgpwd")
 
 [node name="HitBoxComponent" type="Area2D" parent="."]
 script = ExtResource("3_kfqjj")
@@ -29,16 +29,16 @@ rotation = 1.57079
 shape = SubResource("CapsuleShape2D_a84tm")
 
 [node name="Flare" parent="." instance=ExtResource("4_s7jrn")]
-position = Vector2(-8, 0)
+position = Vector2(-14, 0)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
 [node name="Explosion" parent="." instance=ExtResource("5_gwf2b")]
-position = Vector2(8, 0)
+position = Vector2(13, 0)
 
 [node name="DamageRadius" type="Area2D" parent="."]
-position = Vector2(7, 0)
+position = Vector2(13, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageRadius"]
 shape = SubResource("CircleShape2D_8ai0d")

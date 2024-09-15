@@ -19,9 +19,9 @@ collision_mask = 8
 motion_mode = 1
 script = ExtResource("2_rwspi")
 tower_range = 4.0
-projectile_travel_distance = 1000.0
 reload = 2.5
 turret = NodePath("Turret")
+projectile_travel_distance = 1000.0
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_rko66")
@@ -44,6 +44,7 @@ offset_right = 21.0
 offset_bottom = -9.0
 
 [node name="HurtBoxComponent" type="Area2D" parent="."]
+visible = false
 script = ExtResource("6_1skey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
@@ -51,6 +52,7 @@ shape = SubResource("CircleShape2D_3wv8b")
 debug_color = Color(0.910374, 0.261205, 0.369899, 0.42)
 
 [node name="DetectorComponent" type="Area2D" parent="."]
+visible = false
 collision_layer = 128
 collision_mask = 127
 script = ExtResource("7_6uqkc")
@@ -59,6 +61,7 @@ script = ExtResource("7_6uqkc")
 shape = SubResource("CircleShape2D_uyirj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_3wv8b")
 debug_color = Color(0, 0.646656, 0.231645, 0.42)
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8vcntrqaxgve"
-path="res://.godot/imported/turret_1.png-658a2f222a2338f149ecaa9d3cb2b581.ctex"
+uid="uid://dnybdgdscuvvl"
+path="res://.godot/imported/svg-missile_ImgID1.png-f1f85bab374ea8681a9fbff9791015b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Towers/Turrets/turret_1.png"
-dest_files=["res://.godot/imported/turret_1.png-658a2f222a2338f149ecaa9d3cb2b581.ctex"]
+source_file="res://Assets/Projectiles/svg-missile_Images/svg-missile_ImgID1.png"
+dest_files=["res://.godot/imported/svg-missile_ImgID1.png-f1f85bab374ea8681a9fbff9791015b4.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0mxkwm5h43vy"
-path="res://.godot/imported/Tower_1.png-e1501ee0bbebd6636760839d3d80a7b4.ctex"
+uid="uid://cuf4r6saa8w8d"
+path="res://.godot/imported/gun1.svg-6841c4f1d861597a28dc4d302b07befb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Towers/Full Previews/Tower_1.png"
-dest_files=["res://.godot/imported/Tower_1.png-e1501ee0bbebd6636760839d3d80a7b4.ctex"]
+source_file="res://Assets/Towers/Turrets/gun1.svg"
+dest_files=["res://.godot/imported/gun1.svg-6841c4f1d861597a28dc4d302b07befb.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

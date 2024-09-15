@@ -164,10 +164,9 @@ func initiate_tile_build_mode():
 	preview_space.add_child(texture)
 
 func initiate_tower_build_mode():
-	var texture = Sprite2D.new()
-	texture.texture = current_button.item_icon.texture
-	texture.self_modulate = Color(1, 1, 1, 0.5)
-	preview_space.add_child(texture)
+	var tower_preview: Tower = current_button.item_preview.instantiate()
+	tower_preview.preview_mode = true
+	preview_space.add_child(tower_preview)
 
 func verify_and_build_tile():
 	if tile_build_loc_valid and GamePlayData.map_money >= GamePlayData.Session_Inventory.Tiles[current_button.button_index].placement_cost:

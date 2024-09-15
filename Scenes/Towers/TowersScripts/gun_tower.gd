@@ -1,7 +1,7 @@
 extends Tower
-class_name RocketTower
+class_name GunTower
 
-var tower_name: String = "rocket_tower"
+var tower_name: String = "scout_tower"
 
 func _ready() -> void:
 	general_ready()

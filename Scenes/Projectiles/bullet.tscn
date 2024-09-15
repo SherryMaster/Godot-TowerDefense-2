@@ -1,22 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://cn2ktgenc2if0"]
 
 [ext_resource type="Script" path="res://Scenes/Projectiles/ProjectileScripts/bullet.gd" id="1_tne0t"]
-[ext_resource type="Texture2D" uid="uid://d0kg53pnqbipm" path="res://Assets/Projectiles/projectile_1.png" id="2_x2px0"]
+[ext_resource type="Texture2D" uid="uid://cmsyr3g1ggtim" path="res://Assets/Projectiles/bullet.svg" id="2_y4wlq"]
 [ext_resource type="Script" path="res://Components/hit_box_component.gd" id="3_j4ppo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a84tm"]
-radius = 3.0
-height = 10.0
+radius = 2.0
+height = 8.0
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_tne0t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_x2px0")
+position = Vector2(-0.525, 0)
+scale = Vector2(0.047, 0.047)
+texture = ExtResource("2_y4wlq")
 
 [node name="HitBoxComponent" type="Area2D" parent="."]
 script = ExtResource("3_j4ppo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(1, 0)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_a84tm")

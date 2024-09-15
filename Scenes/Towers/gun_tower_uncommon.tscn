@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dejv14ycshqvo"]
+[gd_scene load_steps=10 format=3 uid="uid://c6qlgts0vhc5p"]
 
-[ext_resource type="Script" path="res://Scenes/Towers/TowersScripts/scout_tower.gd" id="2_koae8"]
-[ext_resource type="Texture2D" uid="uid://nopyic8t3obp" path="res://Assets/Towers/Base/base_1.png" id="2_qulrx"]
-[ext_resource type="Texture2D" uid="uid://bqjaa10yk1t8p" path="res://Assets/Towers/Turrets/turret_2.png" id="3_6ynid"]
-[ext_resource type="Script" path="res://Components/health_component.gd" id="4_2u0ri"]
-[ext_resource type="PackedScene" uid="uid://brvtcpf7vraqx" path="res://Components/health_bar_component.tscn" id="5_yh5rl"]
-[ext_resource type="Script" path="res://Components/hurt_box_component.gd" id="6_n18k1"]
-[ext_resource type="Script" path="res://Components/detector_component.tres.gd" id="7_fd8vs"]
+[ext_resource type="Script" path="res://Scenes/Towers/TowersScripts/gun_tower.gd" id="1_3kraw"]
+[ext_resource type="Texture2D" uid="uid://b7ssgvsxh6tw2" path="res://Assets/Towers/Base/gun_2.svg" id="2_740ng"]
+[ext_resource type="Script" path="res://Components/health_component.gd" id="3_ew6wm"]
+[ext_resource type="Texture2D" uid="uid://b4acvkchqqx5h" path="res://Assets/Towers/Turrets/gun2.svg" id="3_feb4n"]
+[ext_resource type="PackedScene" uid="uid://brvtcpf7vraqx" path="res://Components/health_bar_component.tscn" id="4_gmp4k"]
+[ext_resource type="Script" path="res://Components/hurt_box_component.gd" id="5_u2xht"]
+[ext_resource type="Script" path="res://Components/detector_component.tres.gd" id="6_o4452"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3wv8b"]
 radius = 14.0357
@@ -17,47 +17,54 @@ radius = 14.0357
 collision_layer = 4
 collision_mask = 8
 motion_mode = 1
-script = ExtResource("2_koae8")
-damage = 20.0
+script = ExtResource("1_3kraw")
 health = 250.0
 turret = NodePath("Turret")
+damage = 20.0
 
 [node name="Base" type="Sprite2D" parent="."]
-texture = ExtResource("2_qulrx")
+scale = Vector2(0.063, 0.063)
+texture = ExtResource("2_740ng")
 
-[node name="Turret" type="Sprite2D" parent="."]
-texture = ExtResource("3_6ynid")
+[node name="Turret" type="Node2D" parent="."]
+
+[node name="TSprite" type="Sprite2D" parent="Turret"]
+scale = Vector2(0.063, 0.063)
+texture = ExtResource("3_feb4n")
 
 [node name="ShootPoints" type="Node2D" parent="Turret"]
 
 [node name="P1" type="Marker2D" parent="Turret/ShootPoints"]
-position = Vector2(10, 0)
+position = Vector2(11, 0)
 
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("4_2u0ri")
+script = ExtResource("3_ew6wm")
 
-[node name="HealthBarComponent" parent="." instance=ExtResource("5_yh5rl")]
+[node name="HealthBarComponent" parent="." instance=ExtResource("4_gmp4k")]
 offset_left = -21.0
 offset_top = -20.0
 offset_right = 21.0
 offset_bottom = -9.0
 
 [node name="HurtBoxComponent" type="Area2D" parent="."]
-script = ExtResource("6_n18k1")
+visible = false
+script = ExtResource("5_u2xht")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 shape = SubResource("CircleShape2D_3wv8b")
 debug_color = Color(0.910374, 0.261205, 0.369899, 0.42)
 
 [node name="DetectorComponent" type="Area2D" parent="."]
+visible = false
 collision_layer = 128
 collision_mask = 127
-script = ExtResource("7_fd8vs")
+script = ExtResource("6_o4452")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorComponent"]
 shape = SubResource("CircleShape2D_uyirj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_3wv8b")
 debug_color = Color(0, 0.646656, 0.231645, 0.42)
 

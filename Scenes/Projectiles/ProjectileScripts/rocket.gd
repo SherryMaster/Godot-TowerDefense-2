@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 				if is_instance_valid(enemy):
 					direction = global_position.direction_to(enemy.global_position)
 				else:
+					current_velocity = Vector2.RIGHT.rotated(rotation) * speed
 					select_new_enemy()
 
 			var desired_velocity := direction * speed

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/build_bar.gd" id="1_xkpku"]
 [ext_resource type="Texture2D" uid="uid://bbqqf3otdjcy0" path="res://Assets/TowerTiles/tile_1.png" id="2_wworb"]
 [ext_resource type="Theme" uid="uid://qwhy44kc0k84" path="res://Resources/Themes/BuildBar/Panel/build_panel_green.tres" id="4_rh7uf"]
-[ext_resource type="Texture2D" uid="uid://d0mxkwm5h43vy" path="res://Assets/Towers/Full Previews/Tower_1.png" id="5_uwans"]
+[ext_resource type="Texture2D" uid="uid://83hebppojq4b" path="res://Assets/Tower Icon.png" id="6_24onp"]
 [ext_resource type="Script" path="res://Scripts/build_bar_item_loader.tres.gd" id="6_utv8n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n068r"]
@@ -121,7 +121,7 @@ offset_top = -32.0
 offset_right = 334.0
 offset_bottom = 1.0
 theme = ExtResource("4_rh7uf")
-icon = ExtResource("5_uwans")
+icon = ExtResource("6_24onp")
 icon_alignment = 1
 expand_icon = true
 

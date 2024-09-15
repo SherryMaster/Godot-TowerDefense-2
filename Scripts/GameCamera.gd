@@ -10,6 +10,7 @@ var build_mode_started_in_game = false
 @export var bottom_limit_node: Node2D
 
 @export var min_zoom_limit: float = 0.5
+@export var max_zoom_limit: float = 3
 
 var game_scene: GameScene
 
@@ -22,8 +23,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("scroll_up"):
 		zoom /= scale_factor
-		zoom.x = min(zoom.x, 2)
-		zoom.y = min(zoom.y, 2)
+		zoom.x = min(zoom.x, max_zoom_limit)
+		zoom.y = min(zoom.y, max_zoom_limit)
 	elif event.is_action_pressed("scroll_down"):
 		zoom *= scale_factor
 		zoom.x = max(zoom.x, min_zoom_limit)
