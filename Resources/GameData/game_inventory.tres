@@ -1,19 +1,19 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=21 format=3 uid="uid://cihkeyo36vjfg"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://Resources/Customs/MaterialItem.gd" id="1_ph7tl"]
 [ext_resource type="Script" path="res://Resources/Customs/TileItem.gd" id="1_sx2hj"]
-[ext_resource type="Texture2D" uid="uid://dj45ra2ro7qw3" path="res://Assets/Materials/common part.png" id="2_jkrkg"]
-[ext_resource type="Texture2D" uid="uid://bbqqf3otdjcy0" path="res://Assets/TowerTiles/tile_1.png" id="2_oda8w"]
+[ext_resource type="Texture2D" path="res://Assets/Materials/common part.png" id="2_jkrkg"]
+[ext_resource type="Texture2D" path="res://Assets/TowerTiles/tile_1.png" id="2_oda8w"]
 [ext_resource type="Script" path="res://Resources/Customs/TowerItem.gd" id="3_r5e4e"]
-[ext_resource type="Texture2D" uid="uid://biso078624i0w" path="res://Assets/Towers/Full Previews/GunT1.svg" id="6_av0pt"]
+[ext_resource type="Texture2D" path="res://Assets/Towers/Full Previews/GunT1.svg" id="6_av0pt"]
 [ext_resource type="Script" path="res://Resources/Customs/Inventory.gd" id="6_kt8n8"]
-[ext_resource type="PackedScene" uid="uid://cgrx2oblhwj7x" path="res://Scenes/Towers/gun_tower_common.tscn" id="7_2n7d0"]
-[ext_resource type="Texture2D" uid="uid://botydkw0xlml8" path="res://Assets/Towers/Full Previews/Tower_3.png" id="8_2fcuf"]
-[ext_resource type="Texture2D" uid="uid://mdc68gqrex3t" path="res://Assets/Towers/Full Previews/GunT2.svg" id="8_w8dwp"]
-[ext_resource type="PackedScene" uid="uid://cv3t04xtt8tac" path="res://Scenes/Towers/rocket_tower_common.tscn" id="9_3okw5"]
-[ext_resource type="PackedScene" uid="uid://c6qlgts0vhc5p" path="res://Scenes/Towers/gun_tower_uncommon.tscn" id="9_q20bq"]
-[ext_resource type="Texture2D" uid="uid://b51qvq2hhqa0p" path="res://Assets/Towers/Full Previews/Tower_4.png" id="12_m51bl"]
-[ext_resource type="PackedScene" uid="uid://c0jlete25jnse" path="res://Scenes/Towers/shotgun_tower_common.tscn" id="13_1l62e"]
+[ext_resource type="PackedScene" path="res://Scenes/Towers/gun_tower_common.tscn" id="7_2n7d0"]
+[ext_resource type="Texture2D" path="res://Assets/Towers/Full Previews/GunT2.svg" id="8_w8dwp"]
+[ext_resource type="PackedScene" path="res://Scenes/Towers/rocket_tower_common.tscn" id="9_3okw5"]
+[ext_resource type="PackedScene" path="res://Scenes/Towers/gun_tower_uncommon.tscn" id="9_q20bq"]
+[ext_resource type="Texture2D" path="res://Assets/Towers/Full Previews/RocketT1.svg" id="10_eu7sd"]
+[ext_resource type="Texture2D" path="res://Assets/Towers/Full Previews/Tower_4.png" id="12_m51bl"]
+[ext_resource type="PackedScene" path="res://Scenes/Towers/shotgun_tower_common.tscn" id="13_1l62e"]
 
 [sub_resource type="Resource" id="Resource_i17dl"]
 script = ExtResource("1_ph7tl")
@@ -54,7 +54,7 @@ script = ExtResource("3_r5e4e")
 item_name = 1
 tower_scene = ExtResource("9_3okw5")
 placement_cost = 200
-texture = ExtResource("8_2fcuf")
+texture = ExtResource("10_eu7sd")
 rarity = 0
 quantity = 99
 
