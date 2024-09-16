@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl8v4wbbpp2f0"]
+[gd_scene load_steps=6 format=3 uid="uid://cl8v4wbbpp2f0"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_gfv6d"]
 [ext_resource type="TileSet" uid="uid://dp0m461rrmhsq" path="res://Resources/Tilesets/MainTileSet.tres" id="2_r0p6e"]
 [ext_resource type="TileSet" uid="uid://cmt0jlili3kcd" path="res://Resources/Tilesets/TowerTiles.tres" id="3_pthmj"]
+[ext_resource type="TileSet" uid="uid://tjt3fd2id0vh" path="res://Resources/Tilesets/Roads.tres" id="3_s6hrf"]
 [ext_resource type="Script" path="res://Scripts/GameCamera.gd" id="4_2qbob"]
 
 [node name="Level" type="Node2D"]
@@ -16,7 +17,8 @@ tile_set = ExtResource("2_r0p6e")
 metadata/_edit_lock_ = true
 
 [node name="Road" type="TileMapLayer" parent="Map"]
-tile_set = ExtResource("2_r0p6e")
+scale = Vector2(0.125, 0.125)
+tile_set = ExtResource("3_s6hrf")
 metadata/_edit_lock_ = true
 
 [node name="Tiles" type="TileMapLayer" parent="Map"]

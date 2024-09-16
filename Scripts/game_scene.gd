@@ -6,12 +6,12 @@ signal build_mode_ended
 @onready var level: Level = $Level
 @onready var enemy_spawner: Timer = $EnemySpawner
 @onready var preview_space: Node2D = $PreviewSpace
-@onready var ui: CanvasLayer = $UI
-@onready var build_bar: BuildBar = $UI/BuildBar
+@onready var hud: CanvasLayer = $HUD
+@onready var build_bar: BuildBar = $HUD/BuildBar
 
 const CHAPTERS_DATA = preload("res://Resources/GameData/chapters_data.tres")
 
-@onready var game_scene_top_bar: Control = $UI/GameSceneTopBar
+@onready var game_scene_top_bar: Control = $HUD/GameSceneTopBar
 
 var enemy_remaining: int = 0
 
@@ -40,6 +40,13 @@ var current_tile_cords: Vector2i
 var current_tile_global_position: Vector2
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("HUD_Toggle"):
+		hud.visible = !hud.visible
+	
+	if build_mode:
+		if event.is_action_pressed("cancel_build"):
+			cancel_build_mode()
+	
 	if event.is_action_released("click") and build_mode:
 		if tile_build_mode:
 			var success: bool = verify_and_build_tile()

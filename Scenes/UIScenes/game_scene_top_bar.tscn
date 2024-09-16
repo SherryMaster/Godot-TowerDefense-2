@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://degabwtrn4wfy"]
+[gd_scene load_steps=26 format=3 uid="uid://degabwtrn4wfy"]
 
 [ext_resource type="LabelSettings" uid="uid://b55m4horok4h5" path="res://Resources/Fonts/MainFont.tres" id="1_f1gtc"]
 [ext_resource type="Texture2D" uid="uid://d3bdlpba11bwo" path="res://Assets/UI Icons/right.png" id="2_6ha1o"]
@@ -45,6 +45,14 @@ func _process(delta: float) -> void:
 	text = str(GamePlayData.current_wave) + \" / \" + str(GamePlayData.max_waves + 1)
 "
 
+[sub_resource type="InputEventKey" id="InputEventKey_1y7cb"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_5g7vv"]
+events = [SubResource("InputEventKey_1y7cb")]
+
 [sub_resource type="GDScript" id="GDScript_73038"]
 script/source = "extends Button
 
@@ -60,10 +68,12 @@ func _ready() -> void:
 
 func _on_wave_started():
 	visible = false
+	disabled = true
 
 
 func _on_wave_ended():
 	visible = true
+	disabled = false
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6xdd"]
@@ -94,6 +104,14 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 6
 
+[sub_resource type="InputEventKey" id="InputEventKey_72yyt"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_7tpxf"]
+events = [SubResource("InputEventKey_72yyt")]
+
 [sub_resource type="GDScript" id="GDScript_456j3"]
 script/source = "extends Button
 
@@ -108,10 +126,12 @@ func _ready() -> void:
 
 func _on_wave_started():
 	visible = true
+	disabled = false
 
 
 func _on_wave_ended():
 	visible = false
+	disabled = true
 
 
 func _on_toggled(toggled_on: bool) -> void:
@@ -121,6 +141,13 @@ func _on_toggled(toggled_on: bool) -> void:
 func _on_visibility_changed() -> void:
 	GamePlayData.set_game_speed(game_speed_value if visible and button_pressed else 1)
 "
+
+[sub_resource type="InputEventKey" id="InputEventKey_tpvvm"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_6s5jy"]
+events = [SubResource("InputEventKey_tpvvm")]
 
 [sub_resource type="GDScript" id="GDScript_paxq1"]
 script/source = "extends Button
@@ -226,6 +253,7 @@ script = SubResource("GDScript_t7536")
 [node name="WaveContainer" type="HBoxContainer" parent="BG/HBC"]
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_constants/separation = 10
 
 [node name="WaveLabel" type="Label" parent="BG/HBC/WaveContainer"]
 layout_mode = 2
@@ -254,6 +282,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+focus_mode = 0
+shortcut = SubResource("Shortcut_5g7vv")
 icon = ExtResource("2_6ha1o")
 expand_icon = true
 script = SubResource("GDScript_73038")
@@ -263,10 +293,13 @@ visible = false
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+focus_mode = 0
 theme = ExtResource("3_hros0")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_b6xdd")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sb208")
+disabled = true
 toggle_mode = true
+shortcut = SubResource("Shortcut_7tpxf")
 icon = ExtResource("4_344ih")
 expand_icon = true
 script = SubResource("GDScript_456j3")
@@ -276,9 +309,11 @@ process_mode = 3
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+focus_mode = 0
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_b6xdd")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sb208")
 toggle_mode = true
+shortcut = SubResource("Shortcut_6s5jy")
 icon = ExtResource("3_q3eq4")
 expand_icon = true
 script = SubResource("GDScript_paxq1")
@@ -312,7 +347,6 @@ grow_vertical = 2
 text = "999 / 999"
 label_settings = ExtResource("1_f1gtc")
 horizontal_alignment = 1
-vertical_alignment = 1
 script = SubResource("GDScript_5ou8r")
 
 [node name="Control2" type="Control" parent="BG/HBC"]

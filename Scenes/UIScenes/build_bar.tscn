@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://daqwugxy6ko27"]
+[gd_scene load_steps=21 format=3 uid="uid://daqwugxy6ko27"]
 
 [ext_resource type="Theme" uid="uid://pw5gcy6kv06x" path="res://Resources/Themes/BuildBar/Panel/build_panel_blue.tres" id="1_dtw7n"]
 [ext_resource type="Texture2D" uid="uid://bsn10rlxfmw62" path="res://Assets/UI Icons/tool.png" id="1_ijqak"]
@@ -61,6 +61,14 @@ Button/styles/hover = SubResource("StyleBoxFlat_0yxrl")
 Button/styles/normal = SubResource("StyleBoxFlat_lcr2w")
 Button/styles/pressed = SubResource("StyleBoxFlat_imwg5")
 
+[sub_resource type="InputEventKey" id="InputEventKey_2q0xm"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="Shortcut" id="Shortcut_s5fy7"]
+events = [SubResource("InputEventKey_2q0xm")]
+
 [sub_resource type="GDScript" id="GDScript_st488"]
 script/source = "extends Button
 
@@ -74,6 +82,22 @@ func _on_toggled(toggled_on):
 	await slider_tween.finished
 	disabled = false
 "
+
+[sub_resource type="InputEventKey" id="InputEventKey_gho6n"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_6it14"]
+events = [SubResource("InputEventKey_gho6n")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_eq50j"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_j4oth"]
+events = [SubResource("InputEventKey_eq50j")]
 
 [node name="BuildBar" type="Control"]
 layout_mode = 3
@@ -97,8 +121,10 @@ offset_top = -48.0
 offset_right = -61.0
 offset_bottom = 7.0
 grow_horizontal = 0
+focus_mode = 0
 theme = SubResource("Theme_g74ig")
 toggle_mode = true
+shortcut = SubResource("Shortcut_s5fy7")
 icon = ExtResource("1_ijqak")
 expand_icon = true
 script = SubResource("GDScript_st488")
@@ -109,7 +135,9 @@ offset_left = 68.0
 offset_top = -32.0
 offset_right = 201.0
 offset_bottom = 1.0
+focus_mode = 0
 theme = ExtResource("1_dtw7n")
+shortcut = SubResource("Shortcut_6it14")
 icon = ExtResource("2_wworb")
 icon_alignment = 1
 expand_icon = true
@@ -120,7 +148,9 @@ offset_left = 201.0
 offset_top = -32.0
 offset_right = 334.0
 offset_bottom = 1.0
+focus_mode = 0
 theme = ExtResource("4_rh7uf")
+shortcut = SubResource("Shortcut_j4oth")
 icon = ExtResource("6_24onp")
 icon_alignment = 1
 expand_icon = true
