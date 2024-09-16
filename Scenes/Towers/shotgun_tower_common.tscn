@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://c0jlete25jnse"]
 
-[ext_resource type="Texture2D" uid="uid://2l265fuk7gix" path="res://Assets/Towers/Base/base_3.png" id="2_rko66"]
 [ext_resource type="Script" path="res://Scenes/Towers/TowersScripts/shotgun_tower.gd" id="2_rwspi"]
-[ext_resource type="Texture2D" uid="uid://bp4xtlvviusm3" path="res://Assets/Towers/Turrets/turret_4.png" id="3_g03ww"]
+[ext_resource type="Texture2D" uid="uid://xbd1ay0j7nao" path="res://Assets/Towers/Base/shotgun_1.svg" id="2_ydewh"]
+[ext_resource type="Texture2D" uid="uid://hklwineavlcd" path="res://Assets/Towers/Turrets/shotgun1.svg" id="3_nbgl4"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="4_d6s4m"]
 [ext_resource type="PackedScene" uid="uid://brvtcpf7vraqx" path="res://Components/health_bar_component.tscn" id="5_ytq0p"]
 [ext_resource type="Script" path="res://Components/hurt_box_component.gd" id="6_1skey"]
@@ -24,20 +24,25 @@ turret = NodePath("Turret")
 projectile_travel_distance = 1000.0
 
 [node name="Base" type="Sprite2D" parent="."]
-texture = ExtResource("2_rko66")
+scale = Vector2(0.063, 0.063)
+texture = ExtResource("2_ydewh")
 
-[node name="Turret" type="Sprite2D" parent="."]
-texture = ExtResource("3_g03ww")
+[node name="Turret" type="Node2D" parent="."]
+
+[node name="TSprite" type="Sprite2D" parent="Turret"]
+scale = Vector2(0.063, 0.063)
+texture = ExtResource("3_nbgl4")
 
 [node name="ShootPoints" type="Node2D" parent="Turret"]
 
 [node name="P1" type="Marker2D" parent="Turret/ShootPoints"]
-position = Vector2(10, 0)
+position = Vector2(13, 0)
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("4_d6s4m")
 
 [node name="HealthBarComponent" parent="." instance=ExtResource("5_ytq0p")]
+visible = false
 offset_left = -21.0
 offset_top = -20.0
 offset_right = 21.0

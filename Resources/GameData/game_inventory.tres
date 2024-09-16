@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Towers/rocket_tower_common.tscn" id="9_3okw5"]
 [ext_resource type="PackedScene" path="res://Scenes/Towers/gun_tower_uncommon.tscn" id="9_q20bq"]
 [ext_resource type="Texture2D" path="res://Assets/Towers/Full Previews/RocketT1.svg" id="10_eu7sd"]
-[ext_resource type="Texture2D" path="res://Assets/Towers/Full Previews/Tower_4.png" id="12_m51bl"]
+[ext_resource type="Texture2D" path="res://Assets/Towers/Full Previews/Shotgun1.svg" id="12_b444f"]
 [ext_resource type="PackedScene" path="res://Scenes/Towers/shotgun_tower_common.tscn" id="13_1l62e"]
 
 [sub_resource type="Resource" id="Resource_i17dl"]
@@ -63,7 +63,7 @@ script = ExtResource("3_r5e4e")
 item_name = 2
 tower_scene = ExtResource("13_1l62e")
 placement_cost = 100
-texture = ExtResource("12_m51bl")
+texture = ExtResource("12_b444f")
 rarity = 0
 quantity = 99
 

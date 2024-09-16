@@ -41,7 +41,7 @@ texture = ExtResource("4_s67sg")
 [node name="ShootPoints" type="Node2D" parent="Turret"]
 
 [node name="P1" type="Marker2D" parent="Turret/ShootPoints"]
-position = Vector2(11, 0)
+position = Vector2(13, 0)
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_l83m0")

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="454px" height="454px" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+viewBox="0 0 85010 85010"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_1521802946032">
+   <g>
+    <rect fill="#6699FF" x="80" y="80" width="84840" height="84840" rx="12470" ry="12470"/>
+    <rect fill="#003399" stroke="#373435" stroke-width="170" stroke-miterlimit="2.61313" x="80" y="80" width="84840" height="84840" rx="30330" ry="30330"/>
+    <rect fill="#336699" x="9080" y="9080" width="66840" height="66840"/>
+   </g>
+   <g>
+    <path fill="gray" d="M70360 55020c-1280,-2000 -4340,-3070 -8410,-3630l8410 0c0,1210 0,2420 0,3630z"/>
+    <path fill="gray" d="M70360 29990c-1280,2000 -4340,3070 -8410,3620l8410 0c0,-1210 0,-2410 0,-3620z"/>
+    <rect fill="#999999" x="51520" y="33580" width="18800" height="17860"/>
+    <rect fill="#E6E6E6" x="33490" y="24420" width="18030" height="36170"/>
+    <polygon fill="#B3B3B3" points="33490,42500 33490,60590 18340,49960 18340,42500 18340,35050 33490,24420 "/>
+    <rect fill="#99FFFF" x="33490" y="33580" width="18030" height="4390"/>
+    <rect fill="#99FFFF" x="33490" y="47040" width="18030" height="4390"/>
+    <rect fill="#4D4D4D" x="70320" y="29950" width="7740" height="25110"/>
+    <rect fill="gray" x="69150" y="33200" width="1170" height="18610"/>
+   </g>
+  </g>
+ </g>
+</svg>
