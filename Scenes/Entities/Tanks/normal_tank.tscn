@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c03d01f5g5dys" path="res://Assets/Units/Normal Tank/frame.png" id="2_ljmtj"]
 [ext_resource type="Texture2D" uid="uid://cg2nthiqtp40l" path="res://Assets/Units/Normal Tank/body.png" id="3_235h4"]
 
-[node name="Tank" instance=ExtResource("1_r2aru")]
+[node name="Tank" groups=["Enemy"] instance=ExtResource("1_r2aru")]
 
 [node name="Frame" parent="Hull" index="0"]
 texture = ExtResource("2_ljmtj")
@@ -17,3 +17,6 @@ offset_left = -28.0
 offset_top = -24.0
 offset_right = 28.0
 offset_bottom = -12.0
+
+[node name="NavigationComponent" parent="." index="7"]
+debug_enabled = true

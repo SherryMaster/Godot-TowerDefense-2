@@ -41,11 +41,9 @@ position = Vector2(0, 384)
 
 [node name="Towers" type="Node2D" parent="."]
 
-[node name="Units" type="Node2D" parent="." groups=["Units"]]
+[node name="PathPoints" type="Node2D" parent="."]
 
-[node name="Enemy" type="Node2D" parent="Units"]
-
-[node name="Ally" type="Node2D" parent="Units"]
+[node name="Units" type="Node2D" parent="."]
 
 [node name="GameCamera" type="Camera2D" parent="." node_paths=PackedStringArray("right_limit_node", "bottom_limit_node")]
 limit_left = 0

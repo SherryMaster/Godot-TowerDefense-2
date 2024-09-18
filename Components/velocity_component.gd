@@ -10,7 +10,7 @@ class_name VelocityComponent
 var moving = true
 
 @export_range(0, 1) var speed_power: float = 1
-@export_range(0, 0.2) var break_power: float = 0.2
+@export_range(0, 0.2) var accel_power: float = 0.2
 @export_range(0, 0.1) var turn_factor: float = 0.1
 
 
@@ -22,6 +22,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if moving:
-		speed_power = min(1, speed_power*(1 + break_power))
+		speed_power = min(1, speed_power*(1 + accel_power))
 	else:
-		speed_power = max(0, speed_power/(1 + break_power))
+		speed_power = max(0, speed_power/(1 + accel_power))

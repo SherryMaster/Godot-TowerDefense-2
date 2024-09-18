@@ -49,19 +49,18 @@ func _physics_process(delta: float) -> void:
 
 
 func select_new_enemy():
-	var units_node = get_parent().get_parent().get_parent().get_parent().get_node("Units/Enemy").get_children()
 	
-	if units_node.size() == 0:
-		return
+	var enemy_tanks: Array = get_tree().get_nodes_in_group("Enemy")
 	
 	var tank_distances: Array[float] = []
-	for tank in units_node as Array[Tank]:
+	for tank in enemy_tanks as Array[Tank]:
 		tank_distances.append(global_position.distance_to(tank.global_position))
 	
 	var minimum_distance = tank_distances.min()
 	var index = tank_distances.find(minimum_distance)
 	
-	enemy = units_node[index]
+	if index != -1:
+		enemy = enemy_tanks[index]
 
 func destroy():
 	$Sprite2D.visible = false

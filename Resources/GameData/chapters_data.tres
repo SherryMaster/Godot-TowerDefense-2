@@ -257,7 +257,7 @@ wave_parts = Array[ExtResource("3_cd48d")]([SubResource("Resource_0nkxs")])
 
 [sub_resource type="Resource" id="Resource_c54t6"]
 script = ExtResource("1_px83l")
-starting_money = 1000
+starting_money = 500000
 starting_base_hp = 100.0
 level_image = ExtResource("6_exwnh")
 level_completed = true

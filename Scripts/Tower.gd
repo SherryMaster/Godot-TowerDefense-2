@@ -71,14 +71,14 @@ func select_tank():
 	if taget_prior == TargetPriority.First:
 		var distances: Array[float]
 		for t in Enemy_List:
-			distances.append(t.distance_travelled)
+			distances.append(t.distance_travelled())
 		var max_dist_index: int = distances.find(distances.max())
 		Enemy_to_hit = Enemy_List[max_dist_index]
 	
 	if taget_prior == TargetPriority.Last:
 		var distances: Array[float]
 		for t in Enemy_List:
-			distances.append(t.distance_travelled)
+			distances.append(t.distance_travelled())
 		var min_dist_index: int = distances.find(distances.min())
 		Enemy_to_hit = Enemy_List[min_dist_index]
 	

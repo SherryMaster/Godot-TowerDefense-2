@@ -259,9 +259,10 @@ func spawn_wave():
 			tank.speed = GameData.TankStats[part.type]["Speed"]
 			tank.money_on_death = GameData.TankStats[part.type]["Coins on Death"] * GameData.CoinDrop_Scales_by_Color[part.color]
 			tank.main_target = level.end
+			tank.path_points = level.get_paths()
 			tank.global_position = level.start.global_position
 			tank.reached_end.connect(on_enemy_at_end)
-			level.enemy.add_child(tank)
+			level.units.add_child(tank)
 			tank.set_name(type + "_" + WavePart.Colors.keys()[part.color])
 			enemy_spawner.start(part.delay_btw_spawns)
 			await enemy_spawner.timeout
@@ -280,7 +281,7 @@ func spawn_wave():
 	spawning_enemies = false
 
 func update_num_of_enemies():
-	enemy_remaining = level.enemy.get_child_count()
+	enemy_remaining = get_tree().get_nodes_in_group("Enemy").size()
 
 func on_enemy_at_end(hp_left: float):
 	GamePlayData.base_hp = max(0, GamePlayData.base_hp - hp_left)
