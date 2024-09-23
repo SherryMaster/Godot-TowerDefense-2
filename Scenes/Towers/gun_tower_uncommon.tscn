@@ -45,6 +45,9 @@ offset_left = -21.0
 offset_top = -20.0
 offset_right = 21.0
 offset_bottom = -9.0
+texture_under = null
+texture_over = null
+texture_progress = null
 
 [node name="HurtBoxComponent" type="Area2D" parent="."]
 visible = false

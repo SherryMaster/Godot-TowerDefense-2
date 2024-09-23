@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cgrx2oblhwj7x"]
 
 [ext_resource type="Script" path="res://Scenes/Towers/TowersScripts/gun_tower.gd" id="1_mum6g"]
-[ext_resource type="Texture2D" uid="uid://cnqc7utgk3h2k" path="res://Assets/Towers/Base/base_1.svg" id="2_i43w2"]
+[ext_resource type="Texture2D" uid="uid://dykk4wct1sm2f" path="res://Assets/Towers/Base/gun_1.svg" id="2_i43w2"]
 [ext_resource type="Texture2D" uid="uid://cuf4r6saa8w8d" path="res://Assets/Towers/Turrets/gun1.svg" id="3_ow48q"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="4_78ee3"]
 [ext_resource type="PackedScene" uid="uid://brvtcpf7vraqx" path="res://Components/health_bar_component.tscn" id="5_dklj7"]
@@ -44,6 +44,9 @@ offset_left = -21.0
 offset_top = -20.0
 offset_right = 21.0
 offset_bottom = -9.0
+texture_under = null
+texture_over = null
+texture_progress = null
 
 [node name="HurtBoxComponent" type="Area2D" parent="."]
 visible = false
